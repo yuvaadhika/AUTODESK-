@@ -1,12 +1,11 @@
 import { BimViewer3D, WalkthroughEngine } from './bimViewer3d.js';
 import { initFloorPlans } from './floorPlans.js';
 import { initStructuralCAD } from './structuralCAD.js';
-import { initEnvironmentalForma } from './environmentalForma.js';
+import { initEnvironmentalForma, resizeFormaCharts } from './environmentalForma.js';
 import { PresentationDeck } from './presentationDeck.js';
 
 /**
  * Web Audio API Biophilic Soundscape Generator
- * Produces pleasant organic stream/breeze background sound with zero external MP3 dependencies
  */
 class BiophilicSoundscape {
   constructor() {
@@ -29,7 +28,6 @@ class BiophilicSoundscape {
       const AudioContext = window.AudioContext || window.webkitAudioContext;
       this.audioCtx = new AudioContext();
 
-      // Pink noise generator for gentle water / breeze
       const bufferSize = 2 * this.audioCtx.sampleRate;
       const noiseBuffer = this.audioCtx.createBuffer(1, bufferSize, this.audioCtx.sampleRate);
       const output = noiseBuffer.getChannelData(0);
@@ -52,7 +50,6 @@ class BiophilicSoundscape {
       whiteNoise.buffer = noiseBuffer;
       whiteNoise.loop = true;
 
-      // Low pass filter for soft water trickle
       const filter = this.audioCtx.createBiquadFilter();
       filter.type = 'lowpass';
       filter.frequency.setValueAtTime(450, this.audioCtx.currentTime);
@@ -67,7 +64,7 @@ class BiophilicSoundscape {
       whiteNoise.start(0);
       this.isPlaying = true;
     } catch (e) {
-      console.warn('Audio not allowed without direct interaction', e);
+      console.warn('Audio not allowed without user gesture', e);
     }
   }
 
@@ -81,28 +78,54 @@ class BiophilicSoundscape {
 }
 
 /**
- * Main Application Initializer
+ * Master Application Initialization
  */
-document.addEventListener('DOMContentLoaded', () => {
-  // Initialize 3D BIM Viewer
-  const bimViewer = new BimViewer3D('bimCanvas');
+function initApp() {
+  // 1. Initialize 3D BIM Viewer
+  let bimViewer = null;
+  try {
+    bimViewer = new BimViewer3D('bimCanvas');
+  } catch (err) {
+    console.error('BIM Viewer init error:', err);
+  }
 
-  // Initialize Walkthrough
-  const walkthrough = new WalkthroughEngine('walkthroughCanvas');
+  // 2. Initialize Walkthrough Engine
+  let walkthrough = null;
+  try {
+    walkthrough = new WalkthroughEngine('walkthroughCanvas');
+  } catch (err) {
+    console.error('Walkthrough init error:', err);
+  }
 
-  // Initialize Floor Plans
-  initFloorPlans();
+  // 3. Initialize Floor Plans
+  try {
+    initFloorPlans();
+  } catch (err) {
+    console.error('Floor plans init error:', err);
+  }
 
-  // Initialize Structural CAD
-  initStructuralCAD();
+  // 4. Initialize Structural CAD
+  try {
+    initStructuralCAD();
+  } catch (err) {
+    console.error('Structural CAD init error:', err);
+  }
 
-  // Initialize Forma Analytics
-  initEnvironmentalForma();
+  // 5. Initialize Forma Climate Analytics
+  try {
+    initEnvironmentalForma();
+  } catch (err) {
+    console.error('Forma init error:', err);
+  }
 
-  // Initialize Presentation Deck
-  const deck = new PresentationDeck();
+  // 6. Initialize Presentation Deck
+  try {
+    new PresentationDeck();
+  } catch (err) {
+    console.error('Presentation deck init error:', err);
+  }
 
-  // Biophilic Audio
+  // 7. Biophilic Audio Toggle
   const soundscape = new BiophilicSoundscape();
   const audioBtn = document.getElementById('btnAudioToggle');
   if (audioBtn) {
@@ -112,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // View Navigation Tabs
+  // 8. Navigation View Tabs Switching
   const navTabs = document.querySelectorAll('.nav-tab');
   const viewPanels = document.querySelectorAll('.view-panel');
   const mobileNav = document.getElementById('mainNav');
@@ -126,14 +149,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (mobileNav) mobileNav.classList.remove('mobile-open');
 
-    // Trigger resize & camera update for WebGL viewports
+    // Trigger responsive renderers after layout change
     setTimeout(() => {
       window.dispatchEvent(new Event('resize'));
       if (viewKey === 'walkthrough' && walkthrough) {
         walkthrough.resize();
         walkthrough.updateCameraToTime(walkthrough.currentTime);
+      } else if (viewKey === 'bim3d' && bimViewer) {
+        bimViewer.resizeRendererToDisplaySize();
+      } else if (viewKey === 'environmental') {
+        resizeFormaCharts();
       }
-    }, 50);
+    }, 40);
   }
 
   navTabs.forEach(tab => {
@@ -153,12 +180,14 @@ document.addEventListener('DOMContentLoaded', () => {
   if (btnStartWalkthrough) {
     btnStartWalkthrough.addEventListener('click', () => {
       switchView('walkthrough');
-      walkthrough.seek(0);
-      walkthrough.play();
+      if (walkthrough) {
+        walkthrough.seek(0);
+        walkthrough.play();
+      }
     });
   }
 
-  // 3D Exploded Slider
+  // 3D Exploded View Slider
   const explodedSlider = document.getElementById('explodedSlider');
   if (explodedSlider && bimViewer) {
     explodedSlider.addEventListener('input', (e) => {
@@ -280,4 +309,11 @@ document.addEventListener('DOMContentLoaded', () => {
       window.print();
     });
   }
-});
+}
+
+// Immediate + Safe DOM check execution
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initApp);
+} else {
+  initApp();
+}

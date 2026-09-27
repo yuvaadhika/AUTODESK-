@@ -5,17 +5,22 @@ Chart.register(...registerables);
  * Autodesk Forma Environmental & Climate Analysis Engine
  */
 
+let formaCharts = [];
+
 export function initEnvironmentalForma() {
-  // Chart Colors in Mild Architectural Palette
-  const primaryBlue = '#0284c7';
+  // Clear any existing charts to avoid duplicates
+  formaCharts.forEach(c => {
+    try { c.destroy(); } catch (e) {}
+  });
+  formaCharts = [];
+
   const greenAccent = '#10b981';
   const orangeAccent = '#f59e0b';
-  const slateAccent = '#64748b';
 
   // 1. Daylight Autonomy & Sun Path Chart
   const ctxDaylight = document.getElementById('daylightChart');
   if (ctxDaylight) {
-    new Chart(ctxDaylight, {
+    const c1 = new Chart(ctxDaylight, {
       type: 'line',
       data: {
         labels: ['06:00', '08:00', '10:00', '12:00', '14:00', '16:00', '18:00'],
@@ -74,12 +79,13 @@ export function initEnvironmentalForma() {
         }
       }
     });
+    formaCharts.push(c1);
   }
 
   // 2. Wind Flow & Courtyard Stack CFD Chart
   const ctxWind = document.getElementById('windChart');
   if (ctxWind) {
-    new Chart(ctxWind, {
+    const c2 = new Chart(ctxWind, {
       type: 'bar',
       data: {
         labels: ['Ground Plaza', 'Courtyard Base', '1F Skybridge', '4F Residential', '7F Residential', '10F Rooftop Vent'],
@@ -119,12 +125,13 @@ export function initEnvironmentalForma() {
         }
       }
     });
+    formaCharts.push(c2);
   }
 
   // 3. EUI Energy Comparison Chart
   const ctxEui = document.getElementById('euiChart');
   if (ctxEui) {
-    new Chart(ctxEui, {
+    const c3 = new Chart(ctxEui, {
       type: 'bar',
       data: {
         labels: ['HVAC Cooling', 'Interior Lighting', 'Pumps & MEP', 'Plug Loads', 'Solar PV Generation'],
@@ -159,12 +166,13 @@ export function initEnvironmentalForma() {
         }
       }
     });
+    formaCharts.push(c3);
   }
 
   // 4. Carbon Footprint Breakdown Chart
   const ctxCarbon = document.getElementById('carbonChart');
   if (ctxCarbon) {
-    new Chart(ctxCarbon, {
+    const c4 = new Chart(ctxCarbon, {
       type: 'doughnut',
       data: {
         labels: ['Low-Carbon Concrete (GGBS)', 'Recycled Fe500D Steel', 'High-Perf Glazing Envelope', 'Timber & Biophilic Planters', 'MEP & Solar Systems'],
@@ -191,5 +199,15 @@ export function initEnvironmentalForma() {
         cutout: '65%'
       }
     });
+    formaCharts.push(c4);
   }
+}
+
+export function resizeFormaCharts() {
+  formaCharts.forEach(c => {
+    try {
+      c.resize();
+      c.update();
+    } catch (e) {}
+  });
 }
