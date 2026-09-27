@@ -126,8 +126,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (mobileNav) mobileNav.classList.remove('mobile-open');
 
-    // Trigger window resize for Three.js canvas auto-adjustment
-    window.dispatchEvent(new Event('resize'));
+    // Trigger resize & camera update for WebGL viewports
+    setTimeout(() => {
+      window.dispatchEvent(new Event('resize'));
+      if (viewKey === 'walkthrough' && walkthrough) {
+        walkthrough.resize();
+        walkthrough.updateCameraToTime(walkthrough.currentTime);
+      }
+    }, 50);
   }
 
   navTabs.forEach(tab => {
