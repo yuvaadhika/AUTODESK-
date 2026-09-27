@@ -730,25 +730,30 @@ export class BimViewer3D {
     this.renderer.shadowMap.enabled = enable;
   }
 
-  initResizeObserver() {
-    const resize = () => {
-      if (!this.canvas) return;
-      const width = this.canvas.clientWidth || 800;
-      const height = this.canvas.clientHeight || 600;
-      if (width > 0 && height > 0) {
+  resizeRendererToDisplaySize() {
+    if (!this.canvas) return false;
+    const width = this.canvas.clientWidth;
+    const height = this.canvas.clientHeight;
+    if (width > 0 && height > 0) {
+      const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+      const targetWidth = Math.floor(width * pixelRatio);
+      const targetHeight = Math.floor(height * pixelRatio);
+
+      const needResize = this.canvas.width !== targetWidth || this.canvas.height !== targetHeight;
+      if (needResize) {
+        this.renderer.setPixelRatio(pixelRatio);
+        this.renderer.setSize(width, height, false);
         this.camera.aspect = width / height;
         this.camera.updateProjectionMatrix();
-        this.renderer.setSize(width, height);
+        return true;
       }
-    };
-    window.addEventListener('resize', resize);
-    if (window.ResizeObserver && this.canvas.parentElement) {
-      new ResizeObserver(resize).observe(this.canvas.parentElement);
     }
+    return false;
   }
 
   animate() {
     requestAnimationFrame(this.animate);
+    this.resizeRendererToDisplaySize();
     this.controls.update();
     this.renderer.render(this.scene, this.camera);
   }
@@ -788,31 +793,31 @@ export class WalkthroughEngine {
         name: 'Station 1: Urban Approach & Active Promenade',
         title: 'Ground Commercial Promenade & Pedestrian Plaza',
         desc: 'Double-height commercial glass arcade welcoming pedestrians with active retail boutiques, shaded outdoor seating, and seamless flow into the central green courtyard.',
-        camPos: new THREE.Vector3(0, 3.5, 42),
-        lookAt: new THREE.Vector3(0, 5, 10)
+        camPos: new THREE.Vector3(0, 8, 52),
+        lookAt: new THREE.Vector3(0, 12, 0)
       },
       {
         time: 6,
         name: 'Station 2: Central Biophilic Courtyard',
         title: 'Open-Air Botanical Atrium & Thermal Chimney',
         desc: 'The 224 m² central courtyard acts as a natural microclimate cooling stack, featuring native trees, bio-filtration water ponds, and timber boardwalks.',
-        camPos: new THREE.Vector3(-3, 3.5, 4),
-        lookAt: new THREE.Vector3(0, 18, 0)
+        camPos: new THREE.Vector3(0, 6, 6),
+        lookAt: new THREE.Vector3(0, 26, 0)
       },
       {
         time: 13,
         name: 'Station 3: 1F Commercial Deck & Skybridge',
         title: 'Level 1 Wellness, Co-Working & Elevated Terraces',
         desc: 'Cantilevered alfresco dining decks and glazed meeting pods connected via timber sky bridges with direct panoramic vistas down into the courtyard garden.',
-        camPos: new THREE.Vector3(18, 8.5, 12),
-        lookAt: new THREE.Vector3(0, 6, 0)
+        camPos: new THREE.Vector3(26, 14, 24),
+        lookAt: new THREE.Vector3(0, 10, 0)
       },
       {
         time: 20,
         name: 'Station 4: Sustainable Residential Sanctuary',
         title: 'Modular Apartments, Cantilevered Balconies & Kinetic Facade',
         desc: 'Generous 3.3m floor-to-floor heights with deep shading balconies, integrated bio-planters, and motorized aerofoil louvers blocking harsh afternoon solar radiation.',
-        camPos: new THREE.Vector3(-18, 22, 22),
+        camPos: new THREE.Vector3(-28, 26, 36),
         lookAt: new THREE.Vector3(0, 20, 0)
       },
       {
@@ -820,8 +825,8 @@ export class WalkthroughEngine {
         name: 'Station 5: Rooftop Sky Garden & Solar Array',
         title: '10F Bio-Solar Roof, Community Farm & 360° Skyline',
         desc: '148 kWp bifacial solar PV canopy generating 185 MWh/yr, combined with resident urban farming plots, running track, and rainwater retention deck.',
-        camPos: new THREE.Vector3(0, 48, 28),
-        lookAt: new THREE.Vector3(0, 35, 0)
+        camPos: new THREE.Vector3(0, 56, 42),
+        lookAt: new THREE.Vector3(0, 32, 0)
       }
     ];
 
@@ -833,7 +838,6 @@ export class WalkthroughEngine {
     buildFullBimBuilding(this.buildingGroup, null);
 
     this.initEventListeners();
-    this.initResizeObserver();
 
     // Set initial camera to Station 0
     this.updateCameraToTime(0);
@@ -884,22 +888,29 @@ export class WalkthroughEngine {
     });
   }
 
-  resize() {
-    if (!this.canvas) return;
-    const width = this.canvas.clientWidth || 900;
-    const height = this.canvas.clientHeight || 520;
+  resizeRendererToDisplaySize() {
+    if (!this.canvas) return false;
+    const width = this.canvas.clientWidth;
+    const height = this.canvas.clientHeight;
     if (width > 0 && height > 0) {
-      this.camera.aspect = width / height;
-      this.camera.updateProjectionMatrix();
-      this.renderer.setSize(width, height);
+      const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+      const targetWidth = Math.floor(width * pixelRatio);
+      const targetHeight = Math.floor(height * pixelRatio);
+
+      const needResize = this.canvas.width !== targetWidth || this.canvas.height !== targetHeight;
+      if (needResize) {
+        this.renderer.setPixelRatio(pixelRatio);
+        this.renderer.setSize(width, height, false);
+        this.camera.aspect = width / height;
+        this.camera.updateProjectionMatrix();
+        return true;
+      }
     }
+    return false;
   }
 
-  initResizeObserver() {
-    window.addEventListener('resize', () => this.resize());
-    if (window.ResizeObserver && this.canvas.parentElement) {
-      new ResizeObserver(() => this.resize()).observe(this.canvas.parentElement);
-    }
+  resize() {
+    this.resizeRendererToDisplaySize();
   }
 
   initEventListeners() {
@@ -960,7 +971,7 @@ export class WalkthroughEngine {
 
   play() {
     this.isPlaying = true;
-    this.resize();
+    this.resizeRendererToDisplaySize();
     const playIcon = document.getElementById('iconWtPlay');
     const pauseIcon = document.getElementById('iconWtPause');
     if (playIcon) playIcon.classList.add('hidden');
@@ -1046,6 +1057,9 @@ export class WalkthroughEngine {
 
   render(timestamp) {
     requestAnimationFrame(this.render);
+
+    // Continuous responsive display check on every frame
+    this.resizeRendererToDisplaySize();
 
     const dt = (timestamp - this.lastTimestamp) / 1000;
     this.lastTimestamp = timestamp;
