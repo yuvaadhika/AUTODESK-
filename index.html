@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AURA VERTICALIS | Sustainable B+G+9 Mixed-Use BIM Development</title>
+  <meta name="description" content="Urban Mixed-Use Sustainable Architectural Development (B+G+9) featuring commercial podium, luxury residential units, breathable central courtyard, climate-responsive facade, and full Autodesk BIM & Forma environmental analysis." />
+  
+  <!-- Modern Architectural Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body class="mild-theme">
+  <!-- Top Global Header -->
+  <header class="app-header" id="appHeader">
+    <div class="header-container">
+      <div class="brand-group">
+        <div class="brand-logo-badge">
+          <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 21h18M5 21V7l8-4v18M13 3l6 4v14M9 9v.01M9 13v.01M9 17v.01M17 11v.01M17 15v.01M17 19v.01" />
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="brand-title-wrap">
+            <h1 class="project-title">AURA VERTICALIS</h1>
+            <span class="badge-tag">B+G+9 MIXED-USE</span>
+          </div>
+          <p class="project-tagline">Centrally Located Biophilic & Climate-Responsive BIM Urban Development</p>
+        </div>
+      </div>
+
+      <!-- Main Navigation Tabs -->
+      <nav class="main-nav" id="mainNav" aria-label="Main Navigation">
+        <button class="nav-tab active" data-view="bim3d" id="tab-bim3d">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+          <span>3D BIM Model</span>
+        </button>
+        <button class="nav-tab" data-view="walkthrough" id="tab-walkthrough">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          <span>30s Walkthrough</span>
+        </button>
+        <button class="nav-tab" data-view="plans" id="tab-plans">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          <span>Floor Plans & Units</span>
+        </button>
+        <button class="nav-tab" data-view="structural" id="tab-structural">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 12h18M12 3v18M7 7l10 10M17 7 7 17"/></svg>
+          <span>Structural 2D CAD</span>
+        </button>
+        <button class="nav-tab" data-view="environmental" id="tab-environmental">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <span>Forma & Climate</span>
+        </button>
+        <button class="nav-tab" data-view="presentation" id="tab-presentation">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
+          <span>Slide Deck (PPT)</span>
+        </button>
+        <button class="nav-tab" data-view="specs" id="tab-specs">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          <span>Specs & BOQ</span>
+        </button>
+      </nav>
+
+      <!-- Action Controls -->
+      <div class="header-actions">
+        <button class="btn-action btn-audio" id="btnAudioToggle" title="Ambient Biophilic Soundscape" aria-label="Toggle ambient sound">
+          <svg class="icon-audio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          <span class="btn-text">Ambience</span>
+        </button>
+        <button class="btn-action btn-export-quick" id="btnQuickExport" title="Export Project Package">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span class="btn-text">Export PPT / PDF</span>
+        </button>
+        <button class="btn-action btn-fullscreen" id="btnFullscreenToggle" title="Toggle Fullscreen">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+        </button>
+        <!-- Mobile Menu Hamburger -->
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Quick Status Bar -->
+    <div class="status-ribbon">
+      <div class="ribbon-metric">
+        <span class="ribbon-label">PROGRAM:</span>
+        <span class="ribbon-val">B1 (EV Parking) + Ground (Retail) + 1F (Commercial) + 2F-9F (Residential)</span>
+      </div>
+      <div class="ribbon-metric">
+        <span class="ribbon-label">PLOT SIZE:</span>
+        <span class="ribbon-val">48,000 mm × 36,000 mm (1,728 m²)</span>
+      </div>
+      <div class="ribbon-metric">
+        <span class="ribbon-label">TOTAL BUA:</span>
+        <span class="ribbon-val">12,850 m²</span>
+      </div>
+      <div class="ribbon-metric highlight">
+        <span class="ribbon-label">COURTYARD:</span>
+        <span class="ribbon-val">Biophilic Stack Cooling (224 m²)</span>
+      </div>
+      <div class="ribbon-metric">
+        <span class="ribbon-label">STRUCTURE:</span>
+        <span class="ribbon-val">RCC Frame (8m Grid) • M40 • Fe500D</span>
+      </div>
+      <div class="ribbon-metric green">
+        <span class="ribbon-label">FORMA EUI:</span>
+        <span class="ribbon-val">62.8 kWh/m²/yr (-51%)</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Viewports Container -->
+  <main class="main-content" id="mainContent">
+
+    <!-- VIEW 1: 3D BIM MODEL EXPLORER -->
+    <section class="view-panel active" id="view-bim3d">
+      <div class="bim-container">
+        <!-- 3D Canvas Canvas Wrap -->
+        <div class="canvas-wrapper" id="canvasWrapper">
+          <canvas id="bimCanvas"></canvas>
+          
+          <!-- 3D Overlays & HUD -->
+          <div class="viewport-hud-top">
+            <div class="hud-chip">
+              <span class="pulse-dot"></span>
+              <span>LIVE BIM 3D ENGINE</span>
+            </div>
+            <div class="hud-chip time-display" id="hudTimeDisplay">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <span id="sunTimeLabel">14:00 (Solar Angle: 45° S-W)</span>
+            </div>
+          </div>
+
+          <!-- Camera Preset Angles -->
+          <div class="camera-presets-bar">
+            <button class="btn-preset active" data-camera="axonometric" title="Axonometric Overview">Axo 3D</button>
+            <button class="btn-preset" data-camera="front" title="Front Elevation">Front (S)</button>
+            <button class="btn-preset" data-camera="courtyard" title="Courtyard Focus">Courtyard</button>
+            <button class="btn-preset" data-camera="podium" title="Commercial Podium">Podium (G+1)</button>
+            <button class="btn-preset" data-camera="residential" title="Residential Balconies">Residential</button>
+            <button class="btn-preset" data-camera="basement" title="Basement EV Parking">Basement</button>
+            <button class="btn-preset" data-camera="roof" title="Rooftop Bio-Terrace">Rooftop</button>
+            <button class="btn-preset" id="btnResetView" title="Reset Camera">Reset</button>
+          </div>
+
+          <!-- Exploded View Slider Floating Controls -->
+          <div class="exploded-controller glass-panel">
+            <div class="controller-header">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              <span>EXPLODED BIM VIEW / LEVEL ISOLATOR</span>
+            </div>
+            <div class="slider-row">
+              <span class="slider-label">Merged</span>
+              <input type="range" id="explodedSlider" min="0" max="100" value="0" class="custom-slider" />
+              <span class="slider-label">Expanded</span>
+            </div>
+            <div class="level-pills-row">
+              <button class="pill-lvl active" data-lvl="all">All</button>
+              <button class="pill-lvl" data-lvl="B1">B1 (EV)</button>
+              <button class="pill-lvl" data-lvl="G">G (Retail)</button>
+              <button class="pill-lvl" data-lvl="L1">1F (F&B)</button>
+              <button class="pill-lvl" data-lvl="L2_9">2-9F (Res)</button>
+              <button class="pill-lvl" data-lvl="RF">Roof</button>
+            </div>
+          </div>
+
+          <!-- Time of Day / Sun Position Slider -->
+          <div class="sun-controller glass-panel">
+            <div class="controller-header">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+              <span>AUTODESK FORMA SOLAR SIMULATOR</span>
+            </div>
+            <div class="slider-row">
+              <span class="slider-label">06:00</span>
+              <input type="range" id="sunTimeSlider" min="6" max="18" step="0.5" value="14" class="custom-slider" />
+              <span class="slider-label">18:00</span>
+            </div>
+            <div class="sun-modes-row">
+              <button class="btn-sun-mode active" data-mode="day">Daylight</button>
+              <button class="btn-sun-mode" data-mode="golden">Golden Hour</button>
+              <button class="btn-sun-mode" data-mode="night">Night Glow</button>
+              <button class="btn-sun-mode" data-mode="shadows" id="btnToggleShadows">Shadows: ON</button>
+            </div>
+          </div>
+
+          <!-- Walkthrough Quick Trigger Button -->
+          <button class="btn-floating-walkthrough" id="btnStartWalkthroughFrom3d">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <span>Play 30s Walkthrough Animation</span>
+          </button>
+        </div>
+
+        <!-- 3D BIM Controls Sidebar -->
+        <aside class="bim-sidebar glass-panel" id="bimSidebar">
+          <div class="sidebar-section">
+            <div class="section-title-wrap">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+              <h3>BIM LAYER VISIBILITY</h3>
+            </div>
+            <p class="section-desc">Toggle Revit parametric building components</p>
+
+            <div class="layer-toggles-list">
+              <label class="layer-toggle-item">
+                <input type="checkbox" id="layerArch" checked />
+                <span class="custom-check"></span>
+                <span class="layer-name">Architectural Facade & Envelope</span>
+                <span class="layer-badge">Revit Arch</span>
+              </label>
+              <label class="layer-toggle-item">
+                <input type="checkbox" id="layerStructure" checked />
+                <span class="custom-check"></span>
+                <span class="layer-name">RCC Structural Skeleton (Beams/Cols/Slabs)</span>
+                <span class="layer-badge">Revit Struct</span>
+              </label>
+              <label class="layer-toggle-item">
+                <input type="checkbox" id="layerLouvers" checked />
+                <span class="custom-check"></span>
+                <span class="layer-name">Parametric Kinetic Solar Louvers</span>
+                <span class="layer-badge">Climate</span>
+              </label>
+              <label class="layer-toggle-item">
+                <input type="checkbox" id="layerLandscape" checked />
+                <span class="custom-check"></span>
+                <span class="layer-name">Central Courtyard & Vertical Greenery</span>
+                <span class="layer-badge">Biophilic</span>
+              </label>
+              <label class="layer-toggle-item">
+                <input type="checkbox" id="layerBasementEV" checked />
+                <span class="custom-check"></span>
+                <span class="layer-name">Basement Car Parking & EV Chargers</span>
+                <span class="layer-badge">Level -1</span>
+              </label>
+              <label class="layer-toggle-item">
+                <input type="checkbox" id="layerMEP" checked />
+                <span class="custom-check"></span>
+                <span class="layer-name">MEP Services & Rooftop Solar BIPV</span>
+                <span class="layer-badge">MEP</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Selected BIM Object Inspector -->
+          <div class="sidebar-section" id="bimInspectorSection">
+            <div class="section-title-wrap">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <h3>BIM ELEMENT INSPECTOR</h3>
+            </div>
+            <p class="section-desc">Click any component in 3D to inspect properties</p>
+
+            <div class="inspector-card" id="inspectorCard">
+              <div class="element-header">
+                <span class="element-icon" id="elemIcon">🏢</span>
+                <div>
+                  <h4 class="element-title" id="elemTitle">Central Biophilic Courtyard</h4>
+                  <span class="element-category" id="elemCategory">Microclimate Core • Stack Effect</span>
+                </div>
+              </div>
+              <div class="element-props-table" id="elemPropsTable">
+                <div class="prop-row">
+                  <span class="prop-key">Dimensions</span>
+                  <span class="prop-val" id="elemDim">16,000 mm × 14,000 mm</span>
+                </div>
+                <div class="prop-row">
+                  <span class="prop-key">Floor Area</span>
+                  <span class="prop-val" id="elemArea">224 m² (Open to Sky)</span>
+                </div>
+                <div class="prop-row">
+                  <span class="prop-key">Revit Family</span>
+                  <span class="prop-val" id="elemFamily">Courtyard_Biophilic_Atrium</span>
+                </div>
+                <div class="prop-row">
+                  <span class="prop-key">Environmental Role</span>
+                  <span class="prop-val" id="elemEnv">Passive Thermal Chimney / Natural Daylight</span>
+                </div>
+                <div class="prop-row">
+                  <span class="prop-key">Materials</span>
+                  <span class="prop-val" id="elemMat">Permeable Pavers, Timber Deck, Native Flora, Water Cascades</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Metrics Card -->
+          <div class="sidebar-section">
+            <div class="section-title-wrap">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              <h3>SUSTAINABILITY HIGHLIGHTS</h3>
+            </div>
+            <div class="mini-metrics-grid">
+              <div class="mini-metric">
+                <span class="num">82.4%</span>
+                <span class="lbl">Daylight Autonomy (sDA)</span>
+              </div>
+              <div class="mini-metric">
+                <span class="num">-51%</span>
+                <span class="lbl">Energy Reduction (EUI)</span>
+              </div>
+              <div class="mini-metric">
+                <span class="num">48 EV</span>
+                <span class="lbl">Fast Charging Bays</span>
+              </div>
+              <div class="mini-metric">
+                <span class="num">100%</span>
+                <span class="lbl">Rainwater Recycled</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- VIEW 2: 30-SECOND CINEMATIC WALKTHROUGH -->
+    <section class="view-panel" id="view-walkthrough">
+      <div class="walkthrough-container">
+        <div class="walkthrough-viewport-card glass-panel">
+          <div class="walkthrough-header">
+            <div>
+              <span class="badge-walkthrough">30-SECOND CINEMATIC EXPERIENCE</span>
+              <h2 class="view-heading">Aura Verticalis Visual Walkthrough</h2>
+              <p class="view-sub">Camera trajectory journey demonstrating commercial vibrancy, central courtyard stack ventilation, residential living, and rooftop ecology.</p>
+            </div>
+            <div class="walkthrough-status-badge" id="wtLiveStatus">
+              <span class="pulse-dot"></span>
+              <span id="wtWaypointName">Station 1: Urban Approach & Active Promenade</span>
+            </div>
+          </div>
+
+          <!-- Walkthrough 3D Animation Screen -->
+          <div class="walkthrough-screen-wrap">
+            <canvas id="walkthroughCanvas"></canvas>
+            
+            <!-- Walkthrough Live Overlay Subtitle -->
+            <div class="walkthrough-narration-overlay" id="wtNarrationCard">
+              <div class="narration-badge" id="narrationTime">00:04 / 00:30</div>
+              <h4 class="narration-title" id="narrationTitle">Urban Commercial Plaza & Pedestrian Approach</h4>
+              <p class="narration-desc" id="narrationDesc">Double-height commercial glass arcade welcoming pedestrians with active retail boutiques, shaded outdoor seating, and seamless flow into the central green courtyard.</p>
+            </div>
+          </div>
+
+          <!-- Walkthrough Player Timeline & Controls -->
+          <div class="walkthrough-controls-panel">
+            <div class="timeline-bar-wrap">
+              <div class="timeline-bar" id="wtTimelineBar">
+                <div class="timeline-progress" id="wtProgressFill"></div>
+                <!-- Station Markers -->
+                <div class="station-marker active" style="left: 0%;" data-station="0" title="00:00 - Plaza"></div>
+                <div class="station-marker" style="left: 20%;" data-station="1" title="00:06 - Courtyard"></div>
+                <div class="station-marker" style="left: 42%;" data-station="2" title="00:13 - 1F Podium"></div>
+                <div class="station-marker" style="left: 65%;" data-station="3" title="00:20 - Residential Balcony"></div>
+                <div class="station-marker" style="left: 88%;" data-station="4" title="00:27 - Rooftop Sky Garden"></div>
+              </div>
+              <div class="timeline-time-row">
+                <span id="wtCurrentTime">00:00</span>
+                <span id="wtTotalTime">00:30</span>
+              </div>
+            </div>
+
+            <div class="walkthrough-btn-row">
+              <div class="playback-controls">
+                <button class="btn-player" id="btnWtRewind" title="Rewind 5s">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="11 17 6 12 11 7"/><polyline points="18 17 13 12 18 7"/></svg>
+                </button>
+                <button class="btn-player btn-player-primary" id="btnWtPlayPause" title="Play / Pause">
+                  <svg id="iconWtPlay" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                  <svg id="iconWtPause" class="hidden" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+                </button>
+                <button class="btn-player" id="btnWtForward" title="Forward 5s">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg>
+                </button>
+                <button class="btn-player" id="btnWtRestart" title="Restart">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+                </button>
+              </div>
+
+              <!-- Speed Selector -->
+              <div class="speed-selector">
+                <span class="speed-label">Speed:</span>
+                <button class="btn-speed active" data-speed="1">1.0x</button>
+                <button class="btn-speed" data-speed="1.5">1.5x</button>
+                <button class="btn-speed" data-speed="2">2.0x</button>
+              </div>
+
+              <!-- Waypoints Navigation Chips -->
+              <div class="waypoints-chips-row">
+                <button class="chip-waypoint active" data-waypoint="0">1. Ground Plaza</button>
+                <button class="chip-waypoint" data-waypoint="1">2. Biophilic Courtyard</button>
+                <button class="chip-waypoint" data-waypoint="2">3. 1F Commercial Deck</button>
+                <button class="chip-waypoint" data-waypoint="3">4. Residential Living</button>
+                <button class="chip-waypoint" data-waypoint="4">5. Sky Bio-Terrace</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Walkthrough Key Feature Cards -->
+        <div class="walkthrough-cards-grid">
+          <div class="wt-card glass-panel">
+            <div class="wt-card-header">
+              <span class="wt-num">01</span>
+              <h4>Ground Commercial Promenade</h4>
+            </div>
+            <p>Active frontage with double-height storefronts, alfresco dining, clear sightlines, and porous pedestrian pathways pulling urban life into the development.</p>
+            <div class="wt-tag-list">
+              <span class="wt-tag">Pedestrian Hub</span>
+              <span class="wt-tag">Retail Arcade</span>
+              <span class="wt-tag">Double Height (4,500 mm)</span>
+            </div>
+          </div>
+
+          <div class="wt-card glass-panel">
+            <div class="wt-card-header">
+              <span class="wt-num">02</span>
+              <h4>Central Biophilic Courtyard</h4>
+            </div>
+            <p>An open-to-sky 224 m² botanical core acting as a natural thermal chimney, drawing cool ground air and venting warm air upward through all 9 upper floors.</p>
+            <div class="wt-tag-list">
+              <span class="wt-tag">Passive Stack Cooling</span>
+              <span class="wt-tag">Water Reflection Pond</span>
+              <span class="wt-tag">Native Greenery</span>
+            </div>
+          </div>
+
+          <div class="wt-card glass-panel">
+            <div class="wt-card-header">
+              <span class="wt-num">03</span>
+              <h4>Residential Balconies & Kinetic Facade</h4>
+            </div>
+            <p>Deep cantilevered balconies equipped with motorized aerofoil louvers, modular planter boxes, and double-glazed Low-E acoustic windows for quiet luxury living.</p>
+            <div class="wt-tag-list">
+              <span class="wt-tag">Solar Shading</span>
+              <span class="wt-tag">Noise Buffer</span>
+              <span class="wt-tag">Private Balconies</span>
+            </div>
+          </div>
+
+          <div class="wt-card glass-panel">
+            <div class="wt-card-header">
+              <span class="wt-num">04</span>
+              <h4>Rooftop Sky Garden & Solar Pergola</h4>
+            </div>
+            <p>148 kWp bifacial solar PV canopy generating clean renewable energy, integrated with community urban farming plots, meditation decks, and 360° city vistas.</p>
+            <div class="wt-tag-list">
+              <span class="wt-tag">BIPV Solar Farm</span>
+              <span class="wt-tag">Urban Agriculture</span>
+              <span class="wt-tag">Rainwater Capture</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 3: ARCHITECTURAL FLOOR PLANS & UNIT LAYOUTS -->
+    <section class="view-panel" id="view-plans">
+      <div class="plans-container">
+        <!-- Plans Header & Level Switcher -->
+        <div class="plans-nav-card glass-panel">
+          <div class="plans-nav-title">
+            <h2 class="view-heading">Architectural Floor Plans & Metric Layouts</h2>
+            <p class="view-sub">All dimensions assumed and specified in metric (mm) units. Full programmatic zoning from B1 to 9th Floor.</p>
+          </div>
+
+          <div class="level-selector-tabs" id="floorLevelSelector">
+            <button class="btn-floor-tab active" data-floor="B1">
+              <span class="floor-code">B1</span>
+              <span class="floor-desc">Basement Parking & EV Hub</span>
+            </button>
+            <button class="btn-floor-tab" data-floor="G">
+              <span class="floor-code">G</span>
+              <span class="floor-desc">Ground Retail & Courtyard</span>
+            </button>
+            <button class="btn-floor-tab" data-floor="1F">
+              <span class="floor-code">1F</span>
+              <span class="floor-desc">Commercial & Wellness Deck</span>
+            </button>
+            <button class="btn-floor-tab" data-floor="TYP">
+              <span class="floor-code">2F-9F</span>
+              <span class="floor-desc">Typical Residential Units</span>
+            </button>
+            <button class="btn-floor-tab" data-floor="ROOF">
+              <span class="floor-code">10F</span>
+              <span class="floor-desc">Bio-Solar Sky Terrace</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Main Floor Plan Viewer & Details Grid -->
+        <div class="plan-display-grid">
+          <!-- Interactive Floor Plan Drawing Card -->
+          <div class="plan-canvas-card glass-panel">
+            <div class="canvas-top-bar">
+              <div class="plan-info-badge">
+                <span class="dot-indicator"></span>
+                <span id="currentPlanTitle">Level B1: Automated Basement Parking & EV Supercharging Hub</span>
+              </div>
+              <div class="plan-tools">
+                <span class="scale-label">Grid: 8,000 × 8,000 mm | Scale 1:200</span>
+                <button class="btn-plan-tool" id="btnToggleGrid" title="Toggle Grid Lines">Grid</button>
+                <button class="btn-plan-tool" id="btnToggleDims" title="Toggle Dimensions">Dims (mm)</button>
+              </div>
+            </div>
+
+            <div class="plan-svg-viewport" id="planSvgViewport">
+              <!-- Dynamically populated SVG Floor Plan -->
+              <svg id="floorPlanSvg" viewBox="0 0 1000 750" xmlns="http://www.w3.org/2000/svg"></svg>
+            </div>
+
+            <!-- Floor Plan Legend -->
+            <div class="plan-legend-bar" id="planLegendBar">
+              <!-- Dynamically filled legend tags -->
+            </div>
+          </div>
+
+          <!-- Floor Plan Schedule & Room Details -->
+          <div class="plan-schedule-card glass-panel">
+            <div class="schedule-header">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              <h3>ROOM & SPACE SCHEDULE</h3>
+            </div>
+            <div class="schedule-table-wrap">
+              <table class="schedule-table" id="scheduleTable">
+                <thead>
+                  <tr>
+                    <th>Space / Zone</th>
+                    <th>Dim (mm)</th>
+                    <th>Area (m²)</th>
+                    <th>Ventilation</th>
+                  </tr>
+                </thead>
+                <tbody id="scheduleTableBody">
+                  <!-- Populated dynamically based on selected floor -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Residential Unit Layouts Showcase (when Typical Floor selected) -->
+            <div class="unit-types-section" id="unitTypesSection">
+              <h4>Residential Unit Typologies</h4>
+              <div class="unit-typology-selector">
+                <button class="unit-btn active" data-unit="2bhk">2BHK Luxury (92 m²)</button>
+                <button class="unit-btn" data-unit="1bhk">1BHK Studio (55 m²)</button>
+                <button class="unit-btn" data-unit="3bhk">3BHK Penthouse (145 m²)</button>
+              </div>
+              <div class="unit-spec-box" id="unitSpecBox">
+                <!-- Unit specs injected here -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 4: STRUCTURAL 2D CAD & DETAILING -->
+    <section class="view-panel" id="view-structural">
+      <div class="structural-container">
+        <div class="structural-nav-card glass-panel">
+          <div>
+            <span class="badge-tag">STRUCTURAL BIM & REINFORCEMENT DRAWINGS</span>
+            <h2 class="view-heading">Structural Modeling & 2D Detailing Suite</h2>
+            <p class="view-sub">Reinforced concrete detailing (RCC), rebar curtailment, BBS schedule, beam, column, slab, and staircase engineering drawings conforming to IS 456 & IS 13920.</p>
+          </div>
+          <div class="drawing-selector-tabs" id="cadDrawingSelector">
+            <button class="btn-cad-tab active" data-drawing="beam">
+              <span class="dwg-no">S-01</span>
+              <span>Beam B1 (300×600) Detail</span>
+            </button>
+            <button class="btn-cad-tab" data-drawing="column">
+              <span class="dwg-no">S-02</span>
+              <span>Column C1 (600×600) Schedule</span>
+            </button>
+            <button class="btn-cad-tab" data-drawing="slab">
+              <span class="dwg-no">S-03</span>
+              <span>Two-Way Slab (175mm) Detail</span>
+            </button>
+            <button class="btn-cad-tab" data-drawing="stairs">
+              <span class="dwg-no">S-04</span>
+              <span>Doglegged Staircase Section</span>
+            </button>
+            <button class="btn-cad-tab" data-drawing="flooring">
+              <span class="dwg-no">S-05</span>
+              <span>Flooring & Wall Tile Section</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="cad-display-grid">
+          <!-- 2D CAD Interactive Canvas Card -->
+          <div class="cad-viewport-card glass-panel">
+            <div class="cad-top-bar">
+              <div class="cad-title-wrap">
+                <span class="cad-status-dot"></span>
+                <span id="cadDwgTitle">DRAWING S-01: CONTINUOUS BEAM B1 (300×600mm) REINFORCEMENT & SECTION</span>
+              </div>
+              <div class="cad-actions">
+                <span class="cad-scale">Units: mm | Material: M40 Concrete / Fe500D TMT</span>
+                <button class="btn-cad-action" id="btnCadZoomIn" title="Zoom In">+</button>
+                <button class="btn-cad-action" id="btnCadZoomOut" title="Zoom Out">-</button>
+                <button class="btn-cad-action" id="btnCadReset" title="Reset View">1:1</button>
+              </div>
+            </div>
+
+            <!-- CAD Drawing Canvas Viewer -->
+            <div class="cad-canvas-box" id="cadCanvasBox">
+              <svg id="cadSvg" viewBox="0 0 1000 650" xmlns="http://www.w3.org/2000/svg"></svg>
+            </div>
+
+            <!-- Engineering Title Block -->
+            <div class="cad-title-block">
+              <div class="tb-item"><strong>PROJECT:</strong> AURA VERTICALIS B+G+9 MIXED-USE</div>
+              <div class="tb-item"><strong>DISCIPLINE:</strong> STRUCTURAL BIM (REINFORCEMENT)</div>
+              <div class="tb-item"><strong>CONCRETE:</strong> M40 (Cols/Foundations) • M35 (Beams/Slabs)</div>
+              <div class="tb-item"><strong>STEEL:</strong> Fe500D High Ductility TMT Rebar</div>
+              <div class="tb-item"><strong>CLEAR COVER:</strong> Slabs 25mm • Beams 30mm • Columns 40mm</div>
+            </div>
+          </div>
+
+          <!-- Structural Specifications & Bar Bending Schedule (BBS) -->
+          <div class="cad-specs-card glass-panel">
+            <div class="specs-card-header">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              <h3>BAR BENDING SCHEDULE (BBS)</h3>
+            </div>
+            
+            <div class="bbs-table-wrap">
+              <table class="bbs-table" id="bbsTable">
+                <thead>
+                  <tr>
+                    <th>Mark</th>
+                    <th>Bar Dia</th>
+                    <th>Shape & Details</th>
+                    <th>Cut L (mm)</th>
+                    <th>No.</th>
+                    <th>Weight (kg)</th>
+                  </tr>
+                </thead>
+                <tbody id="bbsTableBody">
+                  <!-- Injected dynamically per selected component -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Structural Design Criteria & Notes -->
+            <div class="structural-notes-box">
+              <h4>Engineering Design Parameters</h4>
+              <ul class="notes-list">
+                <li><strong>Dead Load:</strong> Self-weight calculated automatically in Revit + Floor Finish 1.5 kN/m² + Partition 1.0 kN/m²</li>
+                <li><strong>Live Load:</strong> Commercial (Ground/1F) 4.0 kN/m² • Residential (2-9F) 2.0 kN/m² • Balconies 3.0 kN/m² • Basement 5.0 kN/m²</li>
+                <li><strong>Seismic Zone:</strong> Zone III (Z = 0.16, Importance factor I = 1.2, Response reduction R = 5.0 SMRF)</li>
+                <li><strong>Wind Speed:</strong> Basic wind speed Vb = 39 m/s, Terrain Category 2</li>
+                <li><strong>Ductile Detailing:</strong> All beam-column joints detailed per IS 13920:2016 with 135° hook anchorage.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 5: AUTODESK FORMA & ENVIRONMENTAL CLIMATE ANALYSIS -->
+    <section class="view-panel" id="view-environmental">
+      <div class="environmental-container">
+        <div class="environmental-hero glass-panel">
+          <div>
+            <span class="badge-green">AUTODESK FORMA SITE & CLIMATE RESPONSIVE DESIGN</span>
+            <h2 class="view-heading">Environmental Simulation & Microclimate Analysis</h2>
+            <p class="view-sub">Comprehensive site orientation, sun path daylight autonomy, wind CFD stack ventilation, and carbon lifecycle metrics.</p>
+          </div>
+          <div class="forma-score-badge">
+            <span class="score-label">FORMA SUSTAINABILITY INDEX</span>
+            <span class="score-val">94.8 / 100</span>
+            <span class="score-grade">LEED Platinum Ready • IGBC Green</span>
+          </div>
+        </div>
+
+        <!-- Forma Analytics Cards Grid -->
+        <div class="forma-metrics-grid">
+          <!-- Solar Daylight Analysis Card -->
+          <div class="forma-card glass-panel">
+            <div class="forma-card-header">
+              <div class="header-left">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
+                <h4>Daylight Autonomy & Solar Hours</h4>
+              </div>
+              <span class="metric-pill">sDA: 82.4%</span>
+            </div>
+            <div class="chart-container-box">
+              <canvas id="daylightChart"></canvas>
+            </div>
+            <div class="card-footer-stats">
+              <div><strong>Spatial Daylight Autonomy (sDA):</strong> 82.4% (> 300 lux for 50% hours)</div>
+              <div><strong>Annual Sunlight Exposure (ASE):</strong> 6.8% (Gliss-free, optimal comfort)</div>
+            </div>
+          </div>
+
+          <!-- Wind CFD & Courtyard Stack Flow -->
+          <div class="forma-card glass-panel">
+            <div class="forma-card-header">
+              <div class="header-left">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2M9.6 4.6A2 2 0 1 1 11 8H2M12.6 19.4A2 2 0 1 0 14 16H2"/></svg>
+                <h4>Microclimate Wind & Stack Effect</h4>
+              </div>
+              <span class="metric-pill green">Lawson Comfort: A</span>
+            </div>
+            <div class="chart-container-box">
+              <canvas id="windChart"></canvas>
+            </div>
+            <div class="card-footer-stats">
+              <div><strong>Pedestrian Comfort:</strong> Lawson A (Sitting/Strolling everywhere)</div>
+              <div><strong>Courtyard Airflow:</strong> 1.8 - 2.4 m/s natural vertical stack updraft</div>
+            </div>
+          </div>
+
+          <!-- EUI & Energy Reduction -->
+          <div class="forma-card glass-panel">
+            <div class="forma-card-header">
+              <div class="header-left">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                <h4>Energy Use Intensity (EUI)</h4>
+              </div>
+              <span class="metric-pill blue">-51% vs Baseline</span>
+            </div>
+            <div class="chart-container-box">
+              <canvas id="euiChart"></canvas>
+            </div>
+            <div class="card-footer-stats">
+              <div><strong>Designed EUI:</strong> 62.8 kWh/m²/yr (Baseline: 128 kWh/m²/yr)</div>
+              <div><strong>Solar BIPV Yield:</strong> 185,000 kWh/yr clean energy generation</div>
+            </div>
+          </div>
+
+          <!-- Carbon Footprint & Lifecycle -->
+          <div class="forma-card glass-panel">
+            <div class="forma-card-header">
+              <div class="header-left">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <h4>Embodied & Operational Carbon</h4>
+              </div>
+              <span class="metric-pill emerald">-42% CO₂e</span>
+            </div>
+            <div class="chart-container-box">
+              <canvas id="carbonChart"></canvas>
+            </div>
+            <div class="card-footer-stats">
+              <div><strong>Embodied Carbon:</strong> 310 kgCO₂e/m² (Fly ash + GGBS concrete)</div>
+              <div><strong>Lifecycle Carbon Saved:</strong> 2,450 tons CO₂ over 50-year horizon</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Forma Climate Responsive Matrix -->
+        <div class="climate-matrix-card glass-panel">
+          <h3>Forma Climate-Responsive Design Features Matrix</h3>
+          <div class="matrix-grid">
+            <div class="matrix-col">
+              <div class="m-icon">☀️</div>
+              <h5>Solar & Daylight Optimization</h5>
+              <p>Parametric aerofoil louvers positioned at 42° on South-West facades block 85% of peak infrared radiation while reflecting diffuse ambient daylight 9 meters deep into residential units.</p>
+            </div>
+            <div class="matrix-col">
+              <div class="m-icon">🌬️</div>
+              <h5>Natural Stack Ventilation</h5>
+              <p>The 16m × 14m central atrium harnesses convective stack pressure, driving continuous cool air suction through lower commercial open plazas up through residential floor apertures.</p>
+            </div>
+            <div class="matrix-col">
+              <div class="m-icon">🌿</div>
+              <h5>Biophilic Thermal Buffer</h5>
+              <p>Vertical garden green walls and planted balconies lower ambient surface temperatures by 4.2°C through evapotranspiration, filtering urban particulate matter (PM2.5).</p>
+            </div>
+            <div class="matrix-col">
+              <div class="m-icon">💧</div>
+              <h5>Rainwater & Greywater Loop</h5>
+              <p>100% rooftop and podium runoff directed into a 45,000-liter basement cistern. Dual-plumbing greywater system provides 100% landscape irrigation and toilet flushing.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 6: 7-SLIDE POWERPOINT & JURY PRESENTATION DECK -->
+    <section class="view-panel" id="view-presentation">
+      <div class="presentation-container">
+        <!-- Presentation Toolbar -->
+        <div class="presentation-toolbar glass-panel">
+          <div class="pt-left">
+            <span class="slide-counter-badge" id="slideCounter">Slide 1 of 7</span>
+            <span class="deck-title">Aura Verticalis — B+G+9 Mixed-Use Design Pitch</span>
+          </div>
+
+          <div class="pt-controls">
+            <button class="btn-pt" id="btnPrevSlide" title="Previous Slide (Left Arrow)">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+              <span>Prev</span>
+            </button>
+            <button class="btn-pt" id="btnNextSlide" title="Next Slide (Right Arrow)">
+              <span>Next</span>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <button class="btn-pt btn-pt-export" id="btnExportPptx" title="Download PowerPoint .pptx presentation">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>Download .PPTX</span>
+            </button>
+            <button class="btn-pt btn-pt-export" id="btnExportPdf" title="Download PDF presentation">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+              <span>Export PDF</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Slides Viewer Frame -->
+        <div class="slide-deck-frame" id="slideDeckFrame">
+          
+          <!-- SLIDE 1: Vision & Concept -->
+          <div class="slide-card active" data-slide="1">
+            <div class="slide-header">
+              <div class="slide-num">SLIDE 01 / 07</div>
+              <div class="slide-badge">EXECUTIVE SUMMARY</div>
+            </div>
+            <div class="slide-body-grid">
+              <div class="slide-text-col">
+                <span class="slide-kicker">SUSTAINABLE ARCHITECTURAL VISION</span>
+                <h2 class="slide-title">AURA VERTICALIS</h2>
+                <h3 class="slide-subtitle">Centrally Located Biophilic B+G+9 Mixed-Use Development</h3>
+                <p class="slide-para">
+                  Aura Verticalis reimagines high-density urban living by merging active commercial vitality on the lower floors with tranquil, nature-integrated residential sanctuary above. Built on an 8,000 × 8,000 mm modular grid with a total built-up area of 12,850 m², the project achieves net-positive environmental resilience.
+                </p>
+                <div class="slide-highlights-grid">
+                  <div class="sh-item">
+                    <span class="sh-val">B+G+9</span>
+                    <span class="sh-lbl">11 Total Levels</span>
+                  </div>
+                  <div class="sh-item">
+                    <span class="sh-val">48 Bays</span>
+                    <span class="sh-lbl">Basement EV Hub</span>
+                  </div>
+                  <div class="sh-item">
+                    <span class="sh-val">224 m²</span>
+                    <span class="sh-lbl">Central Courtyard</span>
+                  </div>
+                  <div class="sh-item">
+                    <span class="sh-val">-51%</span>
+                    <span class="sh-lbl">Energy Reduction</span>
+                  </div>
+                </div>
+              </div>
+              <div class="slide-graphic-col">
+                <div class="slide-diagram-box">
+                  <div class="diagram-tag">ARCHITECTURAL MASSING & ZONING</div>
+                  <div class="massing-visual">
+                    <div class="mv-block roof">10F Sky Bio-Terrace (Solar & Farm)</div>
+                    <div class="mv-block res">2F - 9F: Residential Sanctuary (64 Units)</div>
+                    <div class="mv-block com1">1F: Wellness & Co-Working Hub</div>
+                    <div class="mv-block com0">G: Active Retail Plaza & Biophilic Courtyard</div>
+                    <div class="mv-block base">B1: Automated Parking & EV Supercharging</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide-footer">
+              <span>Autodesk Revit BIM Modeling & Engineering Detailing</span>
+              <span>Metric Dimensions in mm</span>
+            </div>
+          </div>
+
+          <!-- SLIDE 2: Urban Masterplan & Circulation -->
+          <div class="slide-card" data-slide="2">
+            <div class="slide-header">
+              <div class="slide-num">SLIDE 02 / 07</div>
+              <div class="slide-badge">URBAN MASTERPLAN & CIRCULATION</div>
+            </div>
+            <div class="slide-body-grid">
+              <div class="slide-text-col">
+                <span class="slide-kicker">SITE INTEGRATION & MOBILITY</span>
+                <h2 class="slide-title">Porous Urban Integration & EV Infrastructure</h2>
+                <ul class="slide-bullets">
+                  <li><strong>Pedestrian First:</strong> Grade-level porosity connects surrounding municipal sidewalks into a sheltered 1,728 m² public promenade.</li>
+                  <li><strong>Segregated Vehicular Flow:</strong> Dedicated one-way basement ramp prevents pedestrian-vehicular conflicts.</li>
+                  <li><strong>Green Mobility:</strong> 100% basement bays equipped with smart dynamic load-balancing EV chargers, bike storage, and e-scooter docking.</li>
+                  <li><strong>Independent Vertical Cores:</strong> Dedicated residential elevators with card-key security completely separated from commercial guest elevators.</li>
+                </ul>
+              </div>
+              <div class="slide-graphic-col">
+                <div class="slide-diagram-box">
+                  <div class="diagram-tag">SITE CIRCULATION SCHEMATIC (mm)</div>
+                  <svg viewBox="0 0 400 280" class="mini-svg-diagram">
+                    <rect x="20" y="20" width="360" height="240" fill="#f1f5f9" stroke="#94a3b8" stroke-dasharray="4" rx="8"/>
+                    <rect x="70" y="50" width="260" height="180" fill="#e2e8f0" stroke="#64748b" rx="4"/>
+                    <rect x="150" y="90" width="100" height="100" fill="#dcfce7" stroke="#16a34a" rx="4"/>
+                    <text x="200" y="145" text-anchor="middle" font-size="11" fill="#166534" font-weight="bold">Biophilic Courtyard</text>
+                    <text x="200" y="160" text-anchor="middle" font-size="9" fill="#15803d">16,000 × 14,000 mm</text>
+                    <text x="200" y="40" text-anchor="middle" font-size="10" fill="#475569">48,000 mm Primary Frontage</text>
+                    <text x="40" y="145" text-anchor="middle" font-size="10" fill="#475569" transform="rotate(-90 40 145)">36,000 mm Depth</text>
+                    <path d="M 30 250 L 80 210" stroke="#0284c7" stroke-width="3" marker-end="url(#arrow)"/>
+                    <text x="60" y="260" font-size="9" fill="#0284c7">EV Basement Ramp</text>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="slide-footer">
+              <span>Mobility Strategy & Site Access</span>
+              <span>48,000 × 36,000 mm Site Boundary</span>
+            </div>
+          </div>
+
+          <!-- SLIDE 3: Facade & Shading -->
+          <div class="slide-card" data-slide="3">
+            <div class="slide-header">
+              <div class="slide-num">SLIDE 03 / 07</div>
+              <div class="slide-badge">FACADE ARCHITECTURE</div>
+            </div>
+            <div class="slide-body-grid">
+              <div class="slide-text-col">
+                <span class="slide-kicker">CLIMATE-RESPONSIVE ENVELOPE</span>
+                <h2 class="slide-title">Parametric Kinetic Facade System</h2>
+                <ul class="slide-bullets">
+                  <li><strong>Automated Solar Louvers:</strong> Extruded aluminum aerofoil louvers tuned to solar geometry, reducing peak cooling loads by 38%.</li>
+                  <li><strong>High-Performance Glazing:</strong> Low-E double glazing (6mm Toughened + 12mm Argon + 6mm Low-E, SHGC 0.28, U-value 1.4 W/m²K).</li>
+                  <li><strong>Integrated Bio-Planters:</strong> Continuous balcony planters fed by drip irrigation provide microclimate evaporative cooling.</li>
+                  <li><strong>Acoustic Baffles:</strong> Triple-laminated balcony partitions shielding residential interiors from urban street noise (42 dB attenuation).</li>
+                </ul>
+              </div>
+              <div class="slide-graphic-col">
+                <div class="slide-diagram-box">
+                  <div class="diagram-tag">FACADE LAYER SECTION</div>
+                  <div class="facade-layer-stack">
+                    <div class="fl-item">1. Parametric Solar Aerofoil Louvers (Sun Angle 42°)</div>
+                    <div class="fl-item">2. Drip-Irrigated Biophilic Planter Buffer (Native Climbers)</div>
+                    <div class="fl-item">3. Deep Cantilevered Shading Balcony (1,800 mm projection)</div>
+                    <div class="fl-item">4. Low-E Double Glazed Curtain Wall (SHGC 0.28)</div>
+                    <div class="fl-item">5. Acoustically Insulated Interior Living Envelope</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide-footer">
+              <span>Revit Parametric Adaptive Curtain Wall</span>
+              <span>Solar Heat Gain Reduction: 38%</span>
+            </div>
+          </div>
+
+          <!-- SLIDE 4: Breathable Central Courtyard -->
+          <div class="slide-card" data-slide="4">
+            <div class="slide-header">
+              <div class="slide-num">SLIDE 04 / 07</div>
+              <div class="slide-badge">BIOPHILIC ARCHITECTURE</div>
+            </div>
+            <div class="slide-body-grid">
+              <div class="slide-text-col">
+                <span class="slide-kicker">NATURE-INTEGRATED LIVING</span>
+                <h2 class="slide-title">Breathable Courtyard & Thermal Chimney</h2>
+                <p class="slide-para">
+                  The central 224 m² open-to-sky landscape courtyard acts as the building's respiratory core. By harnessing natural convective currents, cool air enters through shaded ground walkways, circulates through the landscaped water pool, and vents warm stale air upwards through the 38.7-meter central shaft.
+                </p>
+                <div class="courtyard-points-grid">
+                  <div class="cp-card">
+                    <h5>🌬️ Stack Effect</h5>
+                    <p>Natural thermal buoyancy provides 4.5 air changes per hour (ACH) passively.</p>
+                  </div>
+                  <div class="cp-card">
+                    <h5>☀️ 100% Daylit Corridors</h5>
+                    <p>Zero artificial lighting needed for interior corridors between 08:00 and 17:30.</p>
+                  </div>
+                  <div class="cp-card">
+                    <h5>🌿 Well-Being & Biophilia</h5>
+                    <p>Direct visual and physical contact with living nature for all 64 residential apartments.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="slide-graphic-col">
+                <div class="slide-diagram-box">
+                  <div class="diagram-tag">AIRFLOW STACK EFFECT SECTION</div>
+                  <svg viewBox="0 0 320 240" class="mini-svg-diagram">
+                    <rect x="40" y="20" width="80" height="200" fill="#cbd5e1"/>
+                    <rect x="200" y="20" width="80" height="200" fill="#cbd5e1"/>
+                    <rect x="120" y="180" width="80" height="40" fill="#bbf7d0"/>
+                    <!-- Stack airflow arrows -->
+                    <path d="M 160 210 Q 160 120 160 30" stroke="#0ea5e9" stroke-width="4" fill="none" stroke-dasharray="6"/>
+                    <path d="M 10 200 L 120 200" stroke="#10b981" stroke-width="3" stroke-dasharray="4"/>
+                    <path d="M 310 200 L 200 200" stroke="#10b981" stroke-width="3" stroke-dasharray="4"/>
+                    <text x="160" y="235" text-anchor="middle" font-size="10" fill="#166534">Cool Air Intake & Pool</text>
+                    <text x="160" y="15" text-anchor="middle" font-size="10" fill="#0284c7">Warm Air Exhaust (Roof)</text>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="slide-footer">
+              <span>Passive Microclimate Engineering</span>
+              <span>16,000 × 14,000 mm Central Courtyard</span>
+            </div>
+          </div>
+
+          <!-- SLIDE 5: Functional Efficiency -->
+          <div class="slide-card" data-slide="5">
+            <div class="slide-header">
+              <div class="slide-num">SLIDE 05 / 07</div>
+              <div class="slide-badge">PROGRAMMATIC PLANNING</div>
+            </div>
+            <div class="slide-body-grid">
+              <div class="slide-text-col">
+                <span class="slide-kicker">SPACE ALLOCATION & REVENUE</span>
+                <h2 class="slide-title">Residential & Commercial Design Efficiency</h2>
+                <div class="program-table-slide">
+                  <div class="pts-row header">
+                    <span>Level</span>
+                    <span>Function</span>
+                    <span>Area (m²)</span>
+                    <span>Key Features</span>
+                  </div>
+                  <div class="pts-row">
+                    <span>B1</span>
+                    <span>Basement Parking</span>
+                    <span>1,728 m²</span>
+                    <span>48 EV Stalls, MEP Plant, Cistern</span>
+                  </div>
+                  <div class="pts-row">
+                    <span>Ground</span>
+                    <span>Retail & Plaza</span>
+                    <span>1,500 m²</span>
+                    <span>Shops, Cafes, Central Courtyard</span>
+                  </div>
+                  <div class="pts-row">
+                    <span>1st Floor</span>
+                    <span>Commercial & F&B</span>
+                    <span>1,450 m²</span>
+                    <span>Co-working, Wellness Gym, Crèche</span>
+                  </div>
+                  <div class="pts-row">
+                    <span>2F - 9F</span>
+                    <span>Residential Units</span>
+                    <span>7,200 m²</span>
+                    <span>64 Luxury Sustainable Apts (1, 2, 3BHK)</span>
+                  </div>
+                  <div class="pts-row">
+                    <span>Roof</span>
+                    <span>Bio-Solar Skydeck</span>
+                    <span>972 m²</span>
+                    <span>148 kWp Solar, Farm, Jogging Track</span>
+                  </div>
+                </div>
+              </div>
+              <div class="slide-graphic-col">
+                <div class="slide-diagram-box">
+                  <div class="diagram-tag">FLOOR AREA DISTRIBUTION (%)</div>
+                  <div class="area-pie-visual">
+                    <div class="ap-bar res" style="width: 56%;">Residential 56%</div>
+                    <div class="ap-bar com" style="width: 23%;">Commercial 23%</div>
+                    <div class="ap-bar pkg" style="width: 13%;">EV Parking 13%</div>
+                    <div class="ap-bar pub" style="width: 8%;">Roof / Courtyard 8%</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide-footer">
+              <span>Total Gross Built-Up Area: 12,850 m²</span>
+              <span>Efficiency Ratio: 86.4%</span>
+            </div>
+          </div>
+
+          <!-- SLIDE 6: Structural Modeling & Detailing -->
+          <div class="slide-card" data-slide="6">
+            <div class="slide-header">
+              <div class="slide-num">SLIDE 06 / 07</div>
+              <div class="slide-badge">STRUCTURAL ENGINEERING & BIM</div>
+            </div>
+            <div class="slide-body-grid">
+              <div class="slide-text-col">
+                <span class="slide-kicker">RCC FRAMEWORK & DETAILS</span>
+                <h2 class="slide-title">Structural Modeling & Detailing (BIM 2D/3D)</h2>
+                <ul class="slide-bullets">
+                  <li><strong>Structural Grid:</strong> 8,000 × 8,000 mm column bay with post-tensioned flat slabs (175mm thickness) + drop panels.</li>
+                  <li><strong>Columns (C1):</strong> 600 × 600 mm M40 concrete reinforced with 12-T25 high ductility bars and 8mm confinement ties.</li>
+                  <li><strong>Beams (B1):</strong> 300 × 600 mm M35 concrete with continuous top and bottom steel designed for ductile seismic shear.</li>
+                  <li><strong>Stairs & Slabs:</strong> Doglegged fire-escape stairwells with 150mm waist slabs and 2-hour fire endurance.</li>
+                  <li><strong>Finishes & Detailing:</strong> 600×600mm vitrified tile flooring over acoustic underlay and multi-layer waterproofing.</li>
+                </ul>
+              </div>
+              <div class="slide-graphic-col">
+                <div class="slide-diagram-box">
+                  <div class="diagram-tag">REBAR DETAILING SUMMARY</div>
+                  <div class="struct-summary-table">
+                    <div><strong>Beams:</strong> Top 3-T20 | Bot 4-T25 | Stirrups 2L-T8 @ 100/200 c/c</div>
+                    <div><strong>Columns:</strong> 12-T25 | Ties 8mm @ 100 c/c (Joints)</div>
+                    <div><strong>Slabs:</strong> T10 @ 150 c/c Mesh | Top Extra T12 @ 120 c/c</div>
+                    <div><strong>Code Compliance:</strong> IS 456, IS 13920, IS 1893, NBC 2016</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide-footer">
+              <span>Autodesk Revit Structural Analytical Model</span>
+              <span>Concrete: M40 / Steel: Fe500D</span>
+            </div>
+          </div>
+
+          <!-- SLIDE 7: Autodesk Forma Climate Impact -->
+          <div class="slide-card" data-slide="7">
+            <div class="slide-header">
+              <div class="slide-num">SLIDE 07 / 07</div>
+              <div class="slide-badge">AUTODESK FORMA SITE ANALYSIS</div>
+            </div>
+            <div class="slide-body-grid">
+              <div class="slide-text-col">
+                <span class="slide-kicker">ENVIRONMENTAL PERFORMANCE</span>
+                <h2 class="slide-title">Autodesk Forma Simulation Results</h2>
+                <div class="forma-slide-metrics">
+                  <div class="fsm-card">
+                    <span class="fsm-num">82.4%</span>
+                    <span class="fsm-lbl">Spatial Daylight Autonomy (sDA > 300 lx)</span>
+                  </div>
+                  <div class="fsm-card">
+                    <span class="fsm-num">62.8</span>
+                    <span class="fsm-lbl">Designed EUI (kWh/m²/yr, -51% savings)</span>
+                  </div>
+                  <div class="fsm-card">
+                    <span class="fsm-num">185 MWh</span>
+                    <span class="fsm-lbl">Annual Solar BIPV Power Generation</span>
+                  </div>
+                  <div class="fsm-card">
+                    <span class="fsm-num">310</span>
+                    <span class="fsm-lbl">Embodied Carbon (kgCO₂e/m², -38% vs baseline)</span>
+                  </div>
+                </div>
+                <p class="slide-summary-quote">
+                  "Aura Verticalis sets a benchmark for climate-resilient mixed-use architecture, synthesizing Revit BIM precision, Forma environmental intelligence, and biophilic human well-being."
+                </p>
+              </div>
+              <div class="slide-graphic-col">
+                <div class="slide-diagram-box">
+                  <div class="diagram-tag">FORMA CLOUD SIMULATION SUMMARY</div>
+                  <div class="forma-score-ring">
+                    <div class="ring-circle">94.8</div>
+                    <div class="ring-desc">LEED Platinum / GRIHA 5-Star Target</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide-footer">
+              <span>Autodesk Forma Site Design & Environmental Analysis</span>
+              <span>Carbon Neutral Ready Architecture</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Slide Thumbnails Bar -->
+        <div class="slide-thumbnails-bar" id="slideThumbnailsBar">
+          <button class="thumb-btn active" data-slide="1">1. Vision</button>
+          <button class="thumb-btn" data-slide="2">2. Masterplan</button>
+          <button class="thumb-btn" data-slide="3">3. Facade</button>
+          <button class="thumb-btn" data-slide="4">4. Courtyard</button>
+          <button class="thumb-btn" data-slide="5">5. Planning</button>
+          <button class="thumb-btn" data-slide="6">6. Structure</button>
+          <button class="thumb-btn" data-slide="7">7. Forma Analysis</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 7: PROJECT SPECIFICATIONS, BOQ & ASSUMED METRIC DIMENSIONS -->
+    <section class="view-panel" id="view-specs">
+      <div class="specs-container">
+        <div class="specs-header glass-panel">
+          <div>
+            <span class="badge-tag">ENGINEERING DATA CATALOG</span>
+            <h2 class="view-heading">Metric Assumed Dimensions & Technical Specifications</h2>
+            <p class="view-sub">Comprehensive database of dimensional parameters, material schedules, and Bill of Quantities (BOQ) in metric (mm) units.</p>
+          </div>
+          <button class="btn-action btn-export-quick" id="btnExportSpecsPdf">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+            <span>Print Specification Sheet</span>
+          </button>
+        </div>
+
+        <div class="specs-grid">
+          <!-- Dimensional Parameters Card -->
+          <div class="specs-box glass-panel">
+            <div class="specs-box-title">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+              <h3>Assumed Metric Dimensional Parameters</h3>
+            </div>
+            <table class="data-table">
+              <tbody>
+                <tr><td>Site / Plot Boundary</td><td><strong>48,000 mm (W) × 36,000 mm (D) = 1,728 m²</strong></td></tr>
+                <tr><td>Building Footprint</td><td><strong>40,000 mm (W) × 30,000 mm (D) = 1,200 m²</strong></td></tr>
+                <tr><td>Structural Bay Grid</td><td><strong>8,000 mm × 8,000 mm (Square Column Bay)</strong></td></tr>
+                <tr><td>Central Courtyard Void</td><td><strong>16,000 mm × 14,000 mm = 224 m²</strong></td></tr>
+                <tr><td>Total Building Height</td><td><strong>38,700 mm (+34,900 mm Above Ground)</strong></td></tr>
+                <tr><td>Basement Height</td><td><strong>3,800 mm (Clearance 3,200 mm)</strong></td></tr>
+                <tr><td>Ground Floor Height</td><td><strong>4,500 mm (Double Height Arcade)</strong></td></tr>
+                <tr><td>First Floor Height</td><td><strong>4,000 mm (Commercial / F&B)</strong></td></tr>
+                <tr><td>Residential Floor Height (2F-9F)</td><td><strong>3,300 mm each (Clear ceiling 2,900 mm)</strong></td></tr>
+                <tr><td>Cantilever Balcony Depth</td><td><strong>1,800 mm Projection with Planter Box</strong></td></tr>
+                <tr><td>Column Cross Section (C1)</td><td><strong>600 mm × 600 mm (M40 Concrete)</strong></td></tr>
+                <tr><td>Main Frame Beam (B1)</td><td><strong>300 mm × 600 mm (M35 Concrete)</strong></td></tr>
+                <tr><td>Secondary Floor Beam (B2)</td><td><strong>230 mm × 450 mm</strong></td></tr>
+                <tr><td>Post-Tensioned Flat Slab</td><td><strong>175 mm depth (Drop Panel 2500×2500×75 mm)</strong></td></tr>
+                <tr><td>Staircase Tread & Riser</td><td><strong>Tread: 300 mm | Riser: 150 mm | Width: 1500 mm</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Bill of Quantities (BOQ) Card -->
+          <div class="specs-box glass-panel">
+            <div class="specs-box-title">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              <h3>Material Schedule & Bill of Quantities</h3>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Material / Item</th>
+                  <th>Specification</th>
+                  <th>Quantity</th>
+                  <th>Unit</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>RCC Concrete (Columns/Foundations)</td><td>Grade M40 Self-Compacting</td><td>1,420</td><td>m³</td></tr>
+                <tr><td>RCC Concrete (Beams/Slabs)</td><td>Grade M35 (30% GGBS blend)</td><td>3,180</td><td>m³</td></tr>
+                <tr><td>High-Strength Rebar (Fe500D)</td><td>Thermo-Mechanically Treated</td><td>435</td><td>Tons</td></tr>
+                <tr><td>Double Glazed Curtain Wall</td><td>Low-E 6-12-6 Argon Infilled</td><td>2,850</td><td>m²</td></tr>
+                <tr><td>Parametric Aerofoil Louvers</td><td>Marine Grade Powder Coated Al</td><td>1,240</td><td>m²</td></tr>
+                <tr><td>Vitrified Tile Flooring</td><td>600×600 mm Vitrified GVT</td><td>7,850</td><td>m²</td></tr>
+                <tr><td>Biophilic Vertical Green Walls</td><td>Automated Drip Modular System</td><td>620</td><td>m²</td></tr>
+                <tr><td>BIPV Solar PV Panels</td><td>450W Monocrystalline Bifacial</td><td>330</td><td>Modules</td></tr>
+                <tr><td>Smart EV Fast Charging Posts</td><td>22kW Type-2 AC & 60kW DC</td><td>48</td><td>Units</td></tr>
+                <tr><td>Rainwater Harvesting Cistern</td><td>Underground RCC 45 kL + UV</td><td>1</td><td>System</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <span class="footer-brand">AURA VERTICALIS</span>
+        <span class="footer-sep">•</span>
+        <span class="footer-text">B+G+9 Mixed-Use Sustainable Architectural & Structural BIM Development</span>
+      </div>
+      <div class="footer-right">
+        <span>Autodesk Revit BIM • Autodesk Forma Environmental Design • Metric Units (mm)</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal for Presentation Fullscreen / Export -->
+  <div class="export-modal-backdrop hidden" id="exportModal">
+    <div class="export-modal-box glass-panel">
+      <div class="modal-header">
+        <h3>Export Project Deliverables</h3>
+        <button class="btn-close-modal" id="btnCloseModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Generate high-resolution deliverables conforming to the project presentation requirements:</p>
+        <div class="export-options-list">
+          <button class="export-opt-btn" id="btnModalPptx">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
+            <div>
+              <strong>Complete 7-Slide PowerPoint Presentation (.pptx)</strong>
+              <span>Includes executive vision, facade, courtyard stack ventilation, structural drawings, and Forma analytics.</span>
+            </div>
+          </button>
+          <button class="export-opt-btn" id="btnModalPdf">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+            <div>
+              <strong>Complete Architectural & Structural PDF Report</strong>
+              <span>High-resolution layout drawings, BBS schedule, and assumed metric dimensions catalog.</span>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vite entry script -->
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
