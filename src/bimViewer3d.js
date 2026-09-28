@@ -1,22 +1,22 @@
 import * as THREE from 'three';
 
 /**
- * Procedural Orbit Controls implementation
+ * Procedural Orbit Controls with Smooth Damping
  */
 class SimpleOrbitControls {
   constructor(camera, domElement) {
     this.camera = camera;
     this.domElement = domElement;
-    this.target = new THREE.Vector3(0, 15, 0);
+    this.target = new THREE.Vector3(0, 16, 0);
     this.distance = 75;
-    this.phi = Math.PI / 3;
+    this.phi = Math.PI / 3.2;
     this.theta = Math.PI / 4;
-    this.minDistance = 10;
-    this.maxDistance = 180;
+    this.minDistance = 8;
+    this.maxDistance = 220;
     this.minPolarAngle = 0.05;
     this.maxPolarAngle = Math.PI / 2 - 0.02;
     this.autoRotate = false;
-    this.autoRotateSpeed = 0.5;
+    this.autoRotateSpeed = 0.6;
 
     this.isDragging = false;
     this.isPanning = false;
@@ -40,7 +40,7 @@ class SimpleOrbitControls {
       const deltaY = e.clientY - this.previousMousePosition.y;
 
       if (this.isPanning) {
-        const panSpeed = 0.03 * (this.distance / 50);
+        const panSpeed = 0.035 * (this.distance / 50);
         const forward = new THREE.Vector3().subVectors(this.target, this.camera.position).normalize();
         const right = new THREE.Vector3().crossVectors(forward, new THREE.Vector3(0, 1, 0)).normalize();
         const up = new THREE.Vector3().crossVectors(right, forward).normalize();
@@ -177,7 +177,7 @@ class SimpleOrbitControls {
 }
 
 /**
- * Shared Helper to construct the complete Procedural B+G+9 BIM Model
+ * Procedural B+G+9 Mixed-Use BIM Model Builder
  */
 function buildFullBimBuilding(containerGroup, interactiveList = null) {
   const levelGroups = {
@@ -197,29 +197,77 @@ function buildFullBimBuilding(containerGroup, interactiveList = null) {
 
   Object.values(levelGroups).forEach(grp => containerGroup.add(grp));
 
-  // Materials Palette
-  const concreteMat = new THREE.MeshStandardMaterial({ color: 0xd1d5db, roughness: 0.85, metalness: 0.1 });
-  const columnMat = new THREE.MeshStandardMaterial({ color: 0x94a3b8, roughness: 0.7, metalness: 0.2 });
+  // Architectural Materials
+  const concreteMat = new THREE.MeshStandardMaterial({
+    color: 0xd8dee9,
+    roughness: 0.75,
+    metalness: 0.1
+  });
+  const slabMat = new THREE.MeshStandardMaterial({
+    color: 0xe5e9f0,
+    roughness: 0.8,
+    metalness: 0.05
+  });
+  const columnMat = new THREE.MeshStandardMaterial({
+    color: 0x94a3b8,
+    roughness: 0.65,
+    metalness: 0.2
+  });
+  const coreMat = new THREE.MeshStandardMaterial({
+    color: 0x64748b,
+    roughness: 0.7,
+    metalness: 0.15
+  });
   const glassMat = new THREE.MeshPhysicalMaterial({
     color: 0x93c5fd,
-    transmission: 0.7,
+    transmission: 0.75,
     opacity: 0.85,
     transparent: true,
-    roughness: 0.1,
+    roughness: 0.08,
     metalness: 0.1,
-    ior: 1.5
+    ior: 1.52,
+    reflectivity: 0.6
   });
-  const woodDeckMat = new THREE.MeshStandardMaterial({ color: 0xb45309, roughness: 0.6 });
-  const vegetationMat = new THREE.MeshStandardMaterial({ color: 0x16a34a, roughness: 0.8 });
-  const waterMat = new THREE.MeshStandardMaterial({ color: 0x0284c7, roughness: 0.1, metalness: 0.4 });
-  const solarPvMat = new THREE.MeshStandardMaterial({ color: 0x1e1b4b, roughness: 0.2, metalness: 0.8 });
-  const evChargerMat = new THREE.MeshStandardMaterial({ color: 0x10b981, roughness: 0.3, metalness: 0.5 });
-  const louverMat = new THREE.MeshStandardMaterial({ color: 0xb45309, roughness: 0.4, metalness: 0.3 });
+  const woodDeckMat = new THREE.MeshStandardMaterial({
+    color: 0xb45309,
+    roughness: 0.55,
+    metalness: 0.15
+  });
+  const vegetationMat = new THREE.MeshStandardMaterial({
+    color: 0x16a34a,
+    roughness: 0.85,
+    metalness: 0.05
+  });
+  const waterMat = new THREE.MeshStandardMaterial({
+    color: 0x0284c7,
+    roughness: 0.1,
+    metalness: 0.45
+  });
+  const solarPvMat = new THREE.MeshStandardMaterial({
+    color: 0x1e1b4b,
+    roughness: 0.15,
+    metalness: 0.85
+  });
+  const evChargerMat = new THREE.MeshStandardMaterial({
+    color: 0x10b981,
+    roughness: 0.35,
+    metalness: 0.4
+  });
+  const louverMat = new THREE.MeshStandardMaterial({
+    color: 0xd97706,
+    roughness: 0.4,
+    metalness: 0.45
+  });
+  const railingMat = new THREE.MeshStandardMaterial({
+    color: 0x334155,
+    roughness: 0.3,
+    metalness: 0.8
+  });
 
-  const buildingW = 40;
-  const buildingD = 30;
-  const courtW = 16;
-  const courtD = 14;
+  const buildingW = 40; // 40,000 mm outer width
+  const buildingD = 30; // 30,000 mm outer depth
+  const courtW = 16;    // 16,000 mm courtyard width
+  const courtD = 14;    // 14,000 mm courtyard depth
 
   function registerInteractive(obj, data) {
     obj.userData = data;
@@ -228,47 +276,90 @@ function buildFullBimBuilding(containerGroup, interactiveList = null) {
 
   function createRing(outerW, outerD, innerW, innerD, thickness, mat) {
     const grp = new THREE.Group();
-    const northSlab = new THREE.Mesh(new THREE.BoxGeometry(outerW, thickness, (outerD - innerD) / 2), mat);
+    const nD = (outerD - innerD) / 2;
+    const sD = (outerD - innerD) / 2;
+    const eW = (outerW - innerW) / 2;
+    const wW = (outerW - innerW) / 2;
+
+    const northSlab = new THREE.Mesh(new THREE.BoxGeometry(outerW, thickness, nD), mat);
     northSlab.position.set(0, thickness / 2, (outerD + innerD) / 4);
+    northSlab.receiveShadow = true;
+    northSlab.castShadow = true;
     grp.add(northSlab);
 
-    const southSlab = new THREE.Mesh(new THREE.BoxGeometry(outerW, thickness, (outerD - innerD) / 2), mat);
+    const southSlab = new THREE.Mesh(new THREE.BoxGeometry(outerW, thickness, sD), mat);
     southSlab.position.set(0, thickness / 2, -(outerD + innerD) / 4);
+    southSlab.receiveShadow = true;
+    southSlab.castShadow = true;
     grp.add(southSlab);
 
-    const eastSlab = new THREE.Mesh(new THREE.BoxGeometry((outerW - innerW) / 2, thickness, innerD), mat);
+    const eastSlab = new THREE.Mesh(new THREE.BoxGeometry(eW, thickness, innerD), mat);
     eastSlab.position.set((outerW + innerW) / 4, thickness / 2, 0);
+    eastSlab.receiveShadow = true;
+    eastSlab.castShadow = true;
     grp.add(eastSlab);
 
-    const westSlab = new THREE.Mesh(new THREE.BoxGeometry((outerW - innerW) / 2, thickness, innerD), mat);
+    const westSlab = new THREE.Mesh(new THREE.BoxGeometry(wW, thickness, innerD), mat);
     westSlab.position.set(-(outerW + innerW) / 4, thickness / 2, 0);
+    westSlab.receiveShadow = true;
+    westSlab.castShadow = true;
     grp.add(westSlab);
     return grp;
   }
 
   function createGlassArcade(grp, outerW, outerD, innerW, innerD, h) {
-    const southGlass = new THREE.Mesh(new THREE.BoxGeometry(outerW, h, 0.1), glassMat);
+    const southGlass = new THREE.Mesh(new THREE.BoxGeometry(outerW, h, 0.12), glassMat);
     southGlass.position.set(0, h / 2, outerD / 2);
+    southGlass.castShadow = false;
+    registerInteractive(southGlass, {
+      name: 'Double Glazed Curtain Wall Facade',
+      category: 'Architectural Glazing Envelope',
+      dim: `${outerW * 1000} × ${Math.round(h * 1000)} mm`,
+      area: `${outerW * h} m²`,
+      family: 'LowE_Double_Glazed_ArgonInfill',
+      env: 'SHGC 0.28, U-value 1.4 W/m²K, 82% VLT Daylight Autonomy',
+      mat: '6-12-6 Low-E Argon-Infilled Double Glazing'
+    });
     grp.add(southGlass);
 
-    const northGlass = new THREE.Mesh(new THREE.BoxGeometry(outerW, h, 0.1), glassMat);
+    const northGlass = new THREE.Mesh(new THREE.BoxGeometry(outerW, h, 0.12), glassMat);
     northGlass.position.set(0, h / 2, -outerD / 2);
     grp.add(northGlass);
 
-    const eastGlass = new THREE.Mesh(new THREE.BoxGeometry(0.1, h, outerD), glassMat);
+    const eastGlass = new THREE.Mesh(new THREE.BoxGeometry(0.12, h, outerD), glassMat);
     eastGlass.position.set(outerW / 2, h / 2, 0);
     grp.add(eastGlass);
 
-    const westGlass = new THREE.Mesh(new THREE.BoxGeometry(0.1, h, outerD), glassMat);
+    const westGlass = new THREE.Mesh(new THREE.BoxGeometry(0.12, h, outerD), glassMat);
     westGlass.position.set(-outerW / 2, h / 2, 0);
     grp.add(westGlass);
 
+    // Internal courtyard glass arcade
+    const courtGlassS = new THREE.Mesh(new THREE.BoxGeometry(innerW, h, 0.08), glassMat);
+    courtGlassS.position.set(0, h / 2, innerD / 2);
+    grp.add(courtGlassS);
+
+    const courtGlassN = new THREE.Mesh(new THREE.BoxGeometry(innerW, h, 0.08), glassMat);
+    courtGlassN.position.set(0, h / 2, -innerD / 2);
+    grp.add(courtGlassN);
+
+    // Columns on 8m modular grid
     for (let x = -16; x <= 16; x += 8) {
       for (let z = -12; z <= 12; z += 8) {
         if (Math.abs(x) < innerW / 2 && Math.abs(z) < innerD / 2) continue;
         const col = new THREE.Mesh(new THREE.BoxGeometry(0.6, h, 0.6), columnMat);
         col.position.set(x, h / 2, z);
         col.castShadow = true;
+        col.receiveShadow = true;
+        registerInteractive(col, {
+          name: `RCC Structural Column C1 (Grid ${x >= 0 ? '+' : ''}${x}, ${z >= 0 ? '+' : ''}${z})`,
+          category: 'RCC Structural Column',
+          dim: '600 × 600 mm',
+          area: '0.36 m²',
+          family: 'M40_RCC_Column_600x600',
+          env: 'IS 456 / IS 13920 Ductile Seismic Detailing (12-T25 Rebar)',
+          mat: 'Grade M40 High-Strength Concrete / Fe500D TMT'
+        });
         grp.add(col);
       }
     }
@@ -281,33 +372,43 @@ function buildFullBimBuilding(containerGroup, interactiveList = null) {
   b1Grp.position.y = -3.8;
   b1Grp.userData = { levelName: 'Level B1: Automated Car Parking & EV Supercharging Hub', baseElevation: -3.8 };
 
-  const b1Slab = new THREE.Mesh(new THREE.BoxGeometry(buildingW, 0.4, buildingD), concreteMat);
+  const b1Slab = new THREE.Mesh(new THREE.BoxGeometry(buildingW + 4, 0.4, buildingD + 4), concreteMat);
   b1Slab.position.y = 0;
   b1Slab.receiveShadow = true;
+  registerInteractive(b1Slab, {
+    name: 'Basement Raft Foundation & Ground Slab',
+    category: 'RCC Substructure Foundation',
+    dim: '44,000 × 34,000 × 400 mm',
+    area: '1,496 m²',
+    family: 'Raft_Foundation_Slab_M40',
+    env: 'Waterproofed with Integral Crystalline Admixture',
+    mat: 'Grade M40 Self-Compacting RCC'
+  });
   b1Grp.add(b1Slab);
 
   for (let x = -16; x <= 16; x += 8) {
     for (let z = -12; z <= 12; z += 8) {
-      const col = new THREE.Mesh(new THREE.BoxGeometry(0.6, 3.8, 0.6), columnMat);
+      const col = new THREE.Mesh(new THREE.BoxGeometry(0.65, 3.8, 0.65), columnMat);
       col.position.set(x, 1.9, z);
       col.castShadow = true;
       col.receiveShadow = true;
       registerInteractive(col, {
-        name: `Column C1 (Grid ${x},${z})`,
+        name: `Basement Column C1 (Grid ${x},${z})`,
         category: 'RCC Structural Column',
-        dim: '600 × 600 mm',
-        area: '0.36 m²',
-        family: 'M40_RCC_Column_600x600',
-        env: 'Load bearing 4500 kN capacity with 12-T25 rebar',
-        mat: 'M40 Concrete / Fe500D TMT Steel'
+        dim: '650 × 650 mm',
+        area: '0.42 m²',
+        family: 'M40_RCC_Basement_Column',
+        env: 'Load capacity 5,200 kN with 14-T25 rebar',
+        mat: 'Grade M40 Concrete / Fe500D Steel'
       });
       b1Grp.add(col);
     }
   }
 
-  for (let x = -14; x <= 14; x += 4) {
-    [-10, 10].forEach(zPos => {
-      const stall = new THREE.Mesh(new THREE.BoxGeometry(2.6, 0.02, 5.0), new THREE.MeshStandardMaterial({ color: 0x3b82f6 }));
+  // 48 Smart EV Charging Stalls
+  for (let x = -16; x <= 16; x += 4) {
+    [-11, 11].forEach(zPos => {
+      const stall = new THREE.Mesh(new THREE.BoxGeometry(2.6, 0.02, 5.0), new THREE.MeshStandardMaterial({ color: 0x2563eb, roughness: 0.6 }));
       stall.position.set(x, 0.21, zPos);
       b1Grp.add(stall);
 
@@ -315,91 +416,135 @@ function buildFullBimBuilding(containerGroup, interactiveList = null) {
       charger.position.set(x, 0.8, zPos > 0 ? zPos + 2.4 : zPos - 2.4);
       charger.castShadow = true;
       registerInteractive(charger, {
-        name: 'Fast EV Charging Station',
+        name: 'Smart Fast EV Charging Post (22kW / 60kW)',
         category: 'MEP Green Infrastructure',
-        dim: '500 × 300 × 1600 mm',
+        dim: '500 × 300 × 1,600 mm',
         area: '0.15 m²',
         family: 'Smart_EV_Charger_22kW_Type2',
-        env: 'Dynamic Load Balancing with Rooftop Solar Grid',
-        mat: 'Weatherproof Enclosure / Type-2 Fast Cable'
+        env: 'Solar Dynamic Load Balancing with Rooftop BIPV Grid',
+        mat: 'Weatherproof Aluminium Enclosure / Type-2 Fast Cable'
       });
       b1Grp.add(charger);
     });
   }
 
+  // Rainwater Cistern & MEP Core
+  const cistern = new THREE.Mesh(new THREE.BoxGeometry(8, 2.5, 6), new THREE.MeshStandardMaterial({ color: 0x0369a1, roughness: 0.4 }));
+  cistern.position.set(0, 1.25, 0);
+  registerInteractive(cistern, {
+    name: 'Underground Rainwater Cistern & UV Treatment',
+    category: 'MEP Water Conservation System',
+    dim: '8,000 × 6,000 × 2,500 mm',
+    area: '48 m² (45,000 L Storage Capacity)',
+    family: 'Rainwater_Harvesting_Cistern_45kL',
+    env: 'Captures 100% roof runoff; supplies 100% of landscaping & flushing needs',
+    mat: 'Hydrophobic RCC with Dual-Stage Micron & UV Filtration'
+  });
+  b1Grp.add(cistern);
+
+  // Vehicular Ingress Ramp
   const ramp = new THREE.Mesh(new THREE.BoxGeometry(6, 0.3, 14), concreteMat);
   ramp.rotation.x = Math.PI / 12;
   ramp.position.set(-16, 1.8, 18);
   b1Grp.add(ramp);
 
   /* -------------------------------------------------------------
-     GROUND FLOOR (Y = 0)
+     GROUND FLOOR (Y = 0m)
      ------------------------------------------------------------- */
   const gGrp = levelGroups.G;
   gGrp.position.y = 0;
   gGrp.userData = { levelName: 'Ground Floor: Active Commercial Arcade & Central Courtyard', baseElevation: 0 };
 
-  const gFloor = createRing(buildingW, buildingD, courtW, courtD, 0.3, concreteMat);
+  const gFloor = createRing(buildingW, buildingD, courtW, courtD, 0.35, slabMat);
   gFloor.position.y = 0;
   gFloor.receiveShadow = true;
   gGrp.add(gFloor);
 
-  const courtyardBase = new THREE.Mesh(new THREE.BoxGeometry(courtW, 0.1, courtD), woodDeckMat);
-  courtyardBase.position.set(0, 0.05, 0);
+  // Central Open Courtyard
+  const courtyardBase = new THREE.Mesh(new THREE.BoxGeometry(courtW, 0.12, courtD), woodDeckMat);
+  courtyardBase.position.set(0, 0.06, 0);
+  courtyardBase.receiveShadow = true;
   registerInteractive(courtyardBase, {
     name: 'Central Biophilic Landscape Courtyard',
     category: 'Microclimate Atrium & Thermal Chimney',
     dim: '16,000 × 14,000 mm',
     area: '224 m² (Open-to-Sky)',
     family: 'Courtyard_Biophilic_Atrium',
-    env: 'Harnesses natural convective stack effect to cool all 9 upper floors passively',
+    env: 'Harnesses natural convective stack effect to cool all 9 upper floors passively (4.5 ACH)',
     mat: 'Permeable Timber Deck, Native Flora, Bio-Filtration Pond'
   });
   gGrp.add(courtyardBase);
 
-  const waterPond = new THREE.Mesh(new THREE.BoxGeometry(6, 0.2, 5), waterMat);
+  // Bio-filtration Water Pond
+  const waterPond = new THREE.Mesh(new THREE.BoxGeometry(6.5, 0.25, 5.5), waterMat);
   waterPond.position.set(0, 0.15, 0);
+  registerInteractive(waterPond, {
+    name: 'Bio-Filtration Reflection Water Feature',
+    category: 'Biophilic Water Feature',
+    dim: '6,500 × 5,500 × 300 mm',
+    area: '35.7 m²',
+    family: 'Water_Feature_Microclimate_Biofilter',
+    env: 'Evaporative cooling lowers courtyard ambient temperature by 3.8°C',
+    mat: 'Basalt Stone Lining & Recirculating Ecological Bio-filter'
+  });
   gGrp.add(waterPond);
 
-  [-4, 4].forEach(tx => {
-    [-3, 3].forEach(tz => {
-      const cTree = new THREE.Mesh(new THREE.DodecahedronGeometry(1.2, 1), vegetationMat);
-      cTree.position.set(tx, 2.5, tz);
+  // Courtyard Trees
+  [-4.5, 4.5].forEach(tx => {
+    [-3.5, 3.5].forEach(tz => {
+      const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.25, 2.0), new THREE.MeshStandardMaterial({ color: 0x78350f }));
+      trunk.position.set(tx, 1.0, tz);
+      gGrp.add(trunk);
+
+      const cTree = new THREE.Mesh(new THREE.DodecahedronGeometry(1.4, 1), vegetationMat);
+      cTree.position.set(tx, 2.6, tz);
       cTree.castShadow = true;
       gGrp.add(cTree);
     });
   });
 
+  // Double-height ground arcade (4.5m)
   createGlassArcade(gGrp, buildingW, buildingD, courtW, courtD, 4.5);
 
   /* -------------------------------------------------------------
-     FIRST FLOOR (1F, Y = 4.5)
+     FIRST FLOOR (1F, Y = 4.5m)
      ------------------------------------------------------------- */
   const l1Grp = levelGroups.L1;
   l1Grp.position.y = 4.5;
   l1Grp.userData = { levelName: '1st Floor: Commercial Wellness & Co-Working Hub', baseElevation: 4.5 };
 
-  const l1Floor = createRing(buildingW, buildingD, courtW, courtD, 0.3, concreteMat);
+  const l1Floor = createRing(buildingW, buildingD, courtW, courtD, 0.3, slabMat);
   l1Floor.receiveShadow = true;
   l1Grp.add(l1Floor);
 
-  const skyBridge = new THREE.Mesh(new THREE.BoxGeometry(3, 0.3, courtD), woodDeckMat);
+  // Timber Skywalk Bridge
+  const skyBridge = new THREE.Mesh(new THREE.BoxGeometry(3.2, 0.3, courtD), woodDeckMat);
   skyBridge.position.set(0, 0.15, 0);
   registerInteractive(skyBridge, {
-    name: 'Courtyard Skywalk Bridge',
+    name: 'Courtyard Skywalk Bridge & Viewing Platform',
     category: 'Biophilic Circulation Interface',
-    dim: '3,000 × 14,000 mm',
-    area: '42 m²',
+    dim: '3,200 × 14,000 mm',
+    area: '44.8 m²',
     family: 'Circulation_Bridge_Wood_Steel',
-    env: 'Panoramic visual connection to lush central microclimate garden',
-    mat: 'Treated Hardwood Decking, Stainless Steel Handrail'
+    env: 'Elevated cross-ventilation corridor with panoramic visual connection to garden',
+    mat: 'Treated FSC Hardwood Decking, Structural Steel Truss, Glass Balustrade'
   });
   l1Grp.add(skyBridge);
 
+  // Glass balustrades on skybridge
+  const brLeft = new THREE.Mesh(new THREE.BoxGeometry(0.05, 1.1, courtD), glassMat);
+  brLeft.position.set(-1.6, 0.7, 0);
+  l1Grp.add(brLeft);
+
+  const brRight = new THREE.Mesh(new THREE.BoxGeometry(0.05, 1.1, courtD), glassMat);
+  brRight.position.set(1.6, 0.7, 0);
+  l1Grp.add(brRight);
+
+  // 1F Glass arcade (4.0m)
   createGlassArcade(l1Grp, buildingW, buildingD, courtW, courtD, 4.0);
 
   /* -------------------------------------------------------------
-     RESIDENTIAL LEVELS: 2nd to 9th Floor (Y = 8.5 to 34.9m)
+     RESIDENTIAL LEVELS: 2nd to 9th Floor (Y = 8.5 to 31.6m)
      ------------------------------------------------------------- */
   const resHeight = 3.3;
   const resLevels = ['L2', 'L3', 'L4', 'L5', 'L6', 'L7', 'L8', 'L9'];
@@ -410,57 +555,80 @@ function buildFullBimBuilding(containerGroup, interactiveList = null) {
     lvlGrp.position.y = elevY;
     lvlGrp.userData = { levelName: `Level ${idx + 2}: Sustainable Residential Living Units`, baseElevation: elevY };
 
-    const resSlab = createRing(buildingW, buildingD, courtW, courtD, 0.25, concreteMat);
+    // Residential floor slab
+    const resSlab = createRing(buildingW, buildingD, courtW, courtD, 0.25, slabMat);
     resSlab.receiveShadow = true;
     lvlGrp.add(resSlab);
 
+    // Columns on 8m grid
     for (let x = -16; x <= 16; x += 8) {
       for (let z = -12; z <= 12; z += 8) {
         if (Math.abs(x) < courtW / 2 && Math.abs(z) < courtD / 2) continue;
         const col = new THREE.Mesh(new THREE.BoxGeometry(0.5, resHeight, 0.5), columnMat);
         col.position.set(x, resHeight / 2, z);
         col.castShadow = true;
+        col.receiveShadow = true;
         lvlGrp.add(col);
       }
     }
+
+    // Concrete core shear walls around lift shafts
+    const coreWallW = new THREE.Mesh(new THREE.BoxGeometry(0.3, resHeight, 4), coreMat);
+    coreWallW.position.set(-courtW / 2 - 1.5, resHeight / 2, 0);
+    lvlGrp.add(coreWallW);
+
+    const coreWallE = new THREE.Mesh(new THREE.BoxGeometry(0.3, resHeight, 4), coreMat);
+    coreWallE.position.set(courtW / 2 + 1.5, resHeight / 2, 0);
+    lvlGrp.add(coreWallE);
 
     // Staggered Cantilever Balconies & Planters
     const isStaggered = idx % 2 === 0;
     [-12, -4, 4, 12].forEach((bx, i) => {
       if ((i % 2 === 0 && isStaggered) || (i % 2 !== 0 && !isStaggered)) {
-        const balcSlab = new THREE.Mesh(new THREE.BoxGeometry(6, 0.2, 1.8), concreteMat);
-        balcSlab.position.set(bx, 0.1, buildingD / 2 + 0.9);
+        // Balcony concrete slab
+        const balcSlab = new THREE.Mesh(new THREE.BoxGeometry(6.2, 0.22, 2.0), concreteMat);
+        balcSlab.position.set(bx, 0.11, buildingD / 2 + 1.0);
         balcSlab.castShadow = true;
+        balcSlab.receiveShadow = true;
         lvlGrp.add(balcSlab);
 
-        const balcRailing = new THREE.Mesh(new THREE.BoxGeometry(6, 1.1, 0.05), glassMat);
-        balcRailing.position.set(bx, 0.65, buildingD / 2 + 1.8);
+        // Balcony Glass Railing
+        const balcRailing = new THREE.Mesh(new THREE.BoxGeometry(6.2, 1.15, 0.06), glassMat);
+        balcRailing.position.set(bx, 0.68, buildingD / 2 + 2.0);
         lvlGrp.add(balcRailing);
 
-        const planter = new THREE.Mesh(new THREE.BoxGeometry(5.8, 0.5, 0.4), vegetationMat);
-        planter.position.set(bx, 0.35, buildingD / 2 + 1.6);
+        // Stainless handrail cap
+        const handrailCap = new THREE.Mesh(new THREE.BoxGeometry(6.2, 0.05, 0.08), railingMat);
+        handrailCap.position.set(bx, 1.25, buildingD / 2 + 2.0);
+        lvlGrp.add(handrailCap);
+
+        // Biophilic Balcony Planter
+        const planter = new THREE.Mesh(new THREE.BoxGeometry(6.0, 0.5, 0.45), vegetationMat);
+        planter.position.set(bx, 0.35, buildingD / 2 + 1.75);
         registerInteractive(planter, {
           name: 'Biophilic Balcony Planter (Automated Drip)',
           category: 'Microclimate Vegetation Buffer',
-          dim: '5,800 × 400 × 500 mm',
-          area: '2.3 m²',
+          dim: '6,000 × 450 × 500 mm',
+          area: '2.7 m²',
           family: 'Bio_Planter_Drip_Irrigated',
-          env: 'Reduces surface temperature by 4.2°C via evapotranspiration',
+          env: 'Reduces balcony surface temperature by 4.2°C via evapotranspiration',
           mat: 'Lightweight Engineered Soil, Native Jasmine / Boston Fern'
         });
         lvlGrp.add(planter);
 
+        // Parametric Kinetic Aerofoil Louvers
         for (let l = 0; l < 4; l++) {
-          const louver = new THREE.Mesh(new THREE.BoxGeometry(5.8, 0.08, 0.35), louverMat);
+          const louver = new THREE.Mesh(new THREE.BoxGeometry(6.0, 0.08, 0.38), louverMat);
           louver.rotation.x = Math.PI / 4.5;
-          louver.position.set(bx, 1.2 + l * 0.45, buildingD / 2 + 1.75);
+          louver.position.set(bx, 1.15 + l * 0.48, buildingD / 2 + 1.9);
+          louver.castShadow = true;
           registerInteractive(louver, {
-            name: 'Parametric Solar Aerofoil Louver',
+            name: 'Parametric Kinetic Solar Aerofoil Louver',
             category: 'Passive Climate-Responsive Envelope',
-            dim: '5,800 × 350 × 80 mm',
-            area: '2.0 m²',
+            dim: '6,000 × 380 × 80 mm',
+            area: '2.28 m²',
             family: 'Kinetic_Solar_Louver_Aluminium',
-            env: 'Blocks 85% of harsh afternoon summer glare while admitting diffuse daylight',
+            env: 'Blocks 85% of peak afternoon summer glare while admitting diffuse daylight',
             mat: 'Anodized Architectural Bronze Aluminium'
           });
           lvlGrp.add(louver);
@@ -468,13 +636,50 @@ function buildFullBimBuilding(containerGroup, interactiveList = null) {
       }
     });
 
-    const southGlass = new THREE.Mesh(new THREE.BoxGeometry(buildingW, resHeight * 0.75, 0.08), glassMat);
-    southGlass.position.set(0, resHeight * 0.55, buildingD / 2);
+    // North Balconies (Symmetric)
+    [-12, -4, 4, 12].forEach((bx, i) => {
+      if ((i % 2 === 0 && !isStaggered) || (i % 2 !== 0 && isStaggered)) {
+        const balcSlabN = new THREE.Mesh(new THREE.BoxGeometry(6.2, 0.22, 2.0), concreteMat);
+        balcSlabN.position.set(bx, 0.11, -buildingD / 2 - 1.0);
+        balcSlabN.castShadow = true;
+        balcSlabN.receiveShadow = true;
+        lvlGrp.add(balcSlabN);
+
+        const balcRailingN = new THREE.Mesh(new THREE.BoxGeometry(6.2, 1.15, 0.06), glassMat);
+        balcRailingN.position.set(bx, 0.68, -buildingD / 2 - 2.0);
+        lvlGrp.add(balcRailingN);
+
+        const planterN = new THREE.Mesh(new THREE.BoxGeometry(6.0, 0.5, 0.45), vegetationMat);
+        planterN.position.set(bx, 0.35, -buildingD / 2 - 1.75);
+        lvlGrp.add(planterN);
+      }
+    });
+
+    // Continuous Double Glazed Facade Windows
+    const southGlass = new THREE.Mesh(new THREE.BoxGeometry(buildingW, resHeight * 0.8, 0.1), glassMat);
+    southGlass.position.set(0, resHeight * 0.5, buildingD / 2);
     lvlGrp.add(southGlass);
 
-    const northGlass = new THREE.Mesh(new THREE.BoxGeometry(buildingW, resHeight * 0.75, 0.08), glassMat);
-    northGlass.position.set(0, resHeight * 0.55, -buildingD / 2);
+    const northGlass = new THREE.Mesh(new THREE.BoxGeometry(buildingW, resHeight * 0.8, 0.1), glassMat);
+    northGlass.position.set(0, resHeight * 0.5, -buildingD / 2);
     lvlGrp.add(northGlass);
+
+    const eastGlass = new THREE.Mesh(new THREE.BoxGeometry(0.1, resHeight * 0.8, buildingD), glassMat);
+    eastGlass.position.set(buildingW / 2, resHeight * 0.5, 0);
+    lvlGrp.add(eastGlass);
+
+    const westGlass = new THREE.Mesh(new THREE.BoxGeometry(0.1, resHeight * 0.8, buildingD), glassMat);
+    westGlass.position.set(-buildingW / 2, resHeight * 0.5, 0);
+    lvlGrp.add(westGlass);
+
+    // Courtyard inner perimeter glass & railings
+    const courtInS = new THREE.Mesh(new THREE.BoxGeometry(courtW, 1.1, 0.06), glassMat);
+    courtInS.position.set(0, 0.6, courtD / 2);
+    lvlGrp.add(courtInS);
+
+    const courtInN = new THREE.Mesh(new THREE.BoxGeometry(courtW, 1.1, 0.06), glassMat);
+    courtInN.position.set(0, 0.6, -courtD / 2);
+    lvlGrp.add(courtInN);
   });
 
   /* -------------------------------------------------------------
@@ -484,15 +689,34 @@ function buildFullBimBuilding(containerGroup, interactiveList = null) {
   rfGrp.position.y = 34.9;
   rfGrp.userData = { levelName: 'Rooftop Sky Garden & Solar BIPV Pergola', baseElevation: 34.9 };
 
-  const roofSlab = createRing(buildingW, buildingD, courtW, courtD, 0.35, concreteMat);
+  const roofSlab = createRing(buildingW, buildingD, courtW, courtD, 0.35, slabMat);
   roofSlab.receiveShadow = true;
+  registerInteractive(roofSlab, {
+    name: '10F Rooftop Sky Garden Deck & Running Track',
+    category: 'Bio-Solar Rooftop Amenity',
+    dim: '40,000 × 30,000 × 350 mm',
+    area: '976 m²',
+    family: 'Roof_SkyGarden_Slab_Insulated',
+    env: 'Extensive green roof + solar PV reduces urban heat island effect by 4.8°C',
+    mat: 'Elastomeric Waterproofing Membrane, XPS Insulation, Timber Decking'
+  });
   rfGrp.add(roofSlab);
 
+  // Perimeter Glass Safety Barrier
+  const rfParapet = new THREE.Mesh(new THREE.BoxGeometry(buildingW, 1.4, 0.08), glassMat);
+  rfParapet.position.set(0, 0.7, buildingD / 2);
+  rfGrp.add(rfParapet);
+
+  const rfParapetN = new THREE.Mesh(new THREE.BoxGeometry(buildingW, 1.4, 0.08), glassMat);
+  rfParapetN.position.set(0, 0.7, -buildingD / 2);
+  rfGrp.add(rfParapetN);
+
+  // 148 kWp BIPV Solar PV Pergola Canopy
   const solarCanopy = new THREE.Group();
   for (let x = -16; x <= 16; x += 4) {
     for (let z = -10; z <= 10; z += 4) {
       if (Math.abs(x) < courtW / 2 && Math.abs(z) < courtD / 2) continue;
-      const panel = new THREE.Mesh(new THREE.BoxGeometry(3.6, 0.05, 3.6), solarPvMat);
+      const panel = new THREE.Mesh(new THREE.BoxGeometry(3.6, 0.06, 3.6), solarPvMat);
       panel.rotation.x = -Math.PI / 16;
       panel.position.set(x, 3.5, z);
       panel.castShadow = true;
@@ -500,7 +724,7 @@ function buildFullBimBuilding(containerGroup, interactiveList = null) {
         name: 'Bifacial BIPV Solar Photovoltaic Panel (450W)',
         category: 'Renewable Energy Generation',
         dim: '2,000 × 1,000 mm modules',
-        area: '620 m² Total Array',
+        area: '620 m² Total Array (330 Modules)',
         family: 'BIPV_Solar_Pergola_Monocrystalline',
         env: 'Generates 185,000 kWh/yr clean electricity (-51% building EUI)',
         mat: 'Bifacial Tempered Glass / High-Efficiency Silicon Cells'
@@ -514,9 +738,20 @@ function buildFullBimBuilding(containerGroup, interactiveList = null) {
   }
   rfGrp.add(solarCanopy);
 
+  // Rooftop Planter Boxes & Community Garden
   [-12, 12].forEach(px => {
     const planterBox = new THREE.Mesh(new THREE.BoxGeometry(6, 0.6, 4), vegetationMat);
     planterBox.position.set(px, 0.3, 0);
+    planterBox.castShadow = true;
+    registerInteractive(planterBox, {
+      name: 'Rooftop Community Organic Farm Plot',
+      category: 'Urban Agriculture & Rainwater Sponge',
+      dim: '6,000 × 4,000 × 600 mm',
+      area: '24 m² ea',
+      family: 'Green_Roof_Hydroponic_Bed',
+      env: 'Absorbs 85% of peak storm rainfall and provides fresh resident produce',
+      mat: 'Lightweight Engineered Growing Media & Drip Irrigation'
+    });
     rfGrp.add(planterBox);
   });
 
@@ -529,19 +764,27 @@ function buildFullBimBuilding(containerGroup, interactiveList = null) {
 export class BimViewer3D {
   constructor(canvasId) {
     this.canvas = document.getElementById(canvasId);
-    if (!this.canvas) return;
+    if (!this.canvas) {
+      console.warn(`BimViewer3D: Canvas element #${canvasId} not found.`);
+      return;
+    }
 
     this.scene = new THREE.Scene();
     this.scene.background = new THREE.Color(0xf1f5f9);
-    this.scene.fog = new THREE.FogExp2(0xf1f5f9, 0.006);
+    this.scene.fog = new THREE.FogExp2(0xf1f5f9, 0.005);
 
     const width = this.canvas.clientWidth || 800;
     const height = this.canvas.clientHeight || 600;
 
     this.camera = new THREE.PerspectiveCamera(45, width / height, 0.5, 500);
-    this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas, antialias: true, alpha: true });
-    this.renderer.setSize(width, height);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    this.renderer = new THREE.WebGLRenderer({
+      canvas: this.canvas,
+      antialias: true,
+      alpha: true,
+      powerPreference: 'high-performance'
+    });
+    this.renderer.setSize(width, height, false);
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
@@ -566,37 +809,49 @@ export class BimViewer3D {
     this.ambientLight = new THREE.AmbientLight(0xffffff, 0.85);
     this.scene.add(this.ambientLight);
 
-    this.sunLight = new THREE.DirectionalLight(0xfffaed, 1.4);
-    this.sunLight.position.set(40, 60, 35);
+    this.sunLight = new THREE.DirectionalLight(0xfffaed, 1.5);
+    this.sunLight.position.set(45, 65, 40);
     this.sunLight.castShadow = true;
     this.sunLight.shadow.mapSize.width = 2048;
     this.sunLight.shadow.mapSize.height = 2048;
-    this.sunLight.shadow.bias = -0.0005;
+    this.sunLight.shadow.camera.near = 10;
+    this.sunLight.shadow.camera.far = 180;
+    this.sunLight.shadow.camera.left = -45;
+    this.sunLight.shadow.camera.right = 45;
+    this.sunLight.shadow.camera.top = 45;
+    this.sunLight.shadow.camera.bottom = -45;
+    this.sunLight.shadow.bias = -0.0004;
     this.scene.add(this.sunLight);
 
-    this.hemiLight = new THREE.HemisphereLight(0xffffff, 0x94a3b8, 0.6);
+    this.hemiLight = new THREE.HemisphereLight(0xffffff, 0x94a3b8, 0.65);
     this.scene.add(this.hemiLight);
   }
 
   createGroundSite() {
+    // Site ground plane
     const siteGeo = new THREE.PlaneGeometry(160, 160);
-    const siteMat = new THREE.MeshStandardMaterial({ color: 0xe2e8f0, roughness: 0.8, metalness: 0.1 });
+    const siteMat = new THREE.MeshStandardMaterial({ color: 0xe2e8f0, roughness: 0.85, metalness: 0.05 });
     const site = new THREE.Mesh(siteGeo, siteMat);
     site.rotation.x = -Math.PI / 2;
     site.position.y = -0.05;
     site.receiveShadow = true;
     this.scene.add(site);
 
+    // Architectural grid lines
     const grid = new THREE.GridHelper(160, 40, 0x94a3b8, 0xcbd5e1);
     grid.position.y = 0;
     this.scene.add(grid);
 
-    const plot = new THREE.Mesh(new THREE.BoxGeometry(48, 0.1, 36), new THREE.MeshStandardMaterial({ color: 0xf1f5f9 }));
+    // Building Plot boundary (48m × 36m)
+    const plot = new THREE.Mesh(
+      new THREE.BoxGeometry(48, 0.1, 36),
+      new THREE.MeshStandardMaterial({ color: 0xf8fafc, roughness: 0.7 })
+    );
     plot.position.set(0, 0.05, 0);
     plot.receiveShadow = true;
     this.scene.add(plot);
 
-    // Site trees
+    // Site perimeter trees
     const treePositions = [
       [-26, 0, -18], [-26, 0, 0], [-26, 0, 18],
       [26, 0, -18], [26, 0, 0], [26, 0, 18],
@@ -604,14 +859,17 @@ export class BimViewer3D {
       [-18, 0, 22], [0, 0, 22], [18, 0, 22]
     ];
     const treeTrunkMat = new THREE.MeshStandardMaterial({ color: 0x78350f });
-    const treeFoliageMat = new THREE.MeshStandardMaterial({ color: 0x15803d });
+    const treeFoliageMat = new THREE.MeshStandardMaterial({ color: 0x15803d, roughness: 0.8 });
 
     treePositions.forEach(pos => {
       const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.4, 2.5), treeTrunkMat);
       trunk.position.set(pos[0], 1.25, pos[2]);
+      trunk.castShadow = true;
       this.scene.add(trunk);
+
       const foliage = new THREE.Mesh(new THREE.DodecahedronGeometry(1.8, 1), treeFoliageMat);
       foliage.position.set(pos[0], 3.2, pos[2]);
+      foliage.castShadow = true;
       this.scene.add(foliage);
     });
   }
@@ -651,13 +909,27 @@ export class BimViewer3D {
     });
   }
 
+  initResizeObserver() {
+    if (typeof ResizeObserver !== 'undefined' && this.canvas) {
+      this.resizeObserver = new ResizeObserver(() => {
+        this.resizeRendererToDisplaySize();
+      });
+      if (this.canvas.parentElement) {
+        this.resizeObserver.observe(this.canvas.parentElement);
+      }
+    }
+    window.addEventListener('resize', () => {
+      this.resizeRendererToDisplaySize();
+    });
+  }
+
   setExplodedSpread(factor) {
-    const maxOffset = 6.0;
+    const maxOffset = 5.5;
     const order = ['B1', 'G', 'L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7', 'L8', 'L9', 'RF'];
     order.forEach((key, idx) => {
       const grp = this.levelGroups[key];
       if (grp) {
-        const base = grp.userData.baseElevation || 0;
+        const base = grp.userData.baseElevation !== undefined ? grp.userData.baseElevation : 0;
         grp.position.y = base + (idx - 1) * maxOffset * factor;
       }
     });
@@ -685,15 +957,17 @@ export class BimViewer3D {
   setLayerVisibility(layerKey, isVisible) {
     this.buildingGroup.traverse(child => {
       if (child.isMesh && child.userData) {
-        if (layerKey === 'louvers' && child.userData.category && child.userData.category.includes('Louver')) {
+        if (layerKey === 'arch' && child.userData.category && (child.userData.category.includes('Glazing') || child.userData.category.includes('Envelope'))) {
           child.visible = isVisible;
-        } else if (layerKey === 'landscape' && child.userData.category && (child.userData.category.includes('Biophilic') || child.userData.category.includes('Vegetation'))) {
+        } else if (layerKey === 'louvers' && child.userData.category && child.userData.category.includes('Louver')) {
+          child.visible = isVisible;
+        } else if (layerKey === 'landscape' && child.userData.category && (child.userData.category.includes('Biophilic') || child.userData.category.includes('Vegetation') || child.userData.category.includes('Water') || child.userData.category.includes('Courtyard') || child.userData.category.includes('Planter') || child.userData.category.includes('Agriculture'))) {
           child.visible = isVisible;
         } else if (layerKey === 'basementEV' && child.userData.category && child.userData.category.includes('EV')) {
           child.visible = isVisible;
-        } else if (layerKey === 'mep' && child.userData.category && child.userData.category.includes('Renewable')) {
+        } else if (layerKey === 'mep' && child.userData.category && (child.userData.category.includes('Renewable') || child.userData.category.includes('MEP') || child.userData.category.includes('Solar'))) {
           child.visible = isVisible;
-        } else if (layerKey === 'structure' && child.userData.category && child.userData.category.includes('RCC')) {
+        } else if (layerKey === 'structure' && child.userData.category && (child.userData.category.includes('RCC') || child.userData.category.includes('Column') || child.userData.category.includes('Foundation'))) {
           child.visible = isVisible;
         }
       }
@@ -717,9 +991,18 @@ export class BimViewer3D {
   }
 
   setLightingMode(mode) {
-    if (mode === 'day') this.setSunTime(14);
-    else if (mode === 'golden') this.setSunTime(17.5);
-    else if (mode === 'night') {
+    if (mode === 'day') {
+      this.setSunTime(14);
+      this.sunLight.intensity = 1.5;
+      this.ambientLight.intensity = 0.85;
+      this.scene.background.setHex(0xf1f5f9);
+    } else if (mode === 'golden') {
+      this.setSunTime(17.5);
+      this.sunLight.intensity = 1.8;
+      this.ambientLight.intensity = 0.7;
+      this.sunLight.color.setHex(0xffaa44);
+      this.scene.background.setHex(0xfef3c7);
+    } else if (mode === 'night') {
       this.sunLight.intensity = 0.2;
       this.ambientLight.intensity = 0.35;
       this.scene.background.setHex(0x0f172a);
@@ -765,21 +1048,28 @@ export class BimViewer3D {
 export class WalkthroughEngine {
   constructor(canvasId) {
     this.canvas = document.getElementById(canvasId);
-    if (!this.canvas) return;
+    if (!this.canvas) {
+      console.warn(`WalkthroughEngine: Canvas element #${canvasId} not found.`);
+      return;
+    }
 
     this.scene = new THREE.Scene();
-    this.scene.background = new THREE.Color(0x0f172a); // Deep cinematic slate
+    this.scene.background = new THREE.Color(0x0f172a);
     this.scene.fog = new THREE.FogExp2(0x0f172a, 0.005);
 
-    // Initial safe dimensions
     const width = this.canvas.clientWidth || 900;
     const height = this.canvas.clientHeight || 520;
 
     this.camera = new THREE.PerspectiveCamera(50, width / height, 0.5, 500);
-    this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas, antialias: true });
-    this.renderer.setSize(width, height);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    this.renderer = new THREE.WebGLRenderer({
+      canvas: this.canvas,
+      antialias: true,
+      powerPreference: 'high-performance'
+    });
+    this.renderer.setSize(width, height, false);
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
     this.renderer.shadowMap.enabled = true;
+    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
     this.duration = 30.0;
     this.currentTime = 0.0;
@@ -838,6 +1128,7 @@ export class WalkthroughEngine {
     buildFullBimBuilding(this.buildingGroup, null);
 
     this.initEventListeners();
+    this.initResizeObserver();
 
     // Set initial camera to Station 0
     this.updateCameraToTime(0);
@@ -854,6 +1145,9 @@ export class WalkthroughEngine {
     const sun = new THREE.DirectionalLight(0xfffaed, 1.8);
     sun.position.set(40, 60, 45);
     sun.castShadow = true;
+    sun.shadow.mapSize.width = 2048;
+    sun.shadow.mapSize.height = 2048;
+    sun.shadow.bias = -0.0004;
     this.scene.add(sun);
 
     const hemi = new THREE.HemisphereLight(0xffffff, 0x334155, 0.6);
@@ -863,10 +1157,13 @@ export class WalkthroughEngine {
   createGroundSite() {
     const ground = new THREE.Mesh(new THREE.PlaneGeometry(160, 160), new THREE.MeshStandardMaterial({ color: 0x1e293b, roughness: 0.9 }));
     ground.rotation.x = -Math.PI / 2;
+    ground.position.y = -0.05;
+    ground.receiveShadow = true;
     this.scene.add(ground);
 
     const plot = new THREE.Mesh(new THREE.BoxGeometry(48, 0.1, 36), new THREE.MeshStandardMaterial({ color: 0x334155 }));
     plot.position.set(0, 0.05, 0);
+    plot.receiveShadow = true;
     this.scene.add(plot);
 
     const treePositions = [
@@ -881,10 +1178,27 @@ export class WalkthroughEngine {
     treePositions.forEach(pos => {
       const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.4, 2.5), treeTrunkMat);
       trunk.position.set(pos[0], 1.25, pos[2]);
+      trunk.castShadow = true;
       this.scene.add(trunk);
+
       const foliage = new THREE.Mesh(new THREE.DodecahedronGeometry(1.8, 1), treeFoliageMat);
       foliage.position.set(pos[0], 3.2, pos[2]);
+      foliage.castShadow = true;
       this.scene.add(foliage);
+    });
+  }
+
+  initResizeObserver() {
+    if (typeof ResizeObserver !== 'undefined' && this.canvas) {
+      this.resizeObserver = new ResizeObserver(() => {
+        this.resizeRendererToDisplaySize();
+      });
+      if (this.canvas.parentElement) {
+        this.resizeObserver.observe(this.canvas.parentElement);
+      }
+    }
+    window.addEventListener('resize', () => {
+      this.resizeRendererToDisplaySize();
     });
   }
 
@@ -1058,7 +1372,6 @@ export class WalkthroughEngine {
   render(timestamp) {
     requestAnimationFrame(this.render);
 
-    // Continuous responsive display check on every frame
     this.resizeRendererToDisplaySize();
 
     const dt = (timestamp - this.lastTimestamp) / 1000;
