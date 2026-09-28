@@ -248,12 +248,12 @@ function initApp() {
   cameraPresets.forEach(preset => {
     preset.addEventListener('click', () => {
       if (preset.id === 'btnResetView') {
-        if (bimViewer) bimViewer.controls.setCameraPreset('axonometric');
+        if (bimViewer) bimViewer.setCameraPreset('axonometric');
         return;
       }
       cameraPresets.forEach(p => p.classList.remove('active'));
       preset.classList.add('active');
-      if (bimViewer) bimViewer.controls.setCameraPreset(preset.dataset.camera);
+      if (bimViewer) bimViewer.setCameraPreset(preset.dataset.camera);
     });
   });
 

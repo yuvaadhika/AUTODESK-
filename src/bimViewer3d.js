@@ -1,183 +1,9 @@
 import * as THREE from 'three';
-
-/**
- * Procedural Orbit Controls with Smooth Damping
- */
-class SimpleOrbitControls {
-  constructor(camera, domElement) {
-    this.camera = camera;
-    this.domElement = domElement;
-    this.target = new THREE.Vector3(0, 16, 0);
-    this.distance = 75;
-    this.phi = Math.PI / 3.2;
-    this.theta = Math.PI / 4;
-    this.minDistance = 8;
-    this.maxDistance = 220;
-    this.minPolarAngle = 0.05;
-    this.maxPolarAngle = Math.PI / 2 - 0.02;
-    this.autoRotate = false;
-    this.autoRotateSpeed = 0.6;
-
-    this.isDragging = false;
-    this.isPanning = false;
-    this.previousMousePosition = { x: 0, y: 0 };
-
-    this.initEvents();
-    this.updateCamera();
-  }
-
-  initEvents() {
-    this.domElement.addEventListener('pointerdown', (e) => {
-      if (e.button === 0) this.isDragging = true;
-      if (e.button === 2 || e.shiftKey) this.isPanning = true;
-      this.previousMousePosition = { x: e.clientX, y: e.clientY };
-    });
-
-    window.addEventListener('pointermove', (e) => {
-      if (!this.isDragging && !this.isPanning) return;
-
-      const deltaX = e.clientX - this.previousMousePosition.x;
-      const deltaY = e.clientY - this.previousMousePosition.y;
-
-      if (this.isPanning) {
-        const panSpeed = 0.035 * (this.distance / 50);
-        const forward = new THREE.Vector3().subVectors(this.target, this.camera.position).normalize();
-        const right = new THREE.Vector3().crossVectors(forward, new THREE.Vector3(0, 1, 0)).normalize();
-        const up = new THREE.Vector3().crossVectors(right, forward).normalize();
-
-        this.target.addScaledVector(right, -deltaX * panSpeed);
-        this.target.addScaledVector(up, deltaY * panSpeed);
-      } else if (this.isDragging) {
-        this.theta -= deltaX * 0.006;
-        this.phi -= deltaY * 0.006;
-        this.phi = Math.max(this.minPolarAngle, Math.min(this.maxPolarAngle, this.phi));
-      }
-
-      this.previousMousePosition = { x: e.clientX, y: e.clientY };
-      this.updateCamera();
-    });
-
-    window.addEventListener('pointerup', () => {
-      this.isDragging = false;
-      this.isPanning = false;
-    });
-
-    this.domElement.addEventListener('contextmenu', (e) => e.preventDefault());
-
-    this.domElement.addEventListener('wheel', (e) => {
-      e.preventDefault();
-      const zoomFactor = 1 + (e.deltaY > 0 ? 0.08 : -0.08);
-      this.distance = Math.max(this.minDistance, Math.min(this.maxDistance, this.distance * zoomFactor));
-      this.updateCamera();
-    }, { passive: false });
-
-    // Touch Support
-    let initialTouchDistance = 0;
-    this.domElement.addEventListener('touchstart', (e) => {
-      if (e.touches.length === 1) {
-        this.isDragging = true;
-        this.previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
-      } else if (e.touches.length === 2) {
-        initialTouchDistance = Math.hypot(
-          e.touches[0].clientX - e.touches[1].clientX,
-          e.touches[0].clientY - e.touches[1].clientY
-        );
-      }
-    });
-
-    this.domElement.addEventListener('touchmove', (e) => {
-      if (e.touches.length === 1 && this.isDragging) {
-        const deltaX = e.touches[0].clientX - this.previousMousePosition.x;
-        const deltaY = e.touches[0].clientY - this.previousMousePosition.y;
-        this.theta -= deltaX * 0.008;
-        this.phi -= deltaY * 0.008;
-        this.phi = Math.max(this.minPolarAngle, Math.min(this.maxPolarAngle, this.phi));
-        this.previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
-        this.updateCamera();
-      } else if (e.touches.length === 2) {
-        const currentDistance = Math.hypot(
-          e.touches[0].clientX - e.touches[1].clientX,
-          e.touches[0].clientY - e.touches[1].clientY
-        );
-        const diff = initialTouchDistance - currentDistance;
-        this.distance = Math.max(this.minDistance, Math.min(this.maxDistance, this.distance + diff * 0.05));
-        initialTouchDistance = currentDistance;
-        this.updateCamera();
-      }
-    });
-
-    this.domElement.addEventListener('touchend', () => {
-      this.isDragging = false;
-    });
-  }
-
-  updateCamera() {
-    const x = this.target.x + this.distance * Math.sin(this.phi) * Math.sin(this.theta);
-    const y = this.target.y + this.distance * Math.cos(this.phi);
-    const z = this.target.z + this.distance * Math.sin(this.phi) * Math.cos(this.theta);
-
-    this.camera.position.set(x, y, z);
-    this.camera.lookAt(this.target);
-  }
-
-  setCameraPreset(type) {
-    switch (type) {
-      case 'axonometric':
-        this.target.set(0, 16, 0);
-        this.distance = 75;
-        this.phi = Math.PI / 3.2;
-        this.theta = Math.PI / 4;
-        break;
-      case 'front':
-        this.target.set(0, 16, 0);
-        this.distance = 70;
-        this.phi = Math.PI / 2.2;
-        this.theta = 0;
-        break;
-      case 'courtyard':
-        this.target.set(0, 8, 0);
-        this.distance = 32;
-        this.phi = Math.PI / 4;
-        this.theta = Math.PI / 3;
-        break;
-      case 'podium':
-        this.target.set(0, 4, 18);
-        this.distance = 38;
-        this.phi = Math.PI / 2.4;
-        this.theta = 0.2;
-        break;
-      case 'residential':
-        this.target.set(0, 22, 12);
-        this.distance = 42;
-        this.phi = Math.PI / 2.3;
-        this.theta = 0.4;
-        break;
-      case 'basement':
-        this.target.set(0, -3, 0);
-        this.distance = 45;
-        this.phi = Math.PI / 3;
-        this.theta = Math.PI / 2.5;
-        break;
-      case 'roof':
-        this.target.set(0, 32, 0);
-        this.distance = 42;
-        this.phi = Math.PI / 6;
-        this.theta = Math.PI / 4;
-        break;
-    }
-    this.updateCamera();
-  }
-
-  update() {
-    if (this.autoRotate) {
-      this.theta += 0.003 * this.autoRotateSpeed;
-      this.updateCamera();
-    }
-  }
-}
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 /**
  * Procedural B+G+9 Mixed-Use BIM Model Builder
+ * Assumed Metric Dimensions (in mm scaled to Three.js units: 1 unit = 1,000 mm = 1 meter)
  */
 function buildFullBimBuilding(containerGroup, interactiveList = null, kineticLouversList = null) {
   const levelGroups = {
@@ -197,56 +23,65 @@ function buildFullBimBuilding(containerGroup, interactiveList = null, kineticLou
 
   Object.values(levelGroups).forEach(grp => containerGroup.add(grp));
 
-  // Architectural Materials
+  // High-Contrast Architectural Materials Palette
   const concreteMat = new THREE.MeshStandardMaterial({
-    color: 0xd8dee9,
-    roughness: 0.75,
+    color: 0xf8fafc,
+    roughness: 0.55,
     metalness: 0.1
   });
   const slabMat = new THREE.MeshStandardMaterial({
-    color: 0xe5e9f0,
-    roughness: 0.8,
+    color: 0xe2e8f0,
+    roughness: 0.65,
     metalness: 0.05
   });
+  const slabEdgeMat = new THREE.MeshStandardMaterial({
+    color: 0x334155,
+    roughness: 0.5,
+    metalness: 0.3
+  });
   const columnMat = new THREE.MeshStandardMaterial({
-    color: 0x94a3b8,
+    color: 0x64748b,
+    roughness: 0.5,
+    metalness: 0.25
+  });
+  const coreMat = new THREE.MeshStandardMaterial({
+    color: 0x475569,
     roughness: 0.65,
     metalness: 0.2
   });
-  const coreMat = new THREE.MeshStandardMaterial({
-    color: 0x64748b,
-    roughness: 0.7,
-    metalness: 0.15
-  });
-  const glassMat = new THREE.MeshPhysicalMaterial({
-    color: 0x93c5fd,
-    transmission: 0.75,
-    opacity: 0.85,
+  const glassMat = new THREE.MeshStandardMaterial({
+    color: 0x38bdf8,
     transparent: true,
-    roughness: 0.08,
-    metalness: 0.1,
-    ior: 1.52,
-    reflectivity: 0.6
+    opacity: 0.42,
+    roughness: 0.1,
+    metalness: 0.2,
+    depthWrite: false, // Prevents transparent glass from occluding interior geometry
+    side: THREE.DoubleSide
+  });
+  const frameMat = new THREE.MeshStandardMaterial({
+    color: 0x1e293b,
+    roughness: 0.4,
+    metalness: 0.7
   });
   const woodDeckMat = new THREE.MeshStandardMaterial({
-    color: 0xb45309,
-    roughness: 0.55,
+    color: 0xd97706,
+    roughness: 0.5,
     metalness: 0.15
   });
   const vegetationMat = new THREE.MeshStandardMaterial({
     color: 0x16a34a,
-    roughness: 0.85,
+    roughness: 0.75,
     metalness: 0.05
   });
   const waterMat = new THREE.MeshStandardMaterial({
-    color: 0x0284c7,
+    color: 0x06b6d4,
     roughness: 0.1,
-    metalness: 0.45
+    metalness: 0.7
   });
   const solarPvMat = new THREE.MeshStandardMaterial({
-    color: 0x1e1b4b,
-    roughness: 0.15,
-    metalness: 0.85
+    color: 0x1e3a8a,
+    roughness: 0.2,
+    metalness: 0.9
   });
   const evChargerMat = new THREE.MeshStandardMaterial({
     color: 0x10b981,
@@ -254,12 +89,12 @@ function buildFullBimBuilding(containerGroup, interactiveList = null, kineticLou
     metalness: 0.4
   });
   const louverMat = new THREE.MeshStandardMaterial({
-    color: 0xd97706,
-    roughness: 0.4,
-    metalness: 0.45
+    color: 0xf59e0b,
+    roughness: 0.35,
+    metalness: 0.6
   });
   const railingMat = new THREE.MeshStandardMaterial({
-    color: 0x334155,
+    color: 0x94a3b8,
     roughness: 0.3,
     metalness: 0.8
   });
@@ -271,6 +106,7 @@ function buildFullBimBuilding(containerGroup, interactiveList = null, kineticLou
 
   function registerInteractive(obj, data) {
     obj.userData = data;
+    obj.userData.originalMat = obj.material;
     if (interactiveList) interactiveList.push(obj);
   }
 
@@ -304,12 +140,32 @@ function buildFullBimBuilding(containerGroup, interactiveList = null, kineticLou
     westSlab.receiveShadow = true;
     westSlab.castShadow = true;
     grp.add(westSlab);
+
+    // Dark crisp slab edge perimeter border
+    const edgeThickness = 0.08;
+    const sEdge = new THREE.Mesh(new THREE.BoxGeometry(outerW + 0.2, thickness, edgeThickness), slabEdgeMat);
+    sEdge.position.set(0, thickness / 2, outerD / 2);
+    grp.add(sEdge);
+
+    const nEdge = new THREE.Mesh(new THREE.BoxGeometry(outerW + 0.2, thickness, edgeThickness), slabEdgeMat);
+    nEdge.position.set(0, thickness / 2, -outerD / 2);
+    grp.add(nEdge);
+
+    const eEdge = new THREE.Mesh(new THREE.BoxGeometry(edgeThickness, thickness, outerD + 0.2), slabEdgeMat);
+    eEdge.position.set(outerW / 2, thickness / 2, 0);
+    grp.add(eEdge);
+
+    const wEdge = new THREE.Mesh(new THREE.BoxGeometry(edgeThickness, thickness, outerD + 0.2), slabEdgeMat);
+    wEdge.position.set(-outerW / 2, thickness / 2, 0);
+    grp.add(wEdge);
+
     return grp;
   }
 
   function createGlassArcade(grp, outerW, outerD, innerW, innerD, h) {
-    const southGlass = new THREE.Mesh(new THREE.BoxGeometry(outerW, h, 0.12), glassMat);
-    southGlass.position.set(0, h / 2, outerD / 2);
+    // Outer Curtain Wall Glazing
+    const southGlass = new THREE.Mesh(new THREE.BoxGeometry(outerW, h * 0.9, 0.08), glassMat);
+    southGlass.position.set(0, h * 0.5, outerD / 2);
     registerInteractive(southGlass, {
       name: 'Double Glazed Curtain Wall Facade',
       category: 'Architectural Glazing Envelope',
@@ -321,32 +177,43 @@ function buildFullBimBuilding(containerGroup, interactiveList = null, kineticLou
     });
     grp.add(southGlass);
 
-    const northGlass = new THREE.Mesh(new THREE.BoxGeometry(outerW, h, 0.12), glassMat);
-    northGlass.position.set(0, h / 2, -outerD / 2);
+    const northGlass = new THREE.Mesh(new THREE.BoxGeometry(outerW, h * 0.9, 0.08), glassMat);
+    northGlass.position.set(0, h * 0.5, -outerD / 2);
     grp.add(northGlass);
 
-    const eastGlass = new THREE.Mesh(new THREE.BoxGeometry(0.12, h, outerD), glassMat);
-    eastGlass.position.set(outerW / 2, h / 2, 0);
+    const eastGlass = new THREE.Mesh(new THREE.BoxGeometry(0.08, h * 0.9, outerD), glassMat);
+    eastGlass.position.set(outerW / 2, h * 0.5, 0);
     grp.add(eastGlass);
 
-    const westGlass = new THREE.Mesh(new THREE.BoxGeometry(0.12, h, outerD), glassMat);
-    westGlass.position.set(-outerW / 2, h / 2, 0);
+    const westGlass = new THREE.Mesh(new THREE.BoxGeometry(0.08, h * 0.9, outerD), glassMat);
+    westGlass.position.set(-outerW / 2, h * 0.5, 0);
     grp.add(westGlass);
 
-    // Internal courtyard glass arcade
-    const courtGlassS = new THREE.Mesh(new THREE.BoxGeometry(innerW, h, 0.08), glassMat);
-    courtGlassS.position.set(0, h / 2, innerD / 2);
+    // Architectural Vertical Mullions every 4m
+    for (let x = -outerW / 2; x <= outerW / 2; x += 4) {
+      const mullionS = new THREE.Mesh(new THREE.BoxGeometry(0.12, h, 0.15), frameMat);
+      mullionS.position.set(x, h / 2, outerD / 2 + 0.04);
+      grp.add(mullionS);
+
+      const mullionN = new THREE.Mesh(new THREE.BoxGeometry(0.12, h, 0.15), frameMat);
+      mullionN.position.set(x, h / 2, -outerD / 2 - 0.04);
+      grp.add(mullionN);
+    }
+
+    // Courtyard Inner Glazing
+    const courtGlassS = new THREE.Mesh(new THREE.BoxGeometry(innerW, h * 0.85, 0.06), glassMat);
+    courtGlassS.position.set(0, h * 0.5, innerD / 2);
     grp.add(courtGlassS);
 
-    const courtGlassN = new THREE.Mesh(new THREE.BoxGeometry(innerW, h, 0.08), glassMat);
-    courtGlassN.position.set(0, h / 2, -innerD / 2);
+    const courtGlassN = new THREE.Mesh(new THREE.BoxGeometry(innerW, h * 0.85, 0.06), glassMat);
+    courtGlassN.position.set(0, h * 0.5, -innerD / 2);
     grp.add(courtGlassN);
 
     // Columns on 8m modular grid
     for (let x = -16; x <= 16; x += 8) {
       for (let z = -12; z <= 12; z += 8) {
         if (Math.abs(x) < innerW / 2 && Math.abs(z) < innerD / 2) continue;
-        const col = new THREE.Mesh(new THREE.BoxGeometry(0.6, h, 0.6), columnMat);
+        const col = new THREE.Mesh(new THREE.BoxGeometry(0.7, h, 0.7), columnMat);
         col.position.set(x, h / 2, z);
         col.castShadow = true;
         col.receiveShadow = true;
@@ -387,7 +254,7 @@ function buildFullBimBuilding(containerGroup, interactiveList = null, kineticLou
 
   for (let x = -16; x <= 16; x += 8) {
     for (let z = -12; z <= 12; z += 8) {
-      const col = new THREE.Mesh(new THREE.BoxGeometry(0.65, 3.8, 0.65), columnMat);
+      const col = new THREE.Mesh(new THREE.BoxGeometry(0.75, 3.8, 0.75), columnMat);
       col.position.set(x, 1.9, z);
       col.castShadow = true;
       col.receiveShadow = true;
@@ -407,8 +274,8 @@ function buildFullBimBuilding(containerGroup, interactiveList = null, kineticLou
   // 48 Smart EV Charging Stalls
   for (let x = -16; x <= 16; x += 4) {
     [-11, 11].forEach(zPos => {
-      const stall = new THREE.Mesh(new THREE.BoxGeometry(2.6, 0.02, 5.0), new THREE.MeshStandardMaterial({ color: 0x2563eb, roughness: 0.6 }));
-      stall.position.set(x, 0.21, zPos);
+      const stall = new THREE.Mesh(new THREE.BoxGeometry(2.6, 0.04, 5.0), new THREE.MeshStandardMaterial({ color: 0x2563eb, roughness: 0.6 }));
+      stall.position.set(x, 0.22, zPos);
       b1Grp.add(stall);
 
       const charger = new THREE.Mesh(new THREE.BoxGeometry(0.5, 1.6, 0.3), evChargerMat);
@@ -555,7 +422,7 @@ function buildFullBimBuilding(containerGroup, interactiveList = null, kineticLou
     lvlGrp.userData = { levelName: `Level ${idx + 2}: Sustainable Residential Living Units`, baseElevation: elevY };
 
     // Residential floor slab
-    const resSlab = createRing(buildingW, buildingD, courtW, courtD, 0.25, slabMat);
+    const resSlab = createRing(buildingW, buildingD, courtW, courtD, 0.28, slabMat);
     resSlab.receiveShadow = true;
     lvlGrp.add(resSlab);
 
@@ -563,7 +430,7 @@ function buildFullBimBuilding(containerGroup, interactiveList = null, kineticLou
     for (let x = -16; x <= 16; x += 8) {
       for (let z = -12; z <= 12; z += 8) {
         if (Math.abs(x) < courtW / 2 && Math.abs(z) < courtD / 2) continue;
-        const col = new THREE.Mesh(new THREE.BoxGeometry(0.5, resHeight, 0.5), columnMat);
+        const col = new THREE.Mesh(new THREE.BoxGeometry(0.6, resHeight, 0.6), columnMat);
         col.position.set(x, resHeight / 2, z);
         col.castShadow = true;
         col.receiveShadow = true;
@@ -572,38 +439,49 @@ function buildFullBimBuilding(containerGroup, interactiveList = null, kineticLou
     }
 
     // Concrete core shear walls around lift shafts
-    const coreWallW = new THREE.Mesh(new THREE.BoxGeometry(0.3, resHeight, 4), coreMat);
+    const coreWallW = new THREE.Mesh(new THREE.BoxGeometry(0.35, resHeight, 4), coreMat);
     coreWallW.position.set(-courtW / 2 - 1.5, resHeight / 2, 0);
     lvlGrp.add(coreWallW);
 
-    const coreWallE = new THREE.Mesh(new THREE.BoxGeometry(0.3, resHeight, 4), coreMat);
+    const coreWallE = new THREE.Mesh(new THREE.BoxGeometry(0.35, resHeight, 4), coreMat);
     coreWallE.position.set(courtW / 2 + 1.5, resHeight / 2, 0);
     lvlGrp.add(coreWallE);
+
+    // Solid Corner Architectural Piers
+    [-buildingW / 2 + 1.5, buildingW / 2 - 1.5].forEach(cx => {
+      [-buildingD / 2 + 1.5, buildingD / 2 - 1.5].forEach(cz => {
+        const pier = new THREE.Mesh(new THREE.BoxGeometry(2.8, resHeight, 2.8), concreteMat);
+        pier.position.set(cx, resHeight / 2, cz);
+        pier.castShadow = true;
+        pier.receiveShadow = true;
+        lvlGrp.add(pier);
+      });
+    });
 
     // Staggered Cantilever Balconies & Planters
     const isStaggered = idx % 2 === 0;
     [-12, -4, 4, 12].forEach((bx, i) => {
       if ((i % 2 === 0 && isStaggered) || (i % 2 !== 0 && !isStaggered)) {
         // Balcony concrete slab
-        const balcSlab = new THREE.Mesh(new THREE.BoxGeometry(6.2, 0.22, 2.0), concreteMat);
-        balcSlab.position.set(bx, 0.11, buildingD / 2 + 1.0);
+        const balcSlab = new THREE.Mesh(new THREE.BoxGeometry(6.2, 0.25, 2.2), concreteMat);
+        balcSlab.position.set(bx, 0.12, buildingD / 2 + 1.1);
         balcSlab.castShadow = true;
         balcSlab.receiveShadow = true;
         lvlGrp.add(balcSlab);
 
         // Balcony Glass Railing
         const balcRailing = new THREE.Mesh(new THREE.BoxGeometry(6.2, 1.15, 0.06), glassMat);
-        balcRailing.position.set(bx, 0.68, buildingD / 2 + 2.0);
+        balcRailing.position.set(bx, 0.7, buildingD / 2 + 2.15);
         lvlGrp.add(balcRailing);
 
         // Stainless handrail cap
         const handrailCap = new THREE.Mesh(new THREE.BoxGeometry(6.2, 0.05, 0.08), railingMat);
-        handrailCap.position.set(bx, 1.25, buildingD / 2 + 2.0);
+        handrailCap.position.set(bx, 1.28, buildingD / 2 + 2.15);
         lvlGrp.add(handrailCap);
 
         // Biophilic Balcony Planter
         const planter = new THREE.Mesh(new THREE.BoxGeometry(6.0, 0.5, 0.45), vegetationMat);
-        planter.position.set(bx, 0.35, buildingD / 2 + 1.75);
+        planter.position.set(bx, 0.38, buildingD / 2 + 1.85);
         registerInteractive(planter, {
           name: 'Biophilic Balcony Planter (Automated Drip)',
           category: 'Microclimate Vegetation Buffer',
@@ -619,7 +497,7 @@ function buildFullBimBuilding(containerGroup, interactiveList = null, kineticLou
         for (let l = 0; l < 4; l++) {
           const louver = new THREE.Mesh(new THREE.BoxGeometry(6.0, 0.08, 0.38), louverMat);
           louver.rotation.x = Math.PI / 4.5;
-          louver.position.set(bx, 1.15 + l * 0.48, buildingD / 2 + 1.9);
+          louver.position.set(bx, 1.15 + l * 0.48, buildingD / 2 + 2.05);
           louver.castShadow = true;
           registerInteractive(louver, {
             name: 'Biomimetic AI Aerofoil Solar Louver',
@@ -639,38 +517,49 @@ function buildFullBimBuilding(containerGroup, interactiveList = null, kineticLou
     // North Balconies (Symmetric)
     [-12, -4, 4, 12].forEach((bx, i) => {
       if ((i % 2 === 0 && !isStaggered) || (i % 2 !== 0 && isStaggered)) {
-        const balcSlabN = new THREE.Mesh(new THREE.BoxGeometry(6.2, 0.22, 2.0), concreteMat);
-        balcSlabN.position.set(bx, 0.11, -buildingD / 2 - 1.0);
+        const balcSlabN = new THREE.Mesh(new THREE.BoxGeometry(6.2, 0.25, 2.2), concreteMat);
+        balcSlabN.position.set(bx, 0.12, -buildingD / 2 - 1.1);
         balcSlabN.castShadow = true;
         balcSlabN.receiveShadow = true;
         lvlGrp.add(balcSlabN);
 
         const balcRailingN = new THREE.Mesh(new THREE.BoxGeometry(6.2, 1.15, 0.06), glassMat);
-        balcRailingN.position.set(bx, 0.68, -buildingD / 2 - 2.0);
+        balcRailingN.position.set(bx, 0.7, -buildingD / 2 - 2.15);
         lvlGrp.add(balcRailingN);
 
         const planterN = new THREE.Mesh(new THREE.BoxGeometry(6.0, 0.5, 0.45), vegetationMat);
-        planterN.position.set(bx, 0.35, -buildingD / 2 - 1.75);
+        planterN.position.set(bx, 0.38, -buildingD / 2 - 1.85);
         lvlGrp.add(planterN);
       }
     });
 
-    // Continuous Double Glazed Facade Windows
-    const southGlass = new THREE.Mesh(new THREE.BoxGeometry(buildingW, resHeight * 0.8, 0.1), glassMat);
+    // Double Glazed Facade Windows
+    const southGlass = new THREE.Mesh(new THREE.BoxGeometry(buildingW - 4, resHeight * 0.8, 0.08), glassMat);
     southGlass.position.set(0, resHeight * 0.5, buildingD / 2);
     lvlGrp.add(southGlass);
 
-    const northGlass = new THREE.Mesh(new THREE.BoxGeometry(buildingW, resHeight * 0.8, 0.1), glassMat);
+    const northGlass = new THREE.Mesh(new THREE.BoxGeometry(buildingW - 4, resHeight * 0.8, 0.08), glassMat);
     northGlass.position.set(0, resHeight * 0.5, -buildingD / 2);
     lvlGrp.add(northGlass);
 
-    const eastGlass = new THREE.Mesh(new THREE.BoxGeometry(0.1, resHeight * 0.8, buildingD), glassMat);
+    const eastGlass = new THREE.Mesh(new THREE.BoxGeometry(0.08, resHeight * 0.8, buildingD - 4), glassMat);
     eastGlass.position.set(buildingW / 2, resHeight * 0.5, 0);
     lvlGrp.add(eastGlass);
 
-    const westGlass = new THREE.Mesh(new THREE.BoxGeometry(0.1, resHeight * 0.8, buildingD), glassMat);
+    const westGlass = new THREE.Mesh(new THREE.BoxGeometry(0.08, resHeight * 0.8, buildingD - 4), glassMat);
     westGlass.position.set(-buildingW / 2, resHeight * 0.5, 0);
     lvlGrp.add(westGlass);
+
+    // Exterior Architectural Window Mullions
+    for (let x = -16; x <= 16; x += 4) {
+      const mullion = new THREE.Mesh(new THREE.BoxGeometry(0.1, resHeight, 0.12), frameMat);
+      mullion.position.set(x, resHeight / 2, buildingD / 2 + 0.04);
+      lvlGrp.add(mullion);
+
+      const mullionN = new THREE.Mesh(new THREE.BoxGeometry(0.1, resHeight, 0.12), frameMat);
+      mullionN.position.set(x, resHeight / 2, -buildingD / 2 - 0.04);
+      lvlGrp.add(mullionN);
+    }
 
     // Courtyard inner perimeter glass & railings
     const courtInS = new THREE.Mesh(new THREE.BoxGeometry(courtW, 1.1, 0.06), glassMat);
@@ -770,17 +659,18 @@ export class BimViewer3D {
     }
 
     this.scene = new THREE.Scene();
-    this.scene.background = new THREE.Color(0xf1f5f9);
-    this.scene.fog = new THREE.FogExp2(0xf1f5f9, 0.005);
+    this.scene.background = new THREE.Color(0x0b1329); // Sleek deep architectural navy slate
 
-    const width = this.canvas.clientWidth || 800;
-    const height = this.canvas.clientHeight || 600;
+    const width = this.canvas.clientWidth || 900;
+    const height = this.canvas.clientHeight || 650;
 
-    this.camera = new THREE.PerspectiveCamera(45, width / height, 0.5, 500);
+    this.camera = new THREE.PerspectiveCamera(45, width / height, 0.5, 600);
+    this.camera.position.set(48, 45, 52);
+
     this.renderer = new THREE.WebGLRenderer({
       canvas: this.canvas,
       antialias: true,
-      alpha: true,
+      alpha: false,
       powerPreference: 'high-performance'
     });
     this.renderer.setSize(width, height, false);
@@ -788,7 +678,15 @@ export class BimViewer3D {
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-    this.controls = new SimpleOrbitControls(this.camera, this.canvas);
+    // Professional Three.js OrbitControls
+    this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+    this.controls.enableDamping = true;
+    this.controls.dampingFactor = 0.05;
+    this.controls.target.set(0, 16, 0);
+    this.controls.minDistance = 6;
+    this.controls.maxDistance = 220;
+    this.controls.maxPolarAngle = Math.PI / 2 - 0.02;
+    this.controls.update();
 
     this.buildingGroup = new THREE.Group();
     this.scene.add(this.buildingGroup);
@@ -813,46 +711,46 @@ export class BimViewer3D {
   }
 
   initLights() {
-    this.ambientLight = new THREE.AmbientLight(0xffffff, 0.85);
+    this.ambientLight = new THREE.AmbientLight(0xffffff, 1.15);
     this.scene.add(this.ambientLight);
 
-    this.sunLight = new THREE.DirectionalLight(0xfffaed, 1.5);
-    this.sunLight.position.set(45, 65, 40);
+    this.sunLight = new THREE.DirectionalLight(0xfffaed, 2.2);
+    this.sunLight.position.set(50, 75, 45);
     this.sunLight.castShadow = true;
     this.sunLight.shadow.mapSize.width = 2048;
     this.sunLight.shadow.mapSize.height = 2048;
     this.sunLight.shadow.camera.near = 10;
-    this.sunLight.shadow.camera.far = 180;
-    this.sunLight.shadow.camera.left = -45;
-    this.sunLight.shadow.camera.right = 45;
-    this.sunLight.shadow.camera.top = 45;
-    this.sunLight.shadow.camera.bottom = -45;
+    this.sunLight.shadow.camera.far = 200;
+    this.sunLight.shadow.camera.left = -50;
+    this.sunLight.shadow.camera.right = 50;
+    this.sunLight.shadow.camera.top = 50;
+    this.sunLight.shadow.camera.bottom = -50;
     this.sunLight.shadow.bias = -0.0004;
     this.scene.add(this.sunLight);
 
-    this.hemiLight = new THREE.HemisphereLight(0xffffff, 0x94a3b8, 0.65);
+    this.hemiLight = new THREE.HemisphereLight(0x90cdf4, 0x1e293b, 0.85);
     this.scene.add(this.hemiLight);
   }
 
   createGroundSite() {
     // Site ground plane
-    const siteGeo = new THREE.PlaneGeometry(160, 160);
-    const siteMat = new THREE.MeshStandardMaterial({ color: 0xe2e8f0, roughness: 0.85, metalness: 0.05 });
+    const siteGeo = new THREE.PlaneGeometry(180, 180);
+    const siteMat = new THREE.MeshStandardMaterial({ color: 0x111827, roughness: 0.9, metalness: 0.05 });
     const site = new THREE.Mesh(siteGeo, siteMat);
     site.rotation.x = -Math.PI / 2;
     site.position.y = -0.05;
     site.receiveShadow = true;
     this.scene.add(site);
 
-    // Architectural grid lines
-    const grid = new THREE.GridHelper(160, 40, 0x94a3b8, 0xcbd5e1);
+    // Glowing architectural cyan/slate grid
+    const grid = new THREE.GridHelper(180, 45, 0x38bdf8, 0x1e293b);
     grid.position.y = 0;
     this.scene.add(grid);
 
     // Building Plot boundary (48m × 36m)
     const plot = new THREE.Mesh(
-      new THREE.BoxGeometry(48, 0.1, 36),
-      new THREE.MeshStandardMaterial({ color: 0xf8fafc, roughness: 0.7 })
+      new THREE.BoxGeometry(48, 0.15, 36),
+      new THREE.MeshStandardMaterial({ color: 0x1e293b, roughness: 0.7 })
     );
     plot.position.set(0, 0.05, 0);
     plot.receiveShadow = true;
@@ -866,7 +764,7 @@ export class BimViewer3D {
       [-18, 0, 22], [0, 0, 22], [18, 0, 22]
     ];
     const treeTrunkMat = new THREE.MeshStandardMaterial({ color: 0x78350f });
-    const treeFoliageMat = new THREE.MeshStandardMaterial({ color: 0x15803d, roughness: 0.8 });
+    const treeFoliageMat = new THREE.MeshStandardMaterial({ color: 0x16a34a, roughness: 0.8 });
 
     treePositions.forEach(pos => {
       const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.4, 2.5), treeTrunkMat);
@@ -885,39 +783,42 @@ export class BimViewer3D {
    * INNOVATION 2: 3D Convective Thermal Chimney CFD Particle System
    */
   initCfdParticleSystem() {
-    const count = 750;
-    const geometry = new THREE.BufferGeometry();
-    const positions = new Float32Array(count * 3);
-    const colors = new Float32Array(count * 3);
-    const velocities = new Float32Array(count);
+    try {
+      const count = 750;
+      const geometry = new THREE.BufferGeometry();
+      const positions = new Float32Array(count * 3);
+      const colors = new Float32Array(count * 3);
+      const velocities = new Float32Array(count);
 
-    for (let i = 0; i < count; i++) {
-      positions[i * 3 + 0] = (Math.random() - 0.5) * 13; // X within courtyard
-      positions[i * 3 + 1] = Math.random() * 36;          // Y from 0 to 36m height
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 11; // Z within courtyard
-      velocities[i] = 0.08 + Math.random() * 0.12;
+      for (let i = 0; i < count; i++) {
+        positions[i * 3 + 0] = (Math.random() - 0.5) * 13;
+        positions[i * 3 + 1] = Math.random() * 36;
+        positions[i * 3 + 2] = (Math.random() - 0.5) * 11;
+        velocities[i] = 0.08 + Math.random() * 0.12;
 
-      // Color gradient: Cool Cyan at base -> Warm Amber at top
-      const normalizedHeight = positions[i * 3 + 1] / 36;
-      colors[i * 3 + 0] = 0.1 + normalizedHeight * 0.9;
-      colors[i * 3 + 1] = 0.8 - normalizedHeight * 0.2;
-      colors[i * 3 + 2] = 1.0 - normalizedHeight * 0.8;
+        const normalizedHeight = positions[i * 3 + 1] / 36;
+        colors[i * 3 + 0] = 0.1 + normalizedHeight * 0.9;
+        colors[i * 3 + 1] = 0.8 - normalizedHeight * 0.2;
+        colors[i * 3 + 2] = 1.0 - normalizedHeight * 0.8;
+      }
+
+      geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+      const material = new THREE.PointsMaterial({
+        size: 0.6,
+        vertexColors: true,
+        transparent: true,
+        opacity: 0.85,
+        blending: THREE.AdditiveBlending
+      });
+
+      this.cfdParticles = new THREE.Points(geometry, material);
+      this.cfdVelocities = velocities;
+      this.scene.add(this.cfdParticles);
+    } catch (e) {
+      console.warn('CFD Particle System init error:', e);
     }
-
-    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-
-    const material = new THREE.PointsMaterial({
-      size: 0.55,
-      vertexColors: true,
-      transparent: true,
-      opacity: 0.85,
-      blending: THREE.AdditiveBlending
-    });
-
-    this.cfdParticles = new THREE.Points(geometry, material);
-    this.cfdVelocities = velocities;
-    this.scene.add(this.cfdParticles);
   }
 
   toggleCfdParticles(enable) {
@@ -950,35 +851,70 @@ export class BimViewer3D {
   setViewMode(mode) {
     this.currentViewMode = mode;
     this.buildingGroup.traverse(child => {
-      if (child.isMesh && child.userData && child.userData.category) {
+      if (child.isMesh && child.userData) {
         if (mode === 'carbon') {
-          // Embodied Carbon Heatmap Shader
-          if (child.userData.category.includes('RCC') || child.userData.category.includes('Foundation')) {
-            child.material = new THREE.MeshStandardMaterial({ color: 0x10b981, roughness: 0.7 }); // Bio-concrete (Low Carbon)
-          } else if (child.userData.category.includes('Glazing') || child.userData.category.includes('Envelope')) {
-            child.material = new THREE.MeshStandardMaterial({ color: 0x0284c7, transparent: true, opacity: 0.7 });
-          } else if (child.userData.category.includes('Louver') || child.userData.category.includes('Steel')) {
+          if (child.userData.category && (child.userData.category.includes('RCC') || child.userData.category.includes('Foundation'))) {
+            child.material = new THREE.MeshStandardMaterial({ color: 0x10b981, roughness: 0.6 });
+          } else if (child.userData.category && (child.userData.category.includes('Glazing') || child.userData.category.includes('Envelope'))) {
+            child.material = new THREE.MeshStandardMaterial({ color: 0x0284c7, transparent: true, opacity: 0.6, depthWrite: false });
+          } else if (child.userData.category && (child.userData.category.includes('Louver') || child.userData.category.includes('Steel'))) {
             child.material = new THREE.MeshStandardMaterial({ color: 0xf59e0b });
-          } else if (child.userData.category.includes('Biophilic') || child.userData.category.includes('Vegetation')) {
+          } else if (child.userData.category && (child.userData.category.includes('Biophilic') || child.userData.category.includes('Vegetation'))) {
             child.material = new THREE.MeshStandardMaterial({ color: 0x059669 });
           }
         } else if (mode === 'cfd') {
-          // Thermal Gradient Shader
           const y = child.position.y + (child.parent ? child.parent.position.y : 0);
           const tColor = new THREE.Color().setHSL(0.6 - (y / 40) * 0.6, 0.9, 0.5);
           child.material = new THREE.MeshStandardMaterial({ color: tColor, roughness: 0.6 });
         } else if (mode === 'xray') {
-          // X-Ray Structural Skeleton
-          if (child.userData.category.includes('RCC') || child.userData.category.includes('Column')) {
+          if (child.userData.category && (child.userData.category.includes('RCC') || child.userData.category.includes('Column'))) {
             child.material = new THREE.MeshStandardMaterial({ color: 0x38bdf8, emissive: 0x0369a1, roughness: 0.3 });
           } else {
-            child.material = new THREE.MeshPhysicalMaterial({ color: 0x94a3b8, transparent: true, opacity: 0.15 });
+            child.material = new THREE.MeshStandardMaterial({ color: 0x94a3b8, transparent: true, opacity: 0.15, roughness: 0.1, depthWrite: false });
           }
         } else {
-          // Realistic Default - reload standard materials on next tick or preserve
+          // Restore original material
+          if (child.userData.originalMat) {
+            child.material = child.userData.originalMat;
+          }
         }
       }
     });
+  }
+
+  setCameraPreset(type) {
+    if (!this.controls) return;
+    switch (type) {
+      case 'axonometric':
+        this.controls.target.set(0, 16, 0);
+        this.camera.position.set(48, 45, 52);
+        break;
+      case 'front':
+        this.controls.target.set(0, 16, 0);
+        this.camera.position.set(0, 20, 68);
+        break;
+      case 'courtyard':
+        this.controls.target.set(0, 8, 0);
+        this.camera.position.set(16, 22, 16);
+        break;
+      case 'podium':
+        this.controls.target.set(0, 4, 12);
+        this.camera.position.set(28, 14, 38);
+        break;
+      case 'residential':
+        this.controls.target.set(0, 22, 10);
+        this.camera.position.set(-32, 28, 36);
+        break;
+      case 'basement':
+        this.controls.target.set(0, -3, 0);
+        this.camera.position.set(30, 12, 34);
+        break;
+      case 'roof':
+        this.controls.target.set(0, 32, 0);
+        this.camera.position.set(32, 54, 32);
+        break;
+    }
+    this.controls.update();
   }
 
   initInteractivity() {
@@ -1100,19 +1036,19 @@ export class BimViewer3D {
   setLightingMode(mode) {
     if (mode === 'day') {
       this.setSunTime(14);
-      this.sunLight.intensity = 1.5;
-      this.ambientLight.intensity = 0.85;
-      this.scene.background.setHex(0xf1f5f9);
+      this.sunLight.intensity = 2.2;
+      this.ambientLight.intensity = 1.15;
+      this.scene.background.setHex(0x0b1329);
     } else if (mode === 'golden') {
       this.setSunTime(17.5);
-      this.sunLight.intensity = 1.8;
-      this.ambientLight.intensity = 0.7;
+      this.sunLight.intensity = 2.4;
+      this.ambientLight.intensity = 0.95;
       this.sunLight.color.setHex(0xffaa44);
-      this.scene.background.setHex(0xfef3c7);
+      this.scene.background.setHex(0x181329);
     } else if (mode === 'night') {
-      this.sunLight.intensity = 0.2;
-      this.ambientLight.intensity = 0.35;
-      this.scene.background.setHex(0x0f172a);
+      this.sunLight.intensity = 0.35;
+      this.ambientLight.intensity = 0.5;
+      this.scene.background.setHex(0x020617);
     }
   }
 
@@ -1145,21 +1081,19 @@ export class BimViewer3D {
     requestAnimationFrame(this.animate);
 
     this.resizeRendererToDisplaySize();
-    this.controls.update();
+    if (this.controls) this.controls.update();
 
     // 1. Animate Convective Thermal CFD Particles
-    if (this.cfdActive && this.cfdParticles) {
+    if (this.cfdActive && this.cfdParticles && this.cfdVelocities && this.cfdParticles.geometry && this.cfdParticles.geometry.attributes.position) {
       const positions = this.cfdParticles.geometry.attributes.position.array;
       const count = positions.length / 3;
-      const speed = 0.12 * this.cfdFlowSpeed;
+      const speed = 0.14 * this.cfdFlowSpeed;
 
       for (let i = 0; i < count; i++) {
         positions[i * 3 + 1] += this.cfdVelocities[i] * speed;
-        // Natural gentle vortex wobble
         positions[i * 3 + 0] += Math.sin(positions[i * 3 + 1] * 0.3 + i) * 0.015;
         positions[i * 3 + 2] += Math.cos(positions[i * 3 + 1] * 0.3 + i) * 0.015;
 
-        // Reset particle to base of courtyard water feature when reaching top vent
         if (positions[i * 3 + 1] > 37) {
           positions[i * 3 + 1] = 0.2 + Math.random() * 0.8;
           positions[i * 3 + 0] = (Math.random() - 0.5) * 12;
@@ -1186,7 +1120,6 @@ export class WalkthroughEngine {
 
     this.scene = new THREE.Scene();
     this.scene.background = new THREE.Color(0x0f172a);
-    this.scene.fog = new THREE.FogExp2(0x0f172a, 0.005);
 
     const width = this.canvas.clientWidth || 900;
     const height = this.canvas.clientHeight || 520;
@@ -1195,6 +1128,7 @@ export class WalkthroughEngine {
     this.renderer = new THREE.WebGLRenderer({
       canvas: this.canvas,
       antialias: true,
+      alpha: false,
       powerPreference: 'high-performance'
     });
     this.renderer.setSize(width, height, false);
@@ -1270,10 +1204,10 @@ export class WalkthroughEngine {
   }
 
   initLighting() {
-    const ambient = new THREE.AmbientLight(0xffffff, 0.95);
+    const ambient = new THREE.AmbientLight(0xffffff, 1.15);
     this.scene.add(ambient);
 
-    const sun = new THREE.DirectionalLight(0xfffaed, 1.8);
+    const sun = new THREE.DirectionalLight(0xfffaed, 2.2);
     sun.position.set(40, 60, 45);
     sun.castShadow = true;
     sun.shadow.mapSize.width = 2048;
@@ -1281,7 +1215,7 @@ export class WalkthroughEngine {
     sun.shadow.bias = -0.0004;
     this.scene.add(sun);
 
-    const hemi = new THREE.HemisphereLight(0xffffff, 0x334155, 0.6);
+    const hemi = new THREE.HemisphereLight(0xffffff, 0x334155, 0.8);
     this.scene.add(hemi);
   }
 
@@ -1419,8 +1353,8 @@ export class WalkthroughEngine {
     this.resizeRendererToDisplaySize();
     const playIcon = document.getElementById('iconWtPlay');
     const pauseIcon = document.getElementById('iconWtPause');
-    if (playIcon) playIcon.classList.remove('hidden');
-    if (pauseIcon) pauseIcon.classList.add('hidden');
+    if (playIcon) playIcon.classList.add('hidden');
+    if (pauseIcon) pauseIcon.classList.remove('hidden');
   }
 
   pause() {
