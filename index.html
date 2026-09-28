@@ -330,15 +330,309 @@
       </div>
     </section>
 
-    <!-- VIEW 2: 30-SECOND CINEMATIC WALKTHROUGH -->
+    <!-- VIEW: 5 GROUNDBREAKING ARCHITECTURAL & BIM INNOVATIONS -->
+    <section class="view-panel" id="view-innovations">
+      <div class="innovations-container">
+        <!-- Innovations Hero Header -->
+        <div class="innovations-hero-card glass-panel">
+          <div class="hero-left">
+            <span class="badge-innovate-pill">5 WORLD-FIRST ARCHITECTURAL & BIM INNOVATIONS</span>
+            <h2 class="view-heading">Groundbreaking Innovation Hub</h2>
+            <p class="view-sub">Unprecedented engineering milestones in climate-responsive kinetic facades, passive stack cooling, digital twin circular passports, neuro-architecture, and generative floor plan morphing.</p>
+          </div>
+          <div class="innovations-quick-stats">
+            <div class="stat-pill">
+              <span class="stat-val">-85%</span>
+              <span class="stat-lbl">Solar Heat Gain</span>
+            </div>
+            <div class="stat-pill">
+              <span class="stat-val">4.5 ACH</span>
+              <span class="stat-lbl">Passive Airflow</span>
+            </div>
+            <div class="stat-pill">
+              <span class="stat-val">-51%</span>
+              <span class="stat-lbl">Embodied Carbon</span>
+            </div>
+            <div class="stat-pill">
+              <span class="stat-val">-37 dB</span>
+              <span class="stat-lbl">Noise Barrier</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5 Innovations Grid Cards -->
+        <div class="innovations-grid">
+
+          <!-- INNOVATION 1: Biomimetic AI Aerofoil Kinetic Facade -->
+          <div class="innov-card glass-panel">
+            <div class="innov-card-header">
+              <div class="innov-badge-wrap">
+                <span class="innov-num">01</span>
+                <span class="innov-tag">CLIMATE ENVELOPE</span>
+              </div>
+              <h3 class="innov-title">Biomimetic AI Aerofoil Kinetic Facade</h3>
+            </div>
+            <p class="innov-short-desc">Motorized anodized bronze aerofoils dynamically track the solar azimuth like heliotropic flora, eliminating peak cooling loads.</p>
+            
+            <ul class="innov-points-list">
+              <li><strong>☀️ Solar Tracking Mode:</strong> Blocks 85% peak summer solar radiation while preserving 82% daylight autonomy (sDA).</li>
+              <li><strong>🌪️ Vortex Wind Catching:</strong> Aerofoils rotate to 28° to scoop prevailing breezes directly into the central courtyard.</li>
+              <li><strong>⛈️ Storm Drag Reduction:</strong> Folds flush (0°) during high winds, reducing facade wind pressure by 46%.</li>
+            </ul>
+
+            <!-- Interactive Actuator Widget -->
+            <div class="innov-widget-box">
+              <span class="widget-label">🎮 Interactive Facade Actuator:</span>
+              <div class="facade-mode-btns-row">
+                <button class="btn-facade-mode active" data-facade-mode="solar">☀️ Solar Track</button>
+                <button class="btn-facade-mode" data-facade-mode="vortex">🌪️ Wind Vortex</button>
+                <button class="btn-facade-mode" data-facade-mode="storm">⛈️ Storm Drag</button>
+                <button class="btn-facade-mode" data-facade-mode="night">🌙 Night Cooling</button>
+              </div>
+              <div class="telemetry-row">
+                <div class="tel-item">
+                  <span class="tel-label">LOUVER ANGLE:</span>
+                  <span class="tel-val" id="facadeAngleVal">42.5° (Solar Tracking)</span>
+                </div>
+                <div class="tel-item">
+                  <span class="tel-label">GLARE INDEX:</span>
+                  <span class="tel-val" id="facadeGlareVal">DGP 0.18 (Imperceptible)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- INNOVATION 2: Convective Thermal Chimney CFD Particle System -->
+          <div class="innov-card glass-panel">
+            <div class="innov-card-header">
+              <div class="innov-badge-wrap">
+                <span class="innov-num">02</span>
+                <span class="innov-tag">PASSIVE CFD COOLING</span>
+              </div>
+              <h3 class="innov-title">3D Convective Thermal Chimney & CFD Stack</h3>
+            </div>
+            <p class="innov-short-desc">224 m² open-to-sky central courtyard acts as a zero-energy buoyancy thermal chimney, cooling all 9 upper residential floors naturally.</p>
+            
+            <ul class="innov-points-list">
+              <li><strong>🌿 4.5 Air Changes / Hour:</strong> Continuous upward buoyancy vents hot stale air out through the roof without mechanical fans.</li>
+              <li><strong>💧 -4.2°C Evaporative Core Cooling:</strong> Courtyard reflection pond and misting nozzles drop ground air temperature.</li>
+              <li><strong>🌀 800-Particle Live CFD Engine:</strong> Real-time buoyant thermal velocity particles rendered directly in the 3D BIM model.</li>
+            </ul>
+
+            <!-- Interactive Chimney Damper Widget -->
+            <div class="innov-widget-box">
+              <div class="slider-header-row">
+                <span class="widget-label">🎮 Rooftop Stack Damper:</span>
+                <span class="tel-val" id="chimneyDamperVal">80% Open</span>
+              </div>
+              <input type="range" id="chimneyDamperSlider" min="0" max="100" value="80" class="custom-slider" />
+              <div class="telemetry-row">
+                <div class="tel-item">
+                  <span class="tel-label">PASSIVE AIRFLOW:</span>
+                  <span class="tel-val" id="chimneyAchVal">4.5 ACH (Zero-Fan)</span>
+                </div>
+                <div class="tel-item">
+                  <span class="tel-label">CORE TEMPERATURE:</span>
+                  <span class="tel-val" id="chimneyTempDropVal">-4.2°C Core Cooling</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- INNOVATION 3: Embodied Carbon Heatmap & Circular Material Passport -->
+          <div class="innov-card glass-panel">
+            <div class="innov-card-header">
+              <div class="innov-badge-wrap">
+                <span class="innov-num">03</span>
+                <span class="innov-tag">LCA & CIRCULAR DIGITAL TWIN</span>
+              </div>
+              <h3 class="innov-title">Digital Twin Material Passport & Low-Carbon Slag</h3>
+            </div>
+            <p class="innov-short-desc">ISO 14040/44 verified Life Cycle Assessment with dynamic GGBS bio-slag concrete optimizer and circular QR material passports.</p>
+            
+            <ul class="innov-points-list">
+              <li><strong>📉 -51% Embodied Carbon:</strong> Slashes carbon intensity from 520 kgCO₂e/m² down to 260 kgCO₂e/m².</li>
+              <li><strong>♻️ 2,700 Metric Tons CO₂ Eliminated:</strong> Replaces 40% to 60% Portland cement with blast furnace bio-slag.</li>
+              <li><strong>📲 95% Circular Disassembly Score:</strong> Every structural component logged in a verifiable digital twin material passport.</li>
+            </ul>
+
+            <!-- Interactive GGBS Slider & Passport Selector -->
+            <div class="innov-widget-box">
+              <div class="slider-header-row">
+                <span class="widget-label">🎮 GGBS Bio-Slag Replacement:</span>
+                <span class="tel-val" id="ggbsVal">40% GGBS Blend</span>
+              </div>
+              <input type="range" id="ggbsSlider" min="0" max="60" value="40" class="custom-slider" />
+              <div class="telemetry-row">
+                <div class="tel-item">
+                  <span class="tel-label">EMBODIED INTENSITY:</span>
+                  <span class="tel-val" id="carbonBudgetVal">312 kgCO₂e/m² (-40%)</span>
+                </div>
+                <div class="tel-item">
+                  <span class="tel-label">TOTAL CO₂ SAVED:</span>
+                  <span class="tel-val" id="co2SavedTotal">1,080 Metric Tons</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- INNOVATION 4: Biophilic Acoustic & Circadian Neuro-Architecture -->
+          <div class="innov-card glass-panel">
+            <div class="innov-card-header">
+              <div class="innov-badge-wrap">
+                <span class="innov-num">04</span>
+                <span class="innov-tag">WELL V2 PLATINUM NEURO-ARCH</span>
+              </div>
+              <h3 class="innov-title">Circadian Lighting & -37 dB Green Noise Barrier</h3>
+            </div>
+            <p class="innov-short-desc">Integrates WELL v2 Platinum circadian melanopic spectrum tuning and layered biophilic green balconies for restorative quiet.</p>
+            
+            <ul class="innov-points-list">
+              <li><strong>🌅 24-Hour Circadian Tuning (2700K - 6500K):</strong> Matches human cortisol & melatonin rhythms for peak cognitive focus.</li>
+              <li><strong>🍃 -37 dB Botanical Noise Dampening:</strong> Dense balcony vegetation buffers urban street noise from 75 dB down to 38 dB.</li>
+              <li><strong>🎧 Generative Biophilic Soundscape:</strong> Synthesizes natural flowing water and wind frequencies via Web Audio API.</li>
+            </ul>
+
+            <!-- Interactive Circadian Clock Widget -->
+            <div class="innov-widget-box">
+              <div class="slider-header-row">
+                <span class="widget-label">🎮 Circadian Hour of Day:</span>
+                <span class="tel-val" id="circadianTimeDisplay">14:00 (6500K Sky White)</span>
+              </div>
+              <input type="range" id="circadianHourSlider" min="0" max="24" value="14" class="custom-slider" />
+              <div class="telemetry-row">
+                <div class="tel-item">
+                  <span class="tel-label">MELANOPIC LUX:</span>
+                  <span class="tel-val" id="melanopicLuxVal">480 EML (Peak Alertness)</span>
+                </div>
+                <div class="tel-item">
+                  <span class="tel-label">RESIDENTIAL NOISE:</span>
+                  <span class="tel-val" id="interiorNoiseVal">38 dB (Tranquil Whisper)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- INNOVATION 5: AI Generative Parametric Apartment Synthesizer -->
+          <div class="innov-card glass-panel">
+            <div class="innov-card-header">
+              <div class="innov-badge-wrap">
+                <span class="innov-num">05</span>
+                <span class="innov-tag">GENERATIVE AI BLUEPRINT</span>
+              </div>
+              <h3 class="innov-title">AI Parametric Floor Plan Morphing Engine</h3>
+            </div>
+            <p class="innov-short-desc">Algorithmic generative blueprint synthesizer that live-morphs residential room layouts based on real-time occupant lifestyle priorities.</p>
+            
+            <ul class="innov-points-list">
+              <li><strong>🔄 Dynamic Room Geometry Morphing:</strong> Seamlessly shifts between 2BHK Luxury, 1BHK Studio, and 3BHK Penthouse in real-time.</li>
+              <li><strong>💻 Smart WFH Flex Pod:</strong> Dynamically partitions living space to create an acoustic home office with natural daylight.</li>
+              <li><strong>🌿 Parametric Balcony Depth (1.8m - 3.2m):</strong> Expands private garden terraces based on biophilic wellness preference.</li>
+            </ul>
+
+            <!-- Interactive Generative Synthesizer Controls -->
+            <div class="innov-widget-box">
+              <div class="slider-header-row">
+                <span class="widget-label">🎮 WFH / Living Space Priority:</span>
+                <span class="tel-val" id="wfhWeightVal">60% WFH Flex</span>
+              </div>
+              <input type="range" id="wfhWeightSlider" min="0" max="100" value="60" class="custom-slider" />
+              <div class="telemetry-row">
+                <div class="tel-item">
+                  <span class="tel-label">SYNTHESIZED UNIT:</span>
+                  <span class="tel-val" id="genUnitTypeVal">2BHK Hybrid Work-Live Suite</span>
+                </div>
+                <div class="tel-item">
+                  <span class="tel-label">NET USABLE AREA:</span>
+                  <span class="tel-val" id="genAreaVal">98.5 m² (Efficiency 91.2%)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 2: 30-SECOND CINEMATIC WALKTHROUGH & PHOTOREALISTIC RENDERS -->
     <section class="view-panel" id="view-walkthrough">
       <div class="walkthrough-container">
+        
+        <!-- PHOTOREALISTIC FINAL BUILDING SHOWCASE GALLERY (USER HIGHLIGHT) -->
+        <div class="photorealistic-showcase-card glass-panel">
+          <div class="gallery-header">
+            <div>
+              <span class="badge-walkthrough">📸 PHOTOREALISTIC FINAL BUILDING SHOWCASE</span>
+              <h2 class="view-heading">Aura Verticalis Final Real-World Visualization</h2>
+              <p class="view-sub">Photorealistic architectural photography showcasing the built high-rise tower, breathable central courtyard atrium, and 10F bio-solar rooftop skyline.</p>
+            </div>
+            <span class="badge-tag">HYPER-REALISTIC 3D RENDERS</span>
+          </div>
+
+          <!-- 3 High-Resolution 16:9 Architectural Renders Grid -->
+          <div class="render-gallery-grid">
+            
+            <!-- Render 1: Exterior Hero Facade -->
+            <div class="render-card">
+              <div class="render-img-wrap">
+                <img src="/renders/aura_hero_facade.jpg" alt="Aura Verticalis Exterior Hero Facade" class="render-img" loading="lazy" />
+                <div class="render-badge">EXTERIOR HERO PERSPECTIVE</div>
+              </div>
+              <div class="render-info">
+                <h4>10-Story Mixed-Use High-Rise Tower</h4>
+                <p>Double-height ground retail arcade, commercial wellness skybridge, staggered residential balconies with lush hanging plants & bronze kinetic aerofoil solar louvers, topped by 148 kWp solar pergola.</p>
+                <div class="render-tags">
+                  <span>B+G+9 Mixed-Use</span>
+                  <span>Kinetic Bronze Facade</span>
+                  <span>Ground Retail Plaza</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Render 2: Central Biophilic Courtyard -->
+            <div class="render-card">
+              <div class="render-img-wrap">
+                <img src="/renders/aura_courtyard_atrium.jpg" alt="Aura Verticalis Central Biophilic Courtyard" class="render-img" loading="lazy" />
+                <div class="render-badge">CENTRAL BIOPHILIC ATRIUM</div>
+              </div>
+              <div class="render-info">
+                <h4>10-Story Breathable Botanical Stack</h4>
+                <p>224 m² open-to-sky courtyard atrium with natural evaporative reflection ponds, cascading stone water walls, timber skybridges, and 4.5 ACH passive stack cooling.</p>
+                <div class="render-tags">
+                  <span>Thermal Chimney</span>
+                  <span>Timber Skywalks</span>
+                  <span>-4.2°C Core Cooling</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Render 3: Rooftop Bio-Solar Sky Terrace -->
+            <div class="render-card">
+              <div class="render-img-wrap">
+                <img src="/renders/aura_rooftop_biosolar.jpg" alt="Aura Verticalis Rooftop Bio-Solar Sky Terrace" class="render-img" loading="lazy" />
+                <div class="render-badge">ROOFTOP BIO-SOLAR SKYDECK</div>
+              </div>
+              <div class="render-info">
+                <h4>10F Bio-Solar Pergola & Urban Farm</h4>
+                <p>148 kWp bifacial photovoltaic solar canopy generating 185,000 kWh/yr clean electricity, combined with resident organic agriculture plots, jogging track, and 360° panoramic city vistas.</p>
+                <div class="render-tags">
+                  <span>148 kWp BIPV</span>
+                  <span>Community Organic Farm</span>
+                  <span>Panoramic Skyline</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Walkthrough 3D Interactive Animation Screen -->
         <div class="walkthrough-viewport-card glass-panel">
           <div class="walkthrough-header">
             <div>
-              <span class="badge-walkthrough">30-SECOND CINEMATIC EXPERIENCE</span>
-              <h2 class="view-heading">Aura Verticalis Visual Walkthrough</h2>
-              <p class="view-sub">Camera trajectory journey demonstrating commercial vibrancy, central courtyard stack ventilation, residential living, and rooftop ecology.</p>
+              <span class="badge-walkthrough">LIVE 3D TRAJECTORY WALKTHROUGH</span>
+              <h3 class="view-heading" style="font-size: 1.35rem;">30-Second Architectural Trajectory Flight</h3>
+              <p class="view-sub">Cinematic camera flight through all 5 architectural stations from the ground commercial plaza to the rooftop bio-solar skydeck.</p>
             </div>
             <div class="walkthrough-status-badge" id="wtLiveStatus">
               <span class="pulse-dot"></span>
@@ -463,9 +757,6 @@
             <div class="wt-tag-list">
               <span class="wt-tag">BIPV Solar Farm</span>
               <span class="wt-tag">Urban Agriculture</span>
-              <span class="wt-tag">Rainwater Capture</span>
-            </div>
-          </div>
         </div>
       </div>
     </section>

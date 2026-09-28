@@ -1,9 +1,190 @@
 import * as THREE from 'three';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+/**
+ * Self-Contained High-Performance Damped Orbit Controls
+ */
+class SmoothOrbitControls {
+  constructor(camera, domElement) {
+    this.camera = camera;
+    this.domElement = domElement;
+    this.target = new THREE.Vector3(0, 16, 0);
+    this.distance = 72;
+    this.phi = Math.PI / 3.2;
+    this.theta = Math.PI / 4;
+    this.minDistance = 6;
+    this.maxDistance = 220;
+    this.minPolarAngle = 0.05;
+    this.maxPolarAngle = Math.PI / 2 - 0.02;
+    this.autoRotate = false;
+    this.autoRotateSpeed = 0.6;
+    this.dampingFactor = 0.1;
+
+    this.currentTheta = this.theta;
+    this.currentPhi = this.phi;
+    this.currentDistance = this.distance;
+    this.currentTarget = this.target.clone();
+
+    this.isDragging = false;
+    this.isPanning = false;
+    this.previousMousePosition = { x: 0, y: 0 };
+
+    this.initEvents();
+    this.updateCamera();
+  }
+
+  initEvents() {
+    if (!this.domElement) return;
+
+    this.domElement.addEventListener('pointerdown', (e) => {
+      if (e.button === 0) this.isDragging = true;
+      if (e.button === 2 || e.shiftKey) this.isPanning = true;
+      this.previousMousePosition = { x: e.clientX, y: e.clientY };
+    });
+
+    window.addEventListener('pointermove', (e) => {
+      if (!this.isDragging && !this.isPanning) return;
+
+      const deltaX = e.clientX - this.previousMousePosition.x;
+      const deltaY = e.clientY - this.previousMousePosition.y;
+
+      if (this.isPanning) {
+        const panSpeed = 0.035 * (this.distance / 50);
+        const forward = new THREE.Vector3().subVectors(this.target, this.camera.position).normalize();
+        const right = new THREE.Vector3().crossVectors(forward, new THREE.Vector3(0, 1, 0)).normalize();
+        const up = new THREE.Vector3().crossVectors(right, forward).normalize();
+
+        this.target.addScaledVector(right, -deltaX * panSpeed);
+        this.target.addScaledVector(up, deltaY * panSpeed);
+      } else if (this.isDragging) {
+        this.theta -= deltaX * 0.007;
+        this.phi -= deltaY * 0.007;
+        this.phi = Math.max(this.minPolarAngle, Math.min(this.maxPolarAngle, this.phi));
+      }
+
+      this.previousMousePosition = { x: e.clientX, y: e.clientY };
+    });
+
+    window.addEventListener('pointerup', () => {
+      this.isDragging = false;
+      this.isPanning = false;
+    });
+
+    this.domElement.addEventListener('contextmenu', (e) => e.preventDefault());
+
+    this.domElement.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      const zoomFactor = 1 + (e.deltaY > 0 ? 0.08 : -0.08);
+      this.distance = Math.max(this.minDistance, Math.min(this.maxDistance, this.distance * zoomFactor));
+    }, { passive: false });
+
+    // Touch Support
+    let initialTouchDistance = 0;
+    this.domElement.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 1) {
+        this.isDragging = true;
+        this.previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      } else if (e.touches.length === 2) {
+        initialTouchDistance = Math.hypot(
+          e.touches[0].clientX - e.touches[1].clientX,
+          e.touches[0].clientY - e.touches[1].clientY
+        );
+      }
+    });
+
+    this.domElement.addEventListener('touchmove', (e) => {
+      if (e.touches.length === 1 && this.isDragging) {
+        const deltaX = e.touches[0].clientX - this.previousMousePosition.x;
+        const deltaY = e.touches[0].clientY - this.previousMousePosition.y;
+        this.theta -= deltaX * 0.008;
+        this.phi -= deltaY * 0.008;
+        this.phi = Math.max(this.minPolarAngle, Math.min(this.maxPolarAngle, this.phi));
+        this.previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      } else if (e.touches.length === 2) {
+        const currentDistance = Math.hypot(
+          e.touches[0].clientX - e.touches[1].clientX,
+          e.touches[0].clientY - e.touches[1].clientY
+        );
+        const diff = initialTouchDistance - currentDistance;
+        this.distance = Math.max(this.minDistance, Math.min(this.maxDistance, this.distance + diff * 0.05));
+        initialTouchDistance = currentDistance;
+      }
+    });
+
+    this.domElement.addEventListener('touchend', () => {
+      this.isDragging = false;
+    });
+  }
+
+  updateCamera() {
+    const x = this.currentTarget.x + this.currentDistance * Math.sin(this.currentPhi) * Math.sin(this.currentTheta);
+    const y = this.currentTarget.y + this.currentDistance * Math.cos(this.currentPhi);
+    const z = this.currentTarget.z + this.currentDistance * Math.sin(this.currentPhi) * Math.cos(this.currentTheta);
+
+    this.camera.position.set(x, y, z);
+    this.camera.lookAt(this.currentTarget);
+  }
+
+  setCameraPreset(type) {
+    switch (type) {
+      case 'axonometric':
+        this.target.set(0, 16, 0);
+        this.distance = 72;
+        this.phi = Math.PI / 3.2;
+        this.theta = Math.PI / 4;
+        break;
+      case 'front':
+        this.target.set(0, 16, 0);
+        this.distance = 68;
+        this.phi = Math.PI / 2.2;
+        this.theta = 0;
+        break;
+      case 'courtyard':
+        this.target.set(0, 8, 0);
+        this.distance = 26;
+        this.phi = Math.PI / 3.8;
+        this.theta = Math.PI / 3.2;
+        break;
+      case 'podium':
+        this.target.set(0, 4, 16);
+        this.distance = 32;
+        this.phi = Math.PI / 2.3;
+        this.theta = 0.15;
+        break;
+      case 'residential':
+        this.target.set(0, 22, 10);
+        this.distance = 38;
+        this.phi = Math.PI / 2.2;
+        this.theta = 0.35;
+        break;
+      case 'basement':
+        this.target.set(0, -3, 0);
+        this.distance = 42;
+        this.phi = Math.PI / 3;
+        this.theta = Math.PI / 2.4;
+        break;
+      case 'roof':
+        this.target.set(0, 32, 0);
+        this.distance = 42;
+        this.phi = Math.PI / 5.5;
+        this.theta = Math.PI / 4;
+        break;
+    }
+  }
+
+  update() {
+    if (this.autoRotate && !this.isDragging) {
+      this.theta += 0.003 * this.autoRotateSpeed;
+    }
+    this.currentTheta += (this.theta - this.currentTheta) * this.dampingFactor;
+    this.currentPhi += (this.phi - this.currentPhi) * this.dampingFactor;
+    this.currentDistance += (this.distance - this.currentDistance) * this.dampingFactor;
+    this.currentTarget.lerp(this.target, this.dampingFactor);
+    this.updateCamera();
+  }
+}
 
 /**
  * Procedural B+G+9 Mixed-Use BIM Model Builder
- * Assumed Metric Dimensions (in mm scaled to Three.js units: 1 unit = 1,000 mm = 1 meter)
  */
 function buildFullBimBuilding(containerGroup, interactiveList = null, kineticLouversList = null) {
   const levelGroups = {
@@ -678,15 +859,8 @@ export class BimViewer3D {
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-    // Professional Three.js OrbitControls
-    this.controls = new OrbitControls(this.camera, this.renderer.domElement);
-    this.controls.enableDamping = true;
-    this.controls.dampingFactor = 0.05;
-    this.controls.target.set(0, 16, 0);
-    this.controls.minDistance = 6;
-    this.controls.maxDistance = 220;
-    this.controls.maxPolarAngle = Math.PI / 2 - 0.02;
-    this.controls.update();
+    // Self-contained smooth orbit controls
+    this.controls = new SmoothOrbitControls(this.camera, this.canvas);
 
     this.buildingGroup = new THREE.Group();
     this.scene.add(this.buildingGroup);
@@ -711,7 +885,7 @@ export class BimViewer3D {
   }
 
   initLights() {
-    this.ambientLight = new THREE.AmbientLight(0xffffff, 1.15);
+    this.ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
     this.scene.add(this.ambientLight);
 
     this.sunLight = new THREE.DirectionalLight(0xfffaed, 2.2);
@@ -883,38 +1057,9 @@ export class BimViewer3D {
   }
 
   setCameraPreset(type) {
-    if (!this.controls) return;
-    switch (type) {
-      case 'axonometric':
-        this.controls.target.set(0, 16, 0);
-        this.camera.position.set(48, 45, 52);
-        break;
-      case 'front':
-        this.controls.target.set(0, 16, 0);
-        this.camera.position.set(0, 20, 68);
-        break;
-      case 'courtyard':
-        this.controls.target.set(0, 8, 0);
-        this.camera.position.set(16, 22, 16);
-        break;
-      case 'podium':
-        this.controls.target.set(0, 4, 12);
-        this.camera.position.set(28, 14, 38);
-        break;
-      case 'residential':
-        this.controls.target.set(0, 22, 10);
-        this.camera.position.set(-32, 28, 36);
-        break;
-      case 'basement':
-        this.controls.target.set(0, -3, 0);
-        this.camera.position.set(30, 12, 34);
-        break;
-      case 'roof':
-        this.controls.target.set(0, 32, 0);
-        this.camera.position.set(32, 54, 32);
-        break;
+    if (this.controls) {
+      this.controls.setCameraPreset(type);
     }
-    this.controls.update();
   }
 
   initInteractivity() {
@@ -1037,7 +1182,7 @@ export class BimViewer3D {
     if (mode === 'day') {
       this.setSunTime(14);
       this.sunLight.intensity = 2.2;
-      this.ambientLight.intensity = 1.15;
+      this.ambientLight.intensity = 1.2;
       this.scene.background.setHex(0x0b1329);
     } else if (mode === 'golden') {
       this.setSunTime(17.5);
@@ -1204,7 +1349,7 @@ export class WalkthroughEngine {
   }
 
   initLighting() {
-    const ambient = new THREE.AmbientLight(0xffffff, 1.15);
+    const ambient = new THREE.AmbientLight(0xffffff, 1.2);
     this.scene.add(ambient);
 
     const sun = new THREE.DirectionalLight(0xfffaed, 2.2);
@@ -1215,7 +1360,7 @@ export class WalkthroughEngine {
     sun.shadow.bias = -0.0004;
     this.scene.add(sun);
 
-    const hemi = new THREE.HemisphereLight(0xffffff, 0x334155, 0.8);
+    const hemi = new THREE.HemisphereLight(0xffffff, 0x334155, 0.85);
     this.scene.add(hemi);
   }
 
