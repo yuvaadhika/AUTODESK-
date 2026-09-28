@@ -3677,7 +3677,7 @@ button {
 .inno-canvas-box {
   position: relative;
   width: 100%;
-  min-height: 560px;
+  min-height: 540px;
   background: #0b1329;
   border-radius: var(--radius-lg);
   border: 1px solid #1e293b;
@@ -3784,16 +3784,16 @@ button {
 
 /* Right Details Panel */
 .inno-details-panel {
-  padding: 1.5rem;
+  padding: 1.25rem;
   display: flex;
   flex-direction: column;
-  gap: 1.1rem;
+  gap: 0.9rem;
 }
 
 .inno-header-wrap {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 0.25rem;
 }
 
 .inno-tag-pill {
@@ -3805,56 +3805,68 @@ button {
 }
 
 .inno-detail-title {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-weight: 800;
   color: var(--text-main);
   line-height: 1.25;
 }
 
 .inno-lead-desc {
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   color: var(--text-muted);
-  line-height: 1.5;
+  line-height: 1.45;
 }
 
-/* Engineering Mechanism 4-Point Cards */
-.inno-mechanism-list {
+/* Clean Highlights Grid (Replaces Clumsy 4-Point Essays) */
+.inno-highlights-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.65rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
 }
 
-.mech-item {
+.inno-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.55rem 0.65rem;
+  border-radius: var(--radius-md);
   background: #f8fafc;
   border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  padding: 0.75rem;
-  display: flex;
-  gap: 0.6rem;
-  align-items: flex-start;
+  transition: all var(--transition-fast);
 }
 
-.mech-icon {
-  font-size: 1.15rem;
+.inno-chip:hover {
+  border-color: rgba(2, 132, 199, 0.35);
+  background: #f0f9ff;
+}
+
+.chip-icon {
+  font-size: 1.1rem;
   line-height: 1;
+  flex-shrink: 0;
 }
 
-.mech-body {
+.inno-chip div {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  gap: 0.1rem;
+  overflow: hidden;
 }
 
-.mech-body h4 {
-  font-size: 0.78rem;
+.inno-chip strong {
+  font-size: 0.74rem;
   font-weight: 700;
   color: var(--text-main);
+  line-height: 1.2;
 }
 
-.mech-body p {
-  font-size: 0.7rem;
+.inno-chip span {
+  font-size: 0.67rem;
   color: var(--text-muted);
-  line-height: 1.4;
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Real-Time Interactive Controls Card */
@@ -3862,10 +3874,10 @@ button {
   background: #ffffff;
   border: 1px solid var(--border-strong);
   border-radius: var(--radius-lg);
-  padding: 1.1rem;
+  padding: 0.95rem 1rem;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.65rem;
   box-shadow: var(--shadow-sm);
   margin-top: auto;
 }
@@ -3878,14 +3890,14 @@ button {
 }
 
 .control-label {
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 700;
   color: var(--text-main);
 }
 
 .control-live-val {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 700;
   color: var(--accent-primary);
 }
@@ -3894,21 +3906,21 @@ button {
 .telemetry-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0.55rem;
-  margin-top: 0.25rem;
+  gap: 0.45rem;
+  margin-top: 0.15rem;
 }
 
 .tel-card {
   background: #f8fafc;
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
-  padding: 0.55rem 0.65rem;
+  padding: 0.45rem 0.55rem;
   display: flex;
   flex-direction: column;
 }
 
 .tel-label {
-  font-size: 0.62rem;
+  font-size: 0.6rem;
   font-weight: 700;
   color: var(--text-muted);
   letter-spacing: 0.04em;
@@ -3916,7 +3928,7 @@ button {
 
 .tel-num {
   font-family: var(--font-display);
-  font-size: 0.88rem;
+  font-size: 0.84rem;
   font-weight: 800;
   color: var(--text-main);
 }
@@ -3967,7 +3979,7 @@ button {
     grid-template-columns: 1fr;
   }
   .inno-canvas-box {
-    min-height: 480px;
+    min-height: 460px;
   }
 }
 
@@ -3975,14 +3987,14 @@ button {
   .inno-nav-bar {
     grid-template-columns: 1fr;
   }
-  .inno-mechanism-list {
+  .inno-highlights-grid {
     grid-template-columns: 1fr;
   }
   .telemetry-grid {
     grid-template-columns: 1fr;
   }
   .inno-canvas-box {
-    min-height: 400px;
+    min-height: 380px;
   }
 }
 
