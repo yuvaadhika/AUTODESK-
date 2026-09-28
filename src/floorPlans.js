@@ -1,26 +1,28 @@
 /**
  * Architectural Floor Plans & Unit Layouts Engine
  * Assumed Metric Dimensions (in mm) with Interactive Vector SVG Plans
+ * Program: B+G+9 Mixed-Use Development (48 Residential Apartments Total)
  */
 
 export const floorPlanData = {
   B1: {
-    title: "Level B1: Automated Basement Parking & EV Supercharging Hub",
-    dim: "48,000 mm × 36,000 mm",
-    totalArea: "1,728 m²",
+    title: "Level B1: Automated Basement Parking & EV Fast Charging Hub",
+    dim: "48,000 mm × 36,000 mm (Envelope)",
+    totalArea: "Gross Floor Area: 1,728 m²",
     height: "3,800 mm (Clearance 3,200 mm)",
     legend: [
-      { name: "EV Fast Charging Bays (48)", color: "#10b981" },
+      { name: "EV Fast Charging Bays (24)", color: "#10b981" },
       { name: "Two-Way Drive Aisle (6.0m)", color: "#94a3b8" },
-      { name: "MEP & Water Cistern (45kL)", color: "#0284c7" },
+      { name: "MEP, Transformer & Cistern (45kL)", color: "#0284c7" },
       { name: "Fire Egress & Lift Cores", color: "#f97316" }
     ],
     schedule: [
-      { space: "EV Fast Charging Stalls (48 Nos)", dim: "2,600 × 5,000 mm ea", area: "624 m²", vent: "Mechanical Ventilation (10 ACH)" },
-      { space: "Two-Way Vehicular Aisles", dim: "6,000 mm wide", area: "480 m²", vent: "Exhaust Plenum Ducts" },
-      { space: "Underground Rainwater Cistern", dim: "8,000 × 6,000 × 3,500 mm", area: "48 m² (45,000 L)", vent: "Pressure Relief Vent" },
-      { space: "Transformer & HT/LT Electrical Substation", dim: "8,000 × 8,000 mm", area: "64 m²", vent: "Dedicated Forced Air Cooling" },
-      { space: "Dual Fire Escape Stairwells + 4 Lifts", dim: "6,000 × 4,000 mm ea", area: "48 m²", vent: "Positive Pressure Air Shaft (50 Pa)" }
+      { space: "EV Fast Charging Bays (24 Nos: 12 North + 12 South)", dim: "2,600 × 5,000 mm ea", area: "600 m²", vent: "Mechanical Ventilation (10 ACH)" },
+      { space: "Two-Way Vehicular Drive Aisles & Turning Radii", dim: "6,000 mm aisle width", area: "540 m²", vent: "Exhaust Air Induction Fans" },
+      { space: "Vehicular Ingress / Egress Ramp (1:10 Slope)", dim: "6,000 mm width", area: "180 m²", vent: "Natural Air Intake at Portal" },
+      { space: "Underground Rainwater Cistern & Water Treatment", dim: "8,000 × 6,000 × 3,500 mm", area: "140 m² (45,000 L)", vent: "Pressure Relief & Overflow Vent" },
+      { space: "Transformer & HT/LT Electrical Substation", dim: "8,000 × 8,000 mm", area: "120 m²", vent: "Dedicated Forced Air Cooling" },
+      { space: "Dual Fire Escape Stairwells + Lift Cores", dim: "6,000 × 4,000 mm ea", area: "148 m²", vent: "Positive Pressure Air Shaft (50 Pa)" }
     ],
     svg: `
       <!-- Grid Lines -->
@@ -71,20 +73,32 @@ export const floorPlanData = {
         <rect x="894" y="534" width="12" height="12"/>
       </g>
 
-      <!-- Parking Bays Top Row (EV Stalls) -->
+      <!-- Parking Bays Top Row (EV Stalls 01 to 12) -->
       <g fill="#dcfce7" stroke="#16a34a" stroke-width="1.5">
         <rect x="120" y="90" width="55" height="100"/>
+        <text x="147" y="145" text-anchor="middle" font-size="9" font-weight="bold" fill="#15803d">EV 01</text>
         <rect x="180" y="90" width="55" height="100"/>
+        <text x="207" y="145" text-anchor="middle" font-size="9" font-weight="bold" fill="#15803d">EV 02</text>
         <rect x="240" y="90" width="55" height="100"/>
+        <text x="267" y="145" text-anchor="middle" font-size="9" font-weight="bold" fill="#15803d">EV 03</text>
         <rect x="300" y="90" width="55" height="100"/>
+        <text x="327" y="145" text-anchor="middle" font-size="9" font-weight="bold" fill="#15803d">EV 04</text>
         <rect x="360" y="90" width="55" height="100"/>
+        <text x="387" y="145" text-anchor="middle" font-size="9" font-weight="bold" fill="#15803d">EV 05</text>
         <rect x="420" y="90" width="55" height="100"/>
+        <text x="447" y="145" text-anchor="middle" font-size="9" font-weight="bold" fill="#15803d">EV 06</text>
         <rect x="480" y="90" width="55" height="100"/>
+        <text x="507" y="145" text-anchor="middle" font-size="9" font-weight="bold" fill="#15803d">EV 07</text>
         <rect x="540" y="90" width="55" height="100"/>
+        <text x="567" y="145" text-anchor="middle" font-size="9" font-weight="bold" fill="#15803d">EV 08</text>
         <rect x="600" y="90" width="55" height="100"/>
+        <text x="627" y="145" text-anchor="middle" font-size="9" font-weight="bold" fill="#15803d">EV 09</text>
         <rect x="660" y="90" width="55" height="100"/>
+        <text x="687" y="145" text-anchor="middle" font-size="9" font-weight="bold" fill="#15803d">EV 10</text>
         <rect x="720" y="90" width="55" height="100"/>
+        <text x="747" y="145" text-anchor="middle" font-size="9" font-weight="bold" fill="#15803d">EV 11</text>
         <rect x="780" y="90" width="55" height="100"/>
+        <text x="807" y="145" text-anchor="middle" font-size="9" font-weight="bold" fill="#15803d">EV 12</text>
       </g>
 
       <!-- Drive Aisle -->
@@ -105,20 +119,32 @@ export const floorPlanData = {
       <text x="715" y="355" text-anchor="middle" font-size="11" font-weight="bold" fill="#c2410c">Fire Egress Stairs</text>
       <text x="715" y="375" text-anchor="middle" font-size="9" fill="#9a3412">Pressurized Shaft</text>
 
-      <!-- Bottom Row Parking Bays -->
+      <!-- Bottom Row Parking Bays (EV Stalls 13 to 24) -->
       <g fill="#dcfce7" stroke="#16a34a" stroke-width="1.5">
         <rect x="120" y="510" width="55" height="100"/>
+        <text x="147" y="565" text-anchor="middle" font-size="9" font-weight="bold" fill="#15803d">EV 13</text>
         <rect x="180" y="510" width="55" height="100"/>
+        <text x="207" y="565" text-anchor="middle" font-size="9" font-weight="bold" fill="#15803d">EV 14</text>
         <rect x="240" y="510" width="55" height="100"/>
+        <text x="267" y="565" text-anchor="middle" font-size="9" font-weight="bold" fill="#15803d">EV 15</text>
         <rect x="300" y="510" width="55" height="100"/>
+        <text x="327" y="565" text-anchor="middle" font-size="9" font-weight="bold" fill="#15803d">EV 16</text>
         <rect x="360" y="510" width="55" height="100"/>
+        <text x="387" y="565" text-anchor="middle" font-size="9" font-weight="bold" fill="#15803d">EV 17</text>
         <rect x="420" y="510" width="55" height="100"/>
+        <text x="447" y="565" text-anchor="middle" font-size="9" font-weight="bold" fill="#15803d">EV 18</text>
         <rect x="480" y="510" width="55" height="100"/>
+        <text x="507" y="565" text-anchor="middle" font-size="9" font-weight="bold" fill="#15803d">EV 19</text>
         <rect x="540" y="510" width="55" height="100"/>
+        <text x="567" y="565" text-anchor="middle" font-size="9" font-weight="bold" fill="#15803d">EV 20</text>
         <rect x="600" y="510" width="55" height="100"/>
+        <text x="627" y="565" text-anchor="middle" font-size="9" font-weight="bold" fill="#15803d">EV 21</text>
         <rect x="660" y="510" width="55" height="100"/>
+        <text x="687" y="565" text-anchor="middle" font-size="9" font-weight="bold" fill="#15803d">EV 22</text>
         <rect x="720" y="510" width="55" height="100"/>
+        <text x="747" y="565" text-anchor="middle" font-size="9" font-weight="bold" fill="#15803d">EV 23</text>
         <rect x="780" y="510" width="55" height="100"/>
+        <text x="807" y="565" text-anchor="middle" font-size="9" font-weight="bold" fill="#15803d">EV 24</text>
       </g>
 
       <!-- EV Ramp Ingress / Egress -->
@@ -142,8 +168,8 @@ export const floorPlanData = {
 
   G: {
     title: "Ground Floor: Active Commercial Arcade & Central Biophilic Courtyard",
-    dim: "40,000 mm × 30,000 mm (Podium)",
-    totalArea: "1,500 m²",
+    dim: "40,000 mm × 30,000 mm (Podium Footprint)",
+    totalArea: "Gross Floor Area: 1,500 m²",
     height: "4,500 mm (Double Height Commercial)",
     legend: [
       { name: "Commercial Retail Boutiques", color: "#f59e0b" },
@@ -152,11 +178,12 @@ export const floorPlanData = {
       { name: "Outdoor Cafe Terrace & Promenade", color: "#8b5cf6" }
     ],
     schedule: [
-      { space: "Central Biophilic Courtyard (Atrium)", dim: "16,000 × 14,000 mm", area: "224 m² (Open to Sky)", vent: "Natural Convective Stack Chimney" },
-      { space: "Anchor Retail Boutiques (4 Units)", dim: "8,000 × 8,000 mm ea", area: "256 m²", vent: "VAV High-Efficiency HVAC (MERV 14)" },
-      { space: "Organic Bakery & Artisan Cafe", dim: "12,000 × 8,000 mm", area: "96 m²", vent: "Kitchen Dedicated Exhaust + Fresh Air" },
-      { space: "Grand Residential Double-Height Lobby", dim: "16,000 × 8,000 mm", area: "128 m²", vent: "Displacement Underfloor Ventilation" },
-      { space: "Alfresco Pedestrian Promenade", dim: "4,000 mm width perimeter", area: "320 m²", vent: "100% Outdoor Natural Airflow" }
+      { space: "Central Biophilic Courtyard (Atrium Cutout)", dim: "16,000 × 14,000 mm", area: "224 m² (Open to Sky)", vent: "Natural Convective Stack Chimney" },
+      { space: "Anchor Retail Boutiques (4 Units)", dim: "8,000 × 10,000 mm ea", area: "320 m²", vent: "VAV High-Efficiency HVAC (MERV 14)" },
+      { space: "Artisan Bakery & Outdoor Café Terrace", dim: "12,000 × 15,000 mm", area: "180 m²", vent: "Kitchen Dedicated Exhaust + Fresh Air" },
+      { space: "Grand Residential Double-Height Entrance Lobby", dim: "16,000 × 10,000 mm", area: "160 m²", vent: "Displacement Underfloor Ventilation" },
+      { space: "Building Services, Security & Restrooms", dim: "12,000 × 9,660 mm", area: "116 m²", vent: "Mechanical Ventilation (12 ACH)" },
+      { space: "Sheltered Pedestrian Promenade & Arcades", dim: "4,000 mm perimeter arcade", area: "500 m²", vent: "100% Outdoor Natural Airflow" }
     ],
     svg: `
       <!-- Perimeter Footprint (40,000 × 30,000 mm) -->
@@ -168,17 +195,17 @@ export const floorPlanData = {
       <ellipse cx="500" cy="340" rx="70" ry="50" fill="#bae6fd" stroke="#0284c7" stroke-width="2"/>
       <text x="500" y="345" text-anchor="middle" font-size="12" font-weight="bold" fill="#0369a1">Reflection Pond</text>
       <text x="500" y="240" text-anchor="middle" font-size="13" font-weight="bold" fill="#15803d">CENTRAL BIOPHILIC COURTYARD</text>
-      <text x="500" y="258" text-anchor="middle" font-size="10" fill="#166534">16,000 × 14,000 mm (Thermal Chimney)</text>
+      <text x="500" y="258" text-anchor="middle" font-size="10" fill="#166534">16,000 × 14,000 mm (Open Ground to Roof)</text>
 
       <!-- Retail Boutiques (West Wing) -->
       <g fill="#fef3c7" stroke="#d97706" stroke-width="2">
         <rect x="140" y="110" width="190" height="140"/>
         <text x="235" y="175" text-anchor="middle" font-size="12" font-weight="bold" fill="#92400e">Retail Boutique 01</text>
-        <text x="235" y="195" text-anchor="middle" font-size="10" fill="#b45309">8,000 × 8,000 mm</text>
+        <text x="235" y="195" text-anchor="middle" font-size="10" fill="#b45309">8,000 × 10,000 mm</text>
 
         <rect x="140" y="270" width="190" height="140"/>
         <text x="235" y="335" text-anchor="middle" font-size="12" font-weight="bold" fill="#92400e">Retail Boutique 02</text>
-        <text x="235" y="355" text-anchor="middle" font-size="10" fill="#b45309">8,000 × 8,000 mm</text>
+        <text x="235" y="355" text-anchor="middle" font-size="10" fill="#b45309">8,000 × 10,000 mm</text>
       </g>
 
       <!-- Artisan Cafe & Outdoor Deck (East Wing) -->
@@ -206,9 +233,9 @@ export const floorPlanData = {
   },
 
   "1F": {
-    title: "1st Floor: Commercial Wellness Center & Co-Working Lounge",
+    title: "1st Floor: Commercial & Community Floor (Co-Working, Wellness & Skybridge)",
     dim: "40,000 mm × 30,000 mm",
-    totalArea: "1,450 m²",
+    totalArea: "Gross Floor Area: 1,450 m²",
     height: "4,000 mm",
     legend: [
       { name: "Flexible Co-Working Suites", color: "#3b82f6" },
@@ -217,11 +244,13 @@ export const floorPlanData = {
       { name: "Community Crèche / Daycare", color: "#ec4899" }
     ],
     schedule: [
-      { space: "Open Plan Co-Working Hub", dim: "16,000 × 12,000 mm", area: "192 m²", vent: "100% Economizer Fresh Air Mode" },
-      { space: "Wellness Gym & Yoga Studio", dim: "14,000 × 8,000 mm", area: "112 m²", vent: "High-Volume Low-Speed (HVLS) Fans" },
-      { space: "Skybridge Viewing Walkway", dim: "3,000 × 14,000 mm", area: "42 m²", vent: "Natural Cross-Breeze over Courtyard" },
-      { space: "Child Care & Community Crèche", dim: "10,000 × 8,000 mm", area: "80 m²", vent: "HEPA Filtration + Low VOC" },
-      { space: "Executive Conference Pods (3)", dim: "5,000 × 4,000 mm ea", area: "60 m²", vent: "Acoustically Attenuated Ducts" }
+      { space: "Open Plan Co-Working Hub & Meeting Pods", dim: "18,000 × 14,000 mm", area: "380 m²", vent: "100% Economizer Fresh Air Mode" },
+      { space: "Wellness Fitness Gym & Yoga Studio", dim: "16,000 × 12,000 mm", area: "280 m²", vent: "High-Volume Low-Speed (HVLS) Fans" },
+      { space: "Community Multipurpose Space / Crèche", dim: "15,000 × 12,000 mm", area: "240 m²", vent: "HEPA Filtration + Low VOC" },
+      { space: "Café Lounge & Social Breakout Deck", dim: "14,000 × 10,000 mm", area: "180 m²", vent: "Natural Cross-Breeze via Balconies" },
+      { space: "Courtyard Skybridge Viewing Walkway", dim: "3,000 × 14,000 mm", area: "60 m²", vent: "Natural Cross-Breeze over Courtyard" },
+      { space: "Restrooms, MEP Shafts & Vertical Cores", dim: "10,000 × 8,000 mm", area: "110 m²", vent: "Dedicated Mechanical Exhaust" },
+      { space: "Common Corridors & Circulation", dim: "2,400 mm width perimeter", area: "200 m²", vent: "Natural Daylit Circulation" }
     ],
     svg: `
       <rect x="120" y="90" width="760" height="520" fill="#ffffff" stroke="#1e293b" stroke-width="4" rx="4"/>
@@ -241,32 +270,33 @@ export const floorPlanData = {
       <!-- Wellness Gym -->
       <rect x="660" y="110" width="200" height="240" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
       <text x="760" y="220" text-anchor="middle" font-size="13" font-weight="bold" fill="#15803d">Wellness Fitness Gym</text>
-      <text x="760" y="240" text-anchor="middle" font-size="10" fill="#16a34a">Aerobic Studio & Sauna</text>
+      <text x="760" y="240" text-anchor="middle" font-size="10" fill="#16a34a">Aerobic Studio & Yoga Deck</text>
 
       <!-- Community Crèche -->
       <rect x="140" y="370" width="200" height="220" fill="#fce7f3" stroke="#db2777" stroke-width="2"/>
       <text x="240" y="475" text-anchor="middle" font-size="13" font-weight="bold" fill="#9d174d">Community Crèche</text>
-      <text x="240" y="495" text-anchor="middle" font-size="10" fill="#be185d">Childcare & Play Area</text>
+      <text x="240" y="495" text-anchor="middle" font-size="10" fill="#be185d">Childcare & Multipurpose Area</text>
     `
   },
 
   TYP: {
-    title: "Typical Residential Floor (2nd - 9th Floor): 8 Luxury Modular Units per Floor",
+    title: "Typical Residential Floor (2nd - 9th Floor): 6 Luxury Units per Floor (48 Total)",
     dim: "40,000 mm × 30,000 mm (Per Floor)",
-    totalArea: "900 m² / floor (7,200 m² Total across 8 floors)",
+    totalArea: "Gross Floor Area: 900 m² / floor (7,200 m² Total across 8 Residential Floors)",
     height: "3,300 mm floor-to-floor (2,900 mm clear ceiling)",
     legend: [
-      { name: "2BHK Deluxe Units (92 m²)", color: "#3b82f6" },
-      { name: "1BHK Executive Units (55 m²)", color: "#10b981" },
-      { name: "3BHK Corner Suites (145 m²)", color: "#8b5cf6" },
+      { name: "2BHK Deluxe Units (3 per floor, 92 m² ea)", color: "#3b82f6" },
+      { name: "1BHK Executive Units (2 per floor, 55 m² ea)", color: "#10b981" },
+      { name: "3BHK Corner Penthouse (1 per floor, 145 m²)", color: "#8b5cf6" },
       { name: "Cantilever Balconies & Planters", color: "#f59e0b" }
     ],
     schedule: [
-      { space: "2BHK Deluxe Apartment (Unit 201-204)", dim: "11,200 × 8,200 mm", area: "92 m²", vent: "Dual Aspect Cross-Ventilation" },
-      { space: "1BHK Executive Apartment (Unit 205-206)", dim: "8,000 × 6,800 mm", area: "55 m²", vent: "Balcony Sliding Glass + Stack Intake" },
-      { space: "3BHK Corner Penthouse Suite", dim: "14,500 × 10,000 mm", area: "145 m²", vent: "Triple Aspect Panoramic Cross Air" },
-      { space: "Cantilevered Shaded Balconies", dim: "1,800 mm projection", area: "14 m² / apt", vent: "Open Air with Bio-Planter Buffer" },
-      { space: "Daylit Central Ring Corridor", dim: "2,000 mm width", area: "110 m²", vent: "100% Daylit from Central Atrium" }
+      { space: "2BHK Deluxe Residences (Units 201, 204, 205)", dim: "3 Units @ 11,200 × 8,200 mm", area: "276 m² (92 m² ea)", vent: "Dual Aspect Cross-Ventilation" },
+      { space: "1BHK Executive Residences (Units 202, 203)", dim: "2 Units @ 8,000 × 6,800 mm", area: "110 m² (55 m² ea)", vent: "Balcony Sliding Glass + Stack Intake" },
+      { space: "3BHK Corner Penthouse Residence (Unit 206)", dim: "1 Unit @ 14,500 × 10,000 mm", area: "145 m²", vent: "Triple Aspect 270° Panoramic Cross Air" },
+      { space: "Private Cantilever Balconies & Planters", dim: "1,800 mm projection (6 Units)", area: "96 m² total", vent: "Open Air with Bio-Planter Buffer" },
+      { space: "Central Daylit Courtyard Ring Corridor", dim: "2,000 mm width perimeter", area: "145 m²", vent: "100% Daylit from Central Atrium" },
+      { space: "Lift Core, Fire Stairwells & MEP Shafts", dim: "2 Cores + 2 Stairs", area: "128 m²", vent: "Pressurized Fire Shaft (50 Pa)" }
     ],
     svg: `
       <rect x="120" y="90" width="760" height="520" fill="#ffffff" stroke="#1e293b" stroke-width="4" rx="4"/>
@@ -274,48 +304,50 @@ export const floorPlanData = {
       <!-- Central Courtyard Light Well -->
       <rect x="360" y="210" width="280" height="260" fill="#f8fafc" stroke="#16a34a" stroke-width="3" rx="4"/>
       <text x="500" y="335" text-anchor="middle" font-size="13" font-weight="bold" fill="#15803d">CENTRAL ATRIUM LIGHT WELL</text>
-      <text x="500" y="355" text-anchor="middle" font-size="10" fill="#166534">Daylight & Convective Ventilation</text>
+      <text x="500" y="355" text-anchor="middle" font-size="10" fill="#166534">Daylight & Convective Ventilation (Ground to Roof)</text>
 
       <!-- Daylit Ring Corridor -->
       <rect x="330" y="180" width="340" height="320" fill="none" stroke="#cbd5e1" stroke-width="2"/>
 
-      <!-- 2BHK Unit 01 (North West) -->
+      <!-- 2BHK Unit 201 (North West) -->
       <g fill="#dbeafe" stroke="#2563eb" stroke-width="2">
         <rect x="140" y="110" width="180" height="170"/>
-        <text x="230" y="185" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e40af">2BHK Unit A</text>
-        <text x="230" y="205" text-anchor="middle" font-size="10" fill="#2563eb">92 m²</text>
+        <text x="230" y="185" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e40af">Unit 201: 2BHK</text>
+        <text x="230" y="205" text-anchor="middle" font-size="10" fill="#2563eb">92 m² (Dual Aspect)</text>
       </g>
 
-      <!-- 1BHK Unit 02 (North Center) -->
+      <!-- 1BHK Unit 202 (North Center) -->
       <g fill="#dcfce7" stroke="#16a34a" stroke-width="2">
         <rect x="340" y="110" width="150" height="70"/>
-        <text x="415" y="150" text-anchor="middle" font-size="11" font-weight="bold" fill="#15803d">1BHK (55 m²)</text>
+        <text x="415" y="145" text-anchor="middle" font-size="11" font-weight="bold" fill="#15803d">Unit 202: 1BHK</text>
+        <text x="415" y="162" text-anchor="middle" font-size="9" fill="#166534">55 m²</text>
       </g>
 
-      <!-- 1BHK Unit 03 (North Center East) -->
+      <!-- 1BHK Unit 203 (North Center East) -->
       <g fill="#dcfce7" stroke="#16a34a" stroke-width="2">
         <rect x="510" y="110" width="150" height="70"/>
-        <text x="585" y="150" text-anchor="middle" font-size="11" font-weight="bold" fill="#15803d">1BHK (55 m²)</text>
+        <text x="585" y="145" text-anchor="middle" font-size="11" font-weight="bold" fill="#15803d">Unit 203: 1BHK</text>
+        <text x="585" y="162" text-anchor="middle" font-size="9" fill="#166534">55 m²</text>
       </g>
 
-      <!-- 3BHK Corner Unit (North East) -->
+      <!-- 3BHK Corner Unit 206 (North East) -->
       <g fill="#ede9fe" stroke="#7c3aed" stroke-width="2">
         <rect x="680" y="110" width="180" height="200"/>
-        <text x="770" y="205" text-anchor="middle" font-size="12" font-weight="bold" fill="#5b21b6">3BHK Suite</text>
-        <text x="770" y="225" text-anchor="middle" font-size="10" fill="#6d28d9">145 m²</text>
+        <text x="770" y="205" text-anchor="middle" font-size="12" font-weight="bold" fill="#5b21b6">Unit 206: 3BHK</text>
+        <text x="770" y="225" text-anchor="middle" font-size="10" fill="#6d28d9">145 m² Corner Suite</text>
       </g>
 
-      <!-- 2BHK Unit 04 (South West) -->
+      <!-- 2BHK Unit 204 (South West) -->
       <g fill="#dbeafe" stroke="#2563eb" stroke-width="2">
         <rect x="140" y="320" width="180" height="200"/>
-        <text x="230" y="415" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e40af">2BHK Unit B</text>
+        <text x="230" y="415" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e40af">Unit 204: 2BHK</text>
         <text x="230" y="435" text-anchor="middle" font-size="10" fill="#2563eb">92 m²</text>
       </g>
 
-      <!-- 2BHK Unit 05 (South East) -->
+      <!-- 2BHK Unit 205 (South East) -->
       <g fill="#dbeafe" stroke="#2563eb" stroke-width="2">
         <rect x="680" y="330" width="180" height="190"/>
-        <text x="770" y="415" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e40af">2BHK Unit C</text>
+        <text x="770" y="415" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e40af">Unit 205: 2BHK</text>
         <text x="770" y="435" text-anchor="middle" font-size="10" fill="#2563eb">92 m²</text>
       </g>
 
@@ -331,21 +363,21 @@ export const floorPlanData = {
   },
 
   ROOF: {
-    title: "10th Floor / Rooftop: Bio-Solar Sky Terrace & Urban Agriculture",
+    title: "Roof Terrace / Sustainable Roof: Bio-Solar Sky Deck & Community Urban Agriculture",
     dim: "40,000 mm × 30,000 mm",
-    totalArea: "972 m² usable deck",
+    totalArea: "Gross Floor Area: 972 m² usable sky deck",
     height: "3,600 mm (Pergola Height)",
     legend: [
       { name: "Bifacial Solar BIPV Pergola (148 kWp)", color: "#1e1b4b" },
-      { name: "Urban Farming Hydroponic Beds", color: "#10b981" },
+      { name: "Community Urban Agriculture Plots", color: "#10b981" },
       { name: "Sky Jogging Track & Yoga Deck", color: "#f59e0b" },
       { name: "Panoramic Observation Pavilion", color: "#0284c7" }
     ],
     schedule: [
-      { space: "BIPV Bifacial Solar Pergola Array", dim: "32,000 × 24,000 mm", area: "620 m²", vent: "Natural Heat Dissipation Under Panels" },
-      { space: "Community Urban Agriculture Beds", dim: "6,000 × 4,000 mm (4 plots)", area: "96 m²", vent: "Open Air Rooftop Microclimate" },
-      { space: "Recycled Rubber Jogging Circuit", dim: "1,500 mm wide loop (160m)", area: "180 m²", vent: "Panoramic Skyline Breeze" },
-      { space: "Sky Lounge & Stargazing Pavilion", dim: "8,000 × 6,000 mm", area: "48 m²", vent: "Timber Slatted Pergola Shading" }
+      { space: "BIPV Bifacial Solar Pergola Canopy", dim: "32,000 × 24,000 mm", area: "620 m²", vent: "Natural Heat Dissipation Under Panels" },
+      { space: "Community Urban Agriculture & Hydroponics", dim: "6,000 × 4,000 mm (4 plots)", area: "96 m²", vent: "Open Air Rooftop Microclimate" },
+      { space: "Pergola Seating, Yoga Deck & Viewpoint", dim: "12,000 × 6,000 mm", area: "72 m²", vent: "Timber Slatted Pergola Shading" },
+      { space: "Recycled Rubber Jogging Circuit & Walkway", dim: "1,500 mm wide perimeter loop", area: "184 m²", vent: "Panoramic Skyline Breeze" }
     ],
     svg: `
       <rect x="120" y="90" width="760" height="520" fill="#f8fafc" stroke="#1e293b" stroke-width="4" rx="4"/>
@@ -380,11 +412,11 @@ export const floorPlanData = {
 
 export const unitTypologies = {
   "2bhk": {
-    name: "2BHK Deluxe Sustainable Residence",
+    name: "2BHK Deluxe Sustainable Residence (3 Units/Floor)",
     carpetArea: "92 m² (990 sq.ft)",
     balconyArea: "14 m² with integrated planter",
     occupancy: "3 - 4 Persons",
-    orientation: "Dual aspect (South-West for daylight & Courtyard for stack breeze)",
+    orientation: "Dual aspect (South-West daylight & Central courtyard stack breeze)",
     rooms: [
       { name: "Living / Dining", dim: "6,200 × 4,000 mm", area: "24.8 m²" },
       { name: "Master Bedroom + Ensuite", dim: "4,500 × 3,800 mm", area: "17.1 m²" },
@@ -394,7 +426,7 @@ export const unitTypologies = {
     ]
   },
   "1bhk": {
-    name: "1BHK Executive Studio Suite",
+    name: "1BHK Executive Studio Suite (2 Units/Floor)",
     carpetArea: "55 m² (592 sq.ft)",
     balconyArea: "8 m² with kinetic louvers",
     occupancy: "1 - 2 Persons",
@@ -407,7 +439,7 @@ export const unitTypologies = {
     ]
   },
   "3bhk": {
-    name: "3BHK Corner Penthouse Residence",
+    name: "3BHK Corner Penthouse Residence (1 Unit/Floor)",
     carpetArea: "145 m² (1,560 sq.ft)",
     balconyArea: "24 m² wrap-around sky garden",
     occupancy: "4 - 6 Persons",

@@ -2,7 +2,8 @@ import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 
 /**
- * Autodesk Forma Environmental & Climate Analysis Engine
+ * Autodesk Forma & Insight Conceptual Environmental Analysis Engine
+ * Target Performance Benchmarks & Microclimate Studies
  */
 
 let formaCharts = [];
@@ -26,7 +27,7 @@ export function initEnvironmentalForma() {
         labels: ['06:00', '08:00', '10:00', '12:00', '14:00', '16:00', '18:00'],
         datasets: [
           {
-            label: 'Daylight Autonomy sDA (%)',
+            label: 'Target Daylight Autonomy sDA (%)',
             data: [25, 78, 92, 98, 94, 82, 38],
             borderColor: greenAccent,
             backgroundColor: 'rgba(16, 185, 129, 0.15)',
@@ -64,7 +65,7 @@ export function initEnvironmentalForma() {
           y: {
             min: 0,
             max: 100,
-            title: { display: true, text: 'sDA Autonomy (%)', font: { size: 10 } },
+            title: { display: true, text: 'Target sDA (%)', font: { size: 10 } },
             ticks: { font: { family: 'JetBrains Mono', size: 10 } },
             grid: { color: '#e2e8f0' }
           },
@@ -88,16 +89,16 @@ export function initEnvironmentalForma() {
     const c2 = new Chart(ctxWind, {
       type: 'bar',
       data: {
-        labels: ['Ground Plaza', 'Courtyard Base', '1F Skybridge', '4F Residential', '7F Residential', '10F Rooftop Vent'],
+        labels: ['Ground Plaza', 'Courtyard Base', '1F Skybridge', '4F Residential', '7F Residential', 'Roof Terrace Vent'],
         datasets: [
           {
-            label: 'Stack Velocity (m/s)',
+            label: 'Stack Updraft Velocity (m/s)',
             data: [1.2, 1.8, 2.1, 2.4, 2.7, 3.2],
             backgroundColor: 'rgba(2, 132, 199, 0.8)',
             borderRadius: 6
           },
           {
-            label: 'Pedestrian Comfort Target (m/s max)',
+            label: 'Pedestrian Comfort Limit (m/s max)',
             data: [4.0, 4.0, 4.0, 4.0, 4.0, 4.0],
             type: 'line',
             borderColor: '#ef4444',
@@ -118,7 +119,7 @@ export function initEnvironmentalForma() {
           y: {
             min: 0,
             max: 5,
-            title: { display: true, text: 'Wind Speed (m/s)', font: { size: 10 } },
+            title: { display: true, text: 'Wind Velocity (m/s)', font: { size: 10 } },
             ticks: { font: { family: 'JetBrains Mono', size: 10 } },
             grid: { color: '#e2e8f0' }
           }
@@ -134,16 +135,16 @@ export function initEnvironmentalForma() {
     const c3 = new Chart(ctxEui, {
       type: 'bar',
       data: {
-        labels: ['HVAC Cooling', 'Interior Lighting', 'Pumps & MEP', 'Plug Loads', 'Solar PV Generation'],
+        labels: ['HVAC Cooling', 'Interior Lighting', 'Pumps & MEP', 'Plug Loads', 'Solar PV Offset'],
         datasets: [
           {
-            label: 'ASHRAE 90.1 Baseline (128 kWh/m²/yr)',
+            label: 'Baseline Standard (128 kWh/m²/yr)',
             data: [65, 24, 18, 21, 0],
             backgroundColor: '#94a3b8',
             borderRadius: 4
           },
           {
-            label: 'Aura Verticalis Optimized (62.8 kWh/m²/yr)',
+            label: 'Target Proposed (62.8 kWh/m²/yr, -51%)',
             data: [28, 11, 10, 13.8, -25],
             backgroundColor: greenAccent,
             borderRadius: 4

@@ -1,12 +1,12 @@
 /**
  * Structural 2D CAD & Engineering Detailing Module
- * Reinforcement Detailing, Sections, Rebar Schedules (IS 456 & IS 13920)
+ * Proposed Structural System, Reinforcement Detailing, Sections & Schedules (IS 456 & IS 13920)
  */
 
 export const cadDrawingsData = {
   beam: {
-    title: "DRAWING S-01: CONTINUOUS BEAM B1 (300 × 600 mm) REINFORCEMENT & SECTIONS",
-    scale: "Scale 1:25 | Concrete: M35 | Steel: Fe500D TMT",
+    title: "DRAWING S-01: PROPOSED CONTINUOUS BEAM B1 (300 × 600 mm) REINFORCEMENT & SECTIONS",
+    scale: "Scale 1:25 | Proposed Concrete: M35 | Proposed Steel: Fe500D TMT",
     bbs: [
       { mark: "B1-01", dia: "25 mm", shape: "Bottom Straight Bars (Continuous)", cutL: "8,650", no: "4", wt: "133.4" },
       { mark: "B1-02", dia: "20 mm", shape: "Top Continuous Hanger Bars", cutL: "8,650", no: "3", wt: "64.0" },
@@ -24,7 +24,7 @@ export const cadDrawingsData = {
         <line x1="800" y1="40" x2="800" y2="400"/>
       </g>
 
-      <!-- LONGITUDINAL ELEVATION OF BEAM B1 -->
+      <!-- LONGITUDINAL ELEVATION OF PROPOSED BEAM B1 -->
       <!-- Columns at supports -->
       <rect x="120" y="60" width="80" height="280" fill="#334155" stroke="#64748b" stroke-width="2"/>
       <text x="160" y="200" text-anchor="middle" font-size="12" font-weight="bold" fill="#ffffff">COL C1</text>
@@ -76,10 +76,10 @@ export const cadDrawingsData = {
       </g>
 
       <!-- Annotations & Callouts -->
-      <text x="470" y="100" text-anchor="middle" font-size="12" font-weight="bold" fill="#f59e0b">TOP: 3-T20 CONTINUOUS HANGERS</text>
-      <text x="250" y="80" text-anchor="middle" font-size="11" font-weight="bold" fill="#ef4444">TOP EXTRA: 2-T16 (L/3)</text>
-      <text x="470" y="290" text-anchor="middle" font-size="12" font-weight="bold" fill="#10b981">BOTTOM: 4-T25 MAIN REBAR</text>
-      <text x="270" y="320" text-anchor="middle" font-size="10" fill="#38bdf8">2-L T8 @ 100 c/c (2d = 1200mm)</text>
+      <text x="470" y="100" text-anchor="middle" font-size="12" font-weight="bold" fill="#f59e0b">PROPOSED TOP: 3-T20 CONTINUOUS HANGERS</text>
+      <text x="250" y="80" text-anchor="middle" font-size="11" font-weight="bold" fill="#ef4444">TOP EXTRA: 2-T16 (L/3 Support)</text>
+      <text x="470" y="290" text-anchor="middle" font-size="12" font-weight="bold" fill="#10b981">PROPOSED BOTTOM: 4-T25 MAIN REBAR</text>
+      <text x="270" y="320" text-anchor="middle" font-size="10" fill="#38bdf8">2-L T8 @ 100 c/c (2d = 1200mm Confinement)</text>
       <text x="470" y="320" text-anchor="middle" font-size="10" fill="#94a3b8">2-L T8 @ 200 c/c</text>
 
       <!-- Span Dimension -->
@@ -90,7 +90,7 @@ export const cadDrawingsData = {
         <text x="470" y="380" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">CLEAR SPAN = 8,000 mm</text>
       </g>
 
-      <!-- CROSS SECTION AT SUPPORT & MIDSPAN (Bottom Left / Right) -->
+      <!-- CROSS SECTION AT SUPPORT & MIDSPAN -->
       <!-- Section at Support (A-A) -->
       <rect x="180" y="440" width="90" height="150" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
       <text x="225" y="425" text-anchor="middle" font-size="11" font-weight="bold" fill="#ffffff">SEC A-A (SUPPORT)</text>
@@ -108,7 +108,6 @@ export const cadDrawingsData = {
       <!-- Section at Mid-span (B-B) -->
       <rect x="650" y="440" width="90" height="150" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
       <text x="695" y="425" text-anchor="middle" font-size="11" font-weight="bold" fill="#ffffff">SEC B-B (MID-SPAN)</text>
-      <circle cx="200" cy="455" r="5" fill="#f59e0b"/>
       <circle cx="665" cy="455" r="5" fill="#f59e0b"/>
       <circle cx="695" cy="455" r="5" fill="#f59e0b"/>
       <circle cx="725" cy="455" r="5" fill="#f59e0b"/>
@@ -121,12 +120,12 @@ export const cadDrawingsData = {
   },
 
   column: {
-    title: "DRAWING S-02: COLUMN C1 (600 × 600 mm) REBAR SCHEDULE & TIE CONFINEMENT",
-    scale: "Scale 1:20 | Concrete: M40 | Steel: Fe500D TMT",
+    title: "DRAWING S-02: PROPOSED COLUMN C1 (600 × 600 mm) REBAR SCHEDULE & DUCTILE TIES",
+    scale: "Scale 1:20 | Proposed Concrete: M40 | Steel: Fe500D TMT",
     bbs: [
-      { mark: "C1-01", dia: "25 mm", shape: "Longitudinal Rebar (Vertical)", cutL: "4,200", no: "12", wt: "194.0" },
-      { mark: "C1-02", dia: "8 mm", shape: "Outer Confinement Tie with 135° Hooks", cutL: "2,450", no: "28", wt: "27.0" },
-      { mark: "C1-03", dia: "8 mm", shape: "Inner Cross Ties / Diamond Links", cutL: "1,850", no: "28", wt: "20.4" }
+      { mark: "C1-01", dia: "25 mm", shape: "Longitudinal Rebar (Vertical 12 Nos)", cutL: "4,200", no: "12", wt: "194.0" },
+      { mark: "C1-02", dia: "8 mm", shape: "Outer Confinement Tie with 135° Seismic Hooks", cutL: "2,450", no: "28", wt: "27.0" },
+      { mark: "C1-03", dia: "8 mm", shape: "Inner Diamond Link / Cross Ties", cutL: "1,850", no: "28", wt: "20.4" }
     ],
     svg: `
       <!-- Column Cross Section (600 x 600 mm) -->
@@ -171,9 +170,9 @@ export const cadDrawingsData = {
       </g>
 
       <!-- Rebar Annotation -->
-      <text x="400" y="440" text-anchor="middle" font-size="13" font-weight="bold" fill="#10b981">12 - T25 mm LONGITUDINAL REBAR (Fe500D)</text>
+      <text x="400" y="440" text-anchor="middle" font-size="13" font-weight="bold" fill="#10b981">PROPOSED: 12 - T25 mm LONGITUDINAL REBAR (Fe500D)</text>
       <text x="400" y="465" text-anchor="middle" font-size="11" fill="#f59e0b">8mm OUTER TIE + INNER DIAMOND LINK (135° SEISMIC HOOKS)</text>
-      <text x="400" y="485" text-anchor="middle" font-size="11" fill="#94a3b8">CLEAR COVER = 40 mm | CONCRETE GRADE M40</text>
+      <text x="400" y="485" text-anchor="middle" font-size="11" fill="#94a3b8">CLEAR COVER = 40 mm | PROPOSED CONCRETE M40</text>
 
       <!-- Confinement Elevation Schematic (Right side) -->
       <g transform="translate(680, 80)">
@@ -192,8 +191,8 @@ export const cadDrawingsData = {
   },
 
   slab: {
-    title: "DRAWING S-03: TWO-WAY FLAT SLAB (175 mm) & DROP PANEL REINFORCEMENT",
-    scale: "Scale 1:50 | Concrete: M35 | Cover: 25 mm",
+    title: "DRAWING S-03: PROPOSED TWO-WAY FLAT SLAB (175 mm) & DROP PANEL REINFORCEMENT",
+    scale: "Scale 1:50 | Proposed Concrete: M35 | Cover: 25 mm",
     bbs: [
       { mark: "S1-01", dia: "10 mm", shape: "Bottom Mesh Both Ways (@ 150 c/c)", cutL: "8,200", no: "54", wt: "273.0" },
       { mark: "S1-02", dia: "12 mm", shape: "Top Extra Bars over Column Strip (@ 120 c/c)", cutL: "3,200", no: "28", wt: "79.5" },
@@ -236,16 +235,16 @@ export const cadDrawingsData = {
       </g>
 
       <!-- Annotations -->
-      <text x="420" y="275" text-anchor="middle" font-size="13" font-weight="bold" fill="#10b981">BOTTOM MESH: T10 @ 150 mm c/c (BOTH WAYS)</text>
-      <text x="420" y="300" text-anchor="middle" font-size="11" fill="#38bdf8">SLAB THICKNESS = 175 mm | COVER = 25 mm</text>
+      <text x="420" y="275" text-anchor="middle" font-size="13" font-weight="bold" fill="#10b981">PROPOSED BOTTOM MESH: T10 @ 150 mm c/c (BOTH WAYS)</text>
+      <text x="420" y="300" text-anchor="middle" font-size="11" fill="#38bdf8">SLAB THICKNESS = 175 mm | CLEAR COVER = 25 mm</text>
       <text x="225" y="150" text-anchor="middle" font-size="10" font-weight="bold" fill="#ef4444">TOP EXTRA: T12 @ 120 c/c</text>
       <text x="690" y="150" text-anchor="middle" font-size="10" font-weight="bold" fill="#f59e0b">DROP PANEL: 2500×2500×75mm</text>
     `
   },
 
   stairs: {
-    title: "DRAWING S-04: DOGLEGGED FIRE ESCAPE STAIRCASE SECTION & REINFORCEMENT",
-    scale: "Scale 1:25 | Waist Slab: 150 mm | Tread: 300 mm | Riser: 150 mm",
+    title: "DRAWING S-04: PROPOSED DOGLEGGED FIRE ESCAPE STAIRCASE SECTION & REINFORCEMENT",
+    scale: "Scale 1:25 | Proposed Waist Slab: 150 mm | Tread: 300 mm | Riser: 150 mm",
     bbs: [
       { mark: "ST-01", dia: "12 mm", shape: "Main Tensile Rebar (@ 120 c/c)", cutL: "4,600", no: "14", wt: "57.1" },
       { mark: "ST-02", dia: "8 mm", shape: "Distribution Steel (@ 150 c/c)", cutL: "1,600", no: "30", wt: "18.9" },
@@ -281,13 +280,13 @@ export const cadDrawingsData = {
       <!-- Tread / Riser Dimension -->
       <text x="335" y="335" font-size="10" font-weight="bold" fill="#ffffff">Riser = 150 mm</text>
       <text x="385" y="285" font-size="10" font-weight="bold" fill="#ffffff">Tread = 300 mm</text>
-      <text x="420" y="550" text-anchor="middle" font-size="12" font-weight="bold" fill="#10b981">MAIN BARS: T12 @ 120 mm c/c</text>
+      <text x="420" y="550" text-anchor="middle" font-size="12" font-weight="bold" fill="#10b981">PROPOSED MAIN BARS: T12 @ 120 mm c/c</text>
       <text x="420" y="575" text-anchor="middle" font-size="10" fill="#f59e0b">DISTRIBUTION: T8 @ 150 mm c/c | WAIST SLAB = 150 mm</text>
     `
   },
 
   flooring: {
-    title: "DRAWING S-05: TYPICAL FLOORING, WATERPROOFING & WALL JUNCTION DETAIL",
+    title: "DRAWING S-05: PROPOSED FLOORING, WATERPROOFING & WALL JUNCTION DETAIL",
     scale: "Scale 1:10 | Floor Finish: 600 × 600 mm Vitrified Tiles",
     bbs: [
       { mark: "FL-01", dia: "—", shape: "600 × 600 mm Premium Vitrified GVT Tiles", cutL: "600", no: "18,400", wt: "—" },

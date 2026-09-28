@@ -681,7 +681,7 @@ function buildFullBimBuilding(containerGroup, interactiveList = null, kineticLou
           louver.position.set(bx, 1.15 + l * 0.48, buildingD / 2 + 2.05);
           louver.castShadow = true;
           registerInteractive(louver, {
-            name: 'Biomimetic AI Aerofoil Solar Louver',
+            name: 'Climate-Responsive Parametric Solar Louver',
             category: 'Passive Climate-Responsive Envelope',
             dim: '6,000 × 380 × 80 mm',
             area: '2.28 m²',
@@ -762,7 +762,7 @@ function buildFullBimBuilding(containerGroup, interactiveList = null, kineticLou
   const roofSlab = createRing(buildingW, buildingD, courtW, courtD, 0.35, slabMat);
   roofSlab.receiveShadow = true;
   registerInteractive(roofSlab, {
-    name: '10F Rooftop Sky Garden Deck & Running Track',
+    name: 'Roof Terrace Sky Garden Deck & Running Track',
     category: 'Bio-Solar Rooftop Amenity',
     dim: '40,000 × 30,000 × 350 mm',
     area: '976 m²',
@@ -1323,7 +1323,7 @@ export class WalkthroughEngine {
       {
         time: 27,
         name: 'Station 5: Rooftop Sky Garden & Solar Array',
-        title: '10F Bio-Solar Roof, Community Farm & 360° Skyline',
+        title: 'Roof Terrace Bio-Solar Skydeck, Community Farm & 360° Skyline',
         desc: '148 kWp bifacial solar PV canopy generating 185 MWh/yr, combined with resident urban farming plots, running track, and rainwater retention deck.',
         camPos: new THREE.Vector3(0, 56, 42),
         lookAt: new THREE.Vector3(0, 32, 0)

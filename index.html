@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AURA VERTICALIS | Sustainable B+G+9 Mixed-Use BIM Development</title>
-  <meta name="description" content="Urban Mixed-Use Sustainable Architectural Development (B+G+9) featuring commercial podium, luxury residential units, breathable central courtyard, climate-responsive facade, and full Autodesk BIM & Forma environmental analysis." />
+  <meta name="description" content="Urban Mixed-Use Sustainable Architectural Development (B+G+9) featuring commercial podium, 48 luxury residential units, breathable central courtyard from ground to roof, climate-responsive facade, and Autodesk BIM & Forma environmental workflows." />
   
   <!-- Modern Architectural Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,7 +41,6 @@
         <button class="nav-tab nav-tab-innovations" data-view="innovations" id="tab-innovations">
           <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
           <span>5 Core Innovations</span>
-          <span class="badge-innovate-pill">NEW & UNIQUE</span>
         </button>
         <button class="nav-tab" data-view="walkthrough" id="tab-walkthrough">
           <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
@@ -58,6 +57,10 @@
         <button class="nav-tab" data-view="environmental" id="tab-environmental">
           <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
           <span>Forma & Climate</span>
+        </button>
+        <button class="nav-tab" data-view="research" id="tab-research">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          <span>Research & References</span>
         </button>
         <button class="nav-tab" data-view="presentation" id="tab-presentation">
           <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
@@ -95,11 +98,11 @@
     <div class="status-ribbon">
       <div class="ribbon-metric">
         <span class="ribbon-label">PROGRAM:</span>
-        <span class="ribbon-val">B1 (EV Parking) + Ground (Retail) + 1F (Commercial) + 2F-9F (Residential)</span>
+        <span class="ribbon-val">B1 (24 EV Bays) + Ground (Retail & Lobby) + 1F (Commercial) + 2F-9F (48 Residential Units) + Roof Terrace</span>
       </div>
       <div class="ribbon-metric">
-        <span class="ribbon-label">PLOT SIZE:</span>
-        <span class="ribbon-val">48,000 mm × 36,000 mm (1,728 m²)</span>
+        <span class="ribbon-label">PLOT ENVELOPE:</span>
+        <span class="ribbon-val">48,000 mm × 36,000 mm (1,728 m² GFA)</span>
       </div>
       <div class="ribbon-metric">
         <span class="ribbon-label">TOTAL BUA:</span>
@@ -107,15 +110,15 @@
       </div>
       <div class="ribbon-metric highlight">
         <span class="ribbon-label">COURTYARD:</span>
-        <span class="ribbon-val">Biophilic Stack Cooling (224 m²)</span>
+        <span class="ribbon-val">Open Ground to Roof Stack (224 m²)</span>
       </div>
       <div class="ribbon-metric">
         <span class="ribbon-label">STRUCTURE:</span>
-        <span class="ribbon-val">RCC Frame (8m Grid) • M40 • Fe500D</span>
+        <span class="ribbon-val">Proposed RCC Frame (8m Grid) • M40/M35</span>
       </div>
       <div class="ribbon-metric green">
-        <span class="ribbon-label">FORMA EUI:</span>
-        <span class="ribbon-val">62.8 kWh/m²/yr (-51%)</span>
+        <span class="ribbon-label">TARGET EUI:</span>
+        <span class="ribbon-val">62.8 kWh/m²/yr (-51% vs Baseline)</span>
       </div>
     </div>
   </header>
@@ -150,11 +153,11 @@
             <button class="btn-preset" data-camera="podium" title="Commercial Podium">Podium (G+1)</button>
             <button class="btn-preset" data-camera="residential" title="Residential Balconies">Residential</button>
             <button class="btn-preset" data-camera="basement" title="Basement EV Parking">Basement</button>
-            <button class="btn-preset" data-camera="roof" title="Rooftop Bio-Terrace">Rooftop</button>
+            <button class="btn-preset" data-camera="roof" title="Roof Terrace">Roof Terrace</button>
             <button class="btn-preset" id="btnResetView" title="Reset Camera">Reset</button>
           </div>
 
-          <!-- 3D Shader Viewport Modes & CFD Flow Toggle (Innovation Feature) -->
+          <!-- 3D Shader Viewport Modes & CFD Flow Toggle -->
           <div class="shader-modes-bar">
             <span class="shader-lbl">Shader Mode:</span>
             <button class="btn-shader-mode active" data-shader="realistic" title="Standard Architectural PBR">Architectural Real</button>
@@ -179,9 +182,9 @@
               <button class="pill-lvl active" data-lvl="all">All</button>
               <button class="pill-lvl" data-lvl="B1">B1 (EV)</button>
               <button class="pill-lvl" data-lvl="G">G (Retail)</button>
-              <button class="pill-lvl" data-lvl="L1">1F (F&B)</button>
-              <button class="pill-lvl" data-lvl="L2_9">2-9F (Res)</button>
-              <button class="pill-lvl" data-lvl="RF">Roof</button>
+              <button class="pill-lvl" data-lvl="L1">1F (Commercial)</button>
+              <button class="pill-lvl" data-lvl="L2_9">2-9F (48 Res)</button>
+              <button class="pill-lvl" data-lvl="RF">Roof Terrace</button>
             </div>
           </div>
 
@@ -189,7 +192,7 @@
           <div class="sun-controller glass-panel">
             <div class="controller-header">
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-              <span>AUTODESK FORMA SOLAR SIMULATOR</span>
+              <span>SOLAR ORIENTATION SIMULATOR</span>
             </div>
             <div class="slider-row">
               <span class="slider-label">06:00</span>
@@ -230,26 +233,26 @@
               <label class="layer-toggle-item">
                 <input type="checkbox" id="layerStructure" checked />
                 <span class="custom-check"></span>
-                <span class="layer-name">RCC Structural Skeleton (Beams/Cols/Slabs)</span>
+                <span class="layer-name">RCC Structural Skeleton (Proposed Framing)</span>
                 <span class="layer-badge">Revit Struct</span>
               </label>
               <label class="layer-toggle-item">
                 <input type="checkbox" id="layerLouvers" checked />
                 <span class="custom-check"></span>
-                <span class="layer-name">Parametric Kinetic Solar Louvers</span>
+                <span class="layer-name">Parametric Solar Shading Louvers</span>
                 <span class="layer-badge">Climate</span>
               </label>
               <label class="layer-toggle-item">
                 <input type="checkbox" id="layerLandscape" checked />
                 <span class="custom-check"></span>
-                <span class="layer-name">Central Courtyard & Vertical Greenery</span>
+                <span class="layer-name">Central Courtyard (Ground to Roof)</span>
                 <span class="layer-badge">Biophilic</span>
               </label>
               <label class="layer-toggle-item">
                 <input type="checkbox" id="layerBasementEV" checked />
                 <span class="custom-check"></span>
-                <span class="layer-name">Basement Car Parking & EV Chargers</span>
-                <span class="layer-badge">Level -1</span>
+                <span class="layer-name">Basement Parking (24 EV Bays)</span>
+                <span class="layer-badge">Level B1</span>
               </label>
               <label class="layer-toggle-item">
                 <input type="checkbox" id="layerMEP" checked />
@@ -273,7 +276,7 @@
                 <span class="element-icon" id="elemIcon">🏢</span>
                 <div>
                   <h4 class="element-title" id="elemTitle">Central Biophilic Courtyard</h4>
-                  <span class="element-category" id="elemCategory">Microclimate Core • Stack Effect</span>
+                  <span class="element-category" id="elemCategory">Microclimate Core • Ground to Roof</span>
                 </div>
               </div>
               <div class="element-props-table" id="elemPropsTable">
@@ -283,7 +286,7 @@
                 </div>
                 <div class="prop-row">
                   <span class="prop-key">Floor Area</span>
-                  <span class="prop-val" id="elemArea">224 m² (Open to Sky)</span>
+                  <span class="prop-val" id="elemArea">224 m² (Open Ground to Roof)</span>
                 </div>
                 <div class="prop-row">
                   <span class="prop-key">Revit Family</span>
@@ -305,24 +308,24 @@
           <div class="sidebar-section">
             <div class="section-title-wrap">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-              <h3>SUSTAINABILITY HIGHLIGHTS</h3>
+              <h3>KEY DESIGN METRICS</h3>
             </div>
             <div class="mini-metrics-grid">
               <div class="mini-metric">
                 <span class="num">82.4%</span>
-                <span class="lbl">Daylight Autonomy (sDA)</span>
+                <span class="lbl">Target sDA Daylight</span>
               </div>
               <div class="mini-metric">
                 <span class="num">-51%</span>
-                <span class="lbl">Energy Reduction (EUI)</span>
+                <span class="lbl">Target EUI Savings</span>
               </div>
               <div class="mini-metric">
-                <span class="num">48 EV</span>
+                <span class="num">24 EV</span>
                 <span class="lbl">Fast Charging Bays</span>
               </div>
               <div class="mini-metric">
-                <span class="num">100%</span>
-                <span class="lbl">Rainwater Recycled</span>
+                <span class="num">48</span>
+                <span class="lbl">Residential Apartments</span>
               </div>
             </div>
           </div>
@@ -330,15 +333,15 @@
       </div>
     </section>
 
-    <!-- VIEW: 5 GROUNDBREAKING ARCHITECTURAL & BIM INNOVATIONS -->
+    <!-- VIEW 2: 5 CORE ARCHITECTURAL & BIM INNOVATIONS -->
     <section class="view-panel" id="view-innovations">
       <div class="innovations-container">
         <!-- Innovations Hero Header -->
         <div class="innovations-hero-card glass-panel">
           <div class="hero-left">
-            <span class="badge-innovate-pill">5 WORLD-FIRST ARCHITECTURAL & BIM INNOVATIONS</span>
-            <h2 class="view-heading">Groundbreaking Innovation Hub</h2>
-            <p class="view-sub">Unprecedented engineering milestones in climate-responsive kinetic facades, passive stack cooling, digital twin circular passports, neuro-architecture, and generative floor plan morphing.</p>
+            <span class="badge-innovate-pill">5 CORE ARCHITECTURAL & BIM INNOVATIONS</span>
+            <h2 class="view-heading">Climate-Responsive Design & Innovation Hub</h2>
+            <p class="view-sub">Engineering and architectural strategies centered on climate-responsive modular façades, natural courtyard stack cooling, digital BIM material passports, neuro-architecture, and modular space planning.</p>
           </div>
           <div class="innovations-quick-stats">
             <div class="stat-pill">
@@ -363,36 +366,37 @@
         <!-- 5 Innovations Grid Cards -->
         <div class="innovations-grid">
 
-          <!-- INNOVATION 1: Biomimetic AI Aerofoil Kinetic Facade -->
+          <!-- INNOVATION 1: Climate-Responsive Modular Façade System -->
           <div class="innov-card glass-panel">
             <div class="innov-card-header">
               <div class="innov-badge-wrap">
                 <span class="innov-num">01</span>
                 <span class="innov-tag">CLIMATE ENVELOPE</span>
               </div>
-              <h3 class="innov-title">Biomimetic AI Aerofoil Kinetic Facade</h3>
+              <h3 class="innov-title">Climate-Responsive Modular Façade System</h3>
             </div>
-            <p class="innov-short-desc">Motorized anodized bronze aerofoils dynamically track the solar azimuth like heliotropic flora, eliminating peak cooling loads.</p>
+            <p class="innov-short-desc">A 4-element integrated envelope engineered for solar mitigation, thermal comfort, natural lighting, and acoustic tranquility.</p>
             
             <ul class="innov-points-list">
-              <li><strong>☀️ Solar Tracking Mode:</strong> Blocks 85% peak summer solar radiation while preserving 82% daylight autonomy (sDA).</li>
-              <li><strong>🌪️ Vortex Wind Catching:</strong> Aerofoils rotate to 28° to scoop prevailing breezes directly into the central courtyard.</li>
-              <li><strong>⛈️ Storm Drag Reduction:</strong> Folds flush (0°) during high winds, reducing facade wind pressure by 46%.</li>
+              <li><strong>1. External Shading Louvers:</strong> Solar-angle tuned powder-coated aluminum louvers blocking 85% peak infrared heat while preserving diffuse daylight.</li>
+              <li><strong>2. Recessed Windows:</strong> Deep reveal window placements to cut direct glare and eliminate solar thermal gain.</li>
+              <li><strong>3. Green Balconies:</strong> Continuous cantilevered balconies with native flora planter boxes providing 4.2°C evaporative microclimate buffering.</li>
+              <li><strong>4. Operable Ventilation Openings:</strong> Dual-aspect high-performance Low-E acoustic windows enabling natural cross-ventilation.</li>
             </ul>
 
             <!-- Interactive Actuator Widget -->
             <div class="innov-widget-box">
-              <span class="widget-label">🎮 Interactive Facade Actuator:</span>
+              <span class="widget-label">🎮 Interactive Façade Mode Controls:</span>
               <div class="facade-mode-btns-row">
-                <button class="btn-facade-mode active" data-facade-mode="solar">☀️ Solar Track</button>
-                <button class="btn-facade-mode" data-facade-mode="vortex">🌪️ Wind Vortex</button>
-                <button class="btn-facade-mode" data-facade-mode="storm">⛈️ Storm Drag</button>
+                <button class="btn-facade-mode active" data-facade-mode="solar">☀️ Solar Shading</button>
+                <button class="btn-facade-mode" data-facade-mode="vortex">🌪️ Wind Catching</button>
+                <button class="btn-facade-mode" data-facade-mode="storm">⛈️ Storm Aerodynamic</button>
                 <button class="btn-facade-mode" data-facade-mode="night">🌙 Night Cooling</button>
               </div>
               <div class="telemetry-row">
                 <div class="tel-item">
                   <span class="tel-label">LOUVER ANGLE:</span>
-                  <span class="tel-val" id="facadeAngleVal">42.5° (Solar Tracking)</span>
+                  <span class="tel-val" id="facadeAngleVal">42.5° (Solar Shading Mode)</span>
                 </div>
                 <div class="tel-item">
                   <span class="tel-label">GLARE INDEX:</span>
@@ -402,21 +406,22 @@
             </div>
           </div>
 
-          <!-- INNOVATION 2: Convective Thermal Chimney CFD Particle System -->
+          <!-- INNOVATION 2: Convective Thermal Chimney CFD Stack -->
           <div class="innov-card glass-panel">
             <div class="innov-card-header">
               <div class="innov-badge-wrap">
                 <span class="innov-num">02</span>
-                <span class="innov-tag">PASSIVE CFD COOLING</span>
+                <span class="innov-tag">PASSIVE STACK COOLING</span>
               </div>
-              <h3 class="innov-title">3D Convective Thermal Chimney & CFD Stack</h3>
+              <h3 class="innov-title">Central Courtyard Thermal Chimney & CFD Stack</h3>
             </div>
-            <p class="innov-short-desc">224 m² open-to-sky central courtyard acts as a zero-energy buoyancy thermal chimney, cooling all 9 upper residential floors naturally.</p>
+            <p class="innov-short-desc">16m × 14m (224 m²) open-to-sky central courtyard extending from Ground to Roof, acting as the building's respiratory core.</p>
             
             <ul class="innov-points-list">
-              <li><strong>🌿 4.5 Air Changes / Hour:</strong> Continuous upward buoyancy vents hot stale air out through the roof without mechanical fans.</li>
-              <li><strong>💧 -4.2°C Evaporative Core Cooling:</strong> Courtyard reflection pond and misting nozzles drop ground air temperature.</li>
-              <li><strong>🌀 800-Particle Live CFD Engine:</strong> Real-time buoyant thermal velocity particles rendered directly in the 3D BIM model.</li>
+              <li><strong>🌿 Natural Stack Effect:</strong> Draws cool ground-level air across reflection pond and exhausts warm stale air upwards through the roof.</li>
+              <li><strong>💨 Target 4.5 Air Changes / Hour:</strong> Passive buoyancy airflow cooling all 48 residential apartments naturally.</li>
+              <li><strong>☀️ 100% Daylit Corridors:</strong> Eliminates daytime artificial lighting along residential access walkways.</li>
+              <li><strong>🌀 Real-Time Buoyancy Simulation:</strong> 3D interactive convective thermal airflow visualization in the BIM viewport.</li>
             </ul>
 
             <!-- Interactive Chimney Damper Widget -->
@@ -428,39 +433,39 @@
               <input type="range" id="chimneyDamperSlider" min="0" max="100" value="80" class="custom-slider" />
               <div class="telemetry-row">
                 <div class="tel-item">
-                  <span class="tel-label">PASSIVE AIRFLOW:</span>
-                  <span class="tel-val" id="chimneyAchVal">4.5 ACH (Zero-Fan)</span>
+                  <span class="tel-label">TARGET AIRFLOW:</span>
+                  <span class="tel-val" id="chimneyAchVal">4.5 ACH (Target Passive Airflow)</span>
                 </div>
                 <div class="tel-item">
-                  <span class="tel-label">CORE TEMPERATURE:</span>
-                  <span class="tel-val" id="chimneyTempDropVal">-4.2°C Core Cooling</span>
+                  <span class="tel-label">MICROCLIMATE:</span>
+                  <span class="tel-val" id="chimneyTempDropVal">-4.2°C Courtyard Microclimate</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- INNOVATION 3: Embodied Carbon Heatmap & Circular Material Passport -->
+          <!-- INNOVATION 3: Embodied Carbon & Circular Material Passports -->
           <div class="innov-card glass-panel">
             <div class="innov-card-header">
               <div class="innov-badge-wrap">
                 <span class="innov-num">03</span>
-                <span class="innov-tag">LCA & CIRCULAR DIGITAL TWIN</span>
+                <span class="innov-tag">LCA & CIRCULAR BIM</span>
               </div>
-              <h3 class="innov-title">Digital Twin Material Passport & Low-Carbon Slag</h3>
+              <h3 class="innov-title">Digital BIM Material Passports & Low-Carbon Slag</h3>
             </div>
-            <p class="innov-short-desc">ISO 14040/44 verified Life Cycle Assessment with dynamic GGBS bio-slag concrete optimizer and circular QR material passports.</p>
+            <p class="innov-short-desc">ISO 14040/44 compliant Life Cycle Assessment with GGBS industrial by-product concrete optimizer and circular component logging.</p>
             
             <ul class="innov-points-list">
-              <li><strong>📉 -51% Embodied Carbon:</strong> Slashes carbon intensity from 520 kgCO₂e/m² down to 260 kgCO₂e/m².</li>
-              <li><strong>♻️ 2,700 Metric Tons CO₂ Eliminated:</strong> Replaces 40% to 60% Portland cement with blast furnace bio-slag.</li>
-              <li><strong>📲 95% Circular Disassembly Score:</strong> Every structural component logged in a verifiable digital twin material passport.</li>
+              <li><strong>📉 -51% Embodied Carbon Target:</strong> Reduces baseline carbon intensity from 520 kgCO₂e/m² down to 310 kgCO₂e/m².</li>
+              <li><strong>♻️ Up to 60% GGBS Concrete Substitution:</strong> Replaces ordinary Portland cement with blast furnace slag by-product.</li>
+              <li><strong>📲 Verifiable Material Logging:</strong> Every structural bay, slab, and panel assigned deconstruction and circularity parameters in BIM.</li>
             </ul>
 
-            <!-- Interactive GGBS Slider & Passport Selector -->
+            <!-- Interactive GGBS Slider -->
             <div class="innov-widget-box">
               <div class="slider-header-row">
-                <span class="widget-label">🎮 GGBS Bio-Slag Replacement:</span>
-                <span class="tel-val" id="ggbsVal">40% GGBS Blend</span>
+                <span class="widget-label">🎮 GGBS Slag Replacement Blend:</span>
+                <span class="tel-val" id="ggbsVal">40% GGBS Slag Blend</span>
               </div>
               <input type="range" id="ggbsSlider" min="0" max="60" value="40" class="custom-slider" />
               <div class="telemetry-row">
@@ -469,28 +474,28 @@
                   <span class="tel-val" id="carbonBudgetVal">312 kgCO₂e/m² (-40%)</span>
                 </div>
                 <div class="tel-item">
-                  <span class="tel-label">TOTAL CO₂ SAVED:</span>
-                  <span class="tel-val" id="co2SavedTotal">1,080 Metric Tons</span>
+                  <span class="tel-label">TOTAL CO₂ OFFSET:</span>
+                  <span class="tel-val" id="co2SavedTotal">1,080 Metric Tons CO₂</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- INNOVATION 4: Biophilic Acoustic & Circadian Neuro-Architecture -->
+          <!-- INNOVATION 4: Biophilic Acoustic & Circadian Architecture -->
           <div class="innov-card glass-panel">
             <div class="innov-card-header">
               <div class="innov-badge-wrap">
                 <span class="innov-num">04</span>
-                <span class="innov-tag">WELL V2 PLATINUM NEURO-ARCH</span>
+                <span class="innov-tag">WELL V2 PLATINUM TARGET</span>
               </div>
               <h3 class="innov-title">Circadian Lighting & -37 dB Green Noise Barrier</h3>
             </div>
-            <p class="innov-short-desc">Integrates WELL v2 Platinum circadian melanopic spectrum tuning and layered biophilic green balconies for restorative quiet.</p>
+            <p class="innov-short-desc">Integrates WELL v2 circadian spectrum daylight design and layered biophilic green balconies for restorative quiet luxury.</p>
             
             <ul class="innov-points-list">
-              <li><strong>🌅 24-Hour Circadian Tuning (2700K - 6500K):</strong> Matches human cortisol & melatonin rhythms for peak cognitive focus.</li>
-              <li><strong>🍃 -37 dB Botanical Noise Dampening:</strong> Dense balcony vegetation buffers urban street noise from 75 dB down to 38 dB.</li>
-              <li><strong>🎧 Generative Biophilic Soundscape:</strong> Synthesizes natural flowing water and wind frequencies via Web Audio API.</li>
+              <li><strong>🌅 24-Hour Circadian Lighting Design (2700K - 6500K):</strong> Promotes natural human melatonin and cortisol rhythm balance.</li>
+              <li><strong>🍃 -37 dB Botanical Noise Attenuation:</strong> Dense balcony planter buffers drop street traffic noise from 75 dB to 38 dB.</li>
+              <li><strong>🎧 Organic Biophilic Ambience:</strong> Native wind-whisper and water cascade acoustics for enhanced cognitive wellness.</li>
             </ul>
 
             <!-- Interactive Circadian Clock Widget -->
@@ -503,48 +508,48 @@
               <div class="telemetry-row">
                 <div class="tel-item">
                   <span class="tel-label">MELANOPIC LUX:</span>
-                  <span class="tel-val" id="melanopicLuxVal">480 EML (Peak Alertness)</span>
+                  <span class="tel-val" id="melanopicLuxVal">480 EML (WELL Target)</span>
                 </div>
                 <div class="tel-item">
                   <span class="tel-label">RESIDENTIAL NOISE:</span>
-                  <span class="tel-val" id="interiorNoiseVal">38 dB (Tranquil Whisper)</span>
+                  <span class="tel-val" id="interiorNoiseVal">38 dB (Tranquil Interior)</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- INNOVATION 5: AI Generative Parametric Apartment Synthesizer -->
+          <!-- INNOVATION 5: Parametric Modular Space Planning -->
           <div class="innov-card glass-panel">
             <div class="innov-card-header">
               <div class="innov-badge-wrap">
                 <span class="innov-num">05</span>
-                <span class="innov-tag">GENERATIVE AI BLUEPRINT</span>
+                <span class="innov-tag">PARAMETRIC PLANNING</span>
               </div>
-              <h3 class="innov-title">AI Parametric Floor Plan Morphing Engine</h3>
+              <h3 class="innov-title">Parametric Unit Configuration & Modular Space Planning</h3>
             </div>
-            <p class="innov-short-desc">Algorithmic generative blueprint synthesizer that live-morphs residential room layouts based on real-time occupant lifestyle priorities.</p>
+            <p class="innov-short-desc">Parametric modular configuration tool demonstrating dynamic space planning for 2BHK (92m²), 1BHK (55m²), and 3BHK (145m²) typologies.</p>
             
             <ul class="innov-points-list">
-              <li><strong>🔄 Dynamic Room Geometry Morphing:</strong> Seamlessly shifts between 2BHK Luxury, 1BHK Studio, and 3BHK Penthouse in real-time.</li>
-              <li><strong>💻 Smart WFH Flex Pod:</strong> Dynamically partitions living space to create an acoustic home office with natural daylight.</li>
-              <li><strong>🌿 Parametric Balcony Depth (1.8m - 3.2m):</strong> Expands private garden terraces based on biophilic wellness preference.</li>
+              <li><strong>🔄 Modular Typology Coordination:</strong> Standardized 8m grid allowing 6 harmonious units per floor (3x 2BHK, 2x 1BHK, 1x 3BHK).</li>
+              <li><strong>💻 Work-from-Home Flexibility:</strong> Integrated study alcoves with dedicated acoustic separation and natural daylight access.</li>
+              <li><strong>🌿 Shaded Private Balconies (1.8m depth):</strong> Dedicated outdoor green terraces for all 48 residential units.</li>
             </ul>
 
             <!-- Interactive Generative Synthesizer Controls -->
             <div class="innov-widget-box">
               <div class="slider-header-row">
                 <span class="widget-label">🎮 WFH / Living Space Priority:</span>
-                <span class="tel-val" id="wfhWeightVal">60% WFH Flex</span>
+                <span class="tel-val" id="wfhWeightVal">60% WFH Flexibility</span>
               </div>
               <input type="range" id="wfhWeightSlider" min="0" max="100" value="60" class="custom-slider" />
               <div class="telemetry-row">
                 <div class="tel-item">
-                  <span class="tel-label">SYNTHESIZED UNIT:</span>
-                  <span class="tel-val" id="genUnitTypeVal">2BHK Hybrid Work-Live Suite</span>
+                  <span class="tel-label">SELECTED UNIT:</span>
+                  <span class="tel-val" id="genUnitTypeVal">2BHK Deluxe Suite (92 m²)</span>
                 </div>
                 <div class="tel-item">
-                  <span class="tel-label">NET USABLE AREA:</span>
-                  <span class="tel-val" id="genAreaVal">98.5 m² (Efficiency 91.2%)</span>
+                  <span class="tel-label">FLOOR AREA:</span>
+                  <span class="tel-val" id="genAreaVal">92.0 m² (Efficiency 91.2%)</span>
                 </div>
               </div>
             </div>
@@ -554,19 +559,19 @@
       </div>
     </section>
 
-    <!-- VIEW 2: 30-SECOND CINEMATIC WALKTHROUGH & PHOTOREALISTIC RENDERS -->
+    <!-- VIEW 3: 30-SECOND CINEMATIC WALKTHROUGH & PHOTOREALISTIC RENDERS -->
     <section class="view-panel" id="view-walkthrough">
       <div class="walkthrough-container">
         
-        <!-- PHOTOREALISTIC FINAL BUILDING SHOWCASE GALLERY (USER HIGHLIGHT) -->
+        <!-- PHOTOREALISTIC FINAL BUILDING SHOWCASE GALLERY -->
         <div class="photorealistic-showcase-card glass-panel">
           <div class="gallery-header">
             <div>
-              <span class="badge-walkthrough">📸 PHOTOREALISTIC FINAL BUILDING SHOWCASE</span>
-              <h2 class="view-heading">Aura Verticalis Final Real-World Visualization</h2>
-              <p class="view-sub">Photorealistic architectural photography showcasing the built high-rise tower, breathable central courtyard atrium, and 10F bio-solar rooftop skyline.</p>
+              <span class="badge-walkthrough">📸 PHOTOREALISTIC ARCHITECTURAL VISUALIZATION</span>
+              <h2 class="view-heading">Aura Verticalis Architectural Visualization</h2>
+              <p class="view-sub">Photorealistic architectural renders showcasing the built high-rise tower, breathable central courtyard atrium, and sustainable roof terrace.</p>
             </div>
-            <span class="badge-tag">HYPER-REALISTIC 3D RENDERS</span>
+            <span class="badge-tag">REPRESENTATIVE 3D RENDERS</span>
           </div>
 
           <!-- 3 High-Resolution 16:9 Architectural Renders Grid -->
@@ -576,15 +581,15 @@
             <div class="render-card">
               <div class="render-img-wrap">
                 <img src="/renders/aura_hero_facade.jpg" alt="Aura Verticalis Exterior Hero Facade" class="render-img" loading="lazy" />
-                <div class="render-badge">EXTERIOR HERO PERSPECTIVE</div>
+                <div class="render-badge">EXTERIOR PERSPECTIVE</div>
               </div>
               <div class="render-info">
-                <h4>10-Story Mixed-Use High-Rise Tower</h4>
-                <p>Double-height ground retail arcade, commercial wellness skybridge, staggered residential balconies with lush hanging plants & bronze kinetic aerofoil solar louvers, topped by 148 kWp solar pergola.</p>
+                <h4>B+G+9 Mixed-Use High-Rise Tower</h4>
+                <p>Double-height ground retail arcade, commercial wellness skybridge, cantilevered residential balconies with hanging greenery & parametric solar louvers, topped by 148 kWp solar pergola.</p>
                 <div class="render-tags">
                   <span>B+G+9 Mixed-Use</span>
-                  <span>Kinetic Bronze Facade</span>
-                  <span>Ground Retail Plaza</span>
+                  <span>Modular Facade</span>
+                  <span>Ground Retail Arcade</span>
                 </div>
               </div>
             </div>
@@ -596,12 +601,12 @@
                 <div class="render-badge">CENTRAL BIOPHILIC ATRIUM</div>
               </div>
               <div class="render-info">
-                <h4>10-Story Breathable Botanical Stack</h4>
-                <p>224 m² open-to-sky courtyard atrium with natural evaporative reflection ponds, cascading stone water walls, timber skybridges, and 4.5 ACH passive stack cooling.</p>
+                <h4>Breathable Courtyard from Ground to Roof</h4>
+                <p>224 m² open-to-sky courtyard atrium with natural evaporative reflection ponds, cascading water wall, timber skybridges, and natural convective stack cooling.</p>
                 <div class="render-tags">
                   <span>Thermal Chimney</span>
                   <span>Timber Skywalks</span>
-                  <span>-4.2°C Core Cooling</span>
+                  <span>Ground to Roof Stack</span>
                 </div>
               </div>
             </div>
@@ -610,15 +615,15 @@
             <div class="render-card">
               <div class="render-img-wrap">
                 <img src="/renders/aura_rooftop_biosolar.jpg" alt="Aura Verticalis Rooftop Bio-Solar Sky Terrace" class="render-img" loading="lazy" />
-                <div class="render-badge">ROOFTOP BIO-SOLAR SKYDECK</div>
+                <div class="render-badge">ROOF TERRACE SKYDECK</div>
               </div>
               <div class="render-info">
-                <h4>10F Bio-Solar Pergola & Urban Farm</h4>
-                <p>148 kWp bifacial photovoltaic solar canopy generating 185,000 kWh/yr clean electricity, combined with resident organic agriculture plots, jogging track, and 360° panoramic city vistas.</p>
+                <h4>Roof Terrace Bio-Solar Pergola & Urban Farm</h4>
+                <p>148 kWp bifacial photovoltaic solar canopy generating clean electricity, combined with resident organic agriculture plots, jogging track, and 360° panoramic city vistas.</p>
                 <div class="render-tags">
-                  <span>148 kWp BIPV</span>
-                  <span>Community Organic Farm</span>
-                  <span>Panoramic Skyline</span>
+                  <span>148 kWp Solar BIPV</span>
+                  <span>Community Urban Farm</span>
+                  <span>Roof Terrace</span>
                 </div>
               </div>
             </div>
@@ -632,7 +637,7 @@
             <div>
               <span class="badge-walkthrough">LIVE 3D TRAJECTORY WALKTHROUGH</span>
               <h3 class="view-heading" style="font-size: 1.35rem;">30-Second Architectural Trajectory Flight</h3>
-              <p class="view-sub">Cinematic camera flight through all 5 architectural stations from the ground commercial plaza to the rooftop bio-solar skydeck.</p>
+              <p class="view-sub">Cinematic camera flight through all 5 key architectural stations from the ground commercial plaza to the roof terrace skydeck.</p>
             </div>
             <div class="walkthrough-status-badge" id="wtLiveStatus">
               <span class="pulse-dot"></span>
@@ -662,7 +667,7 @@
                 <div class="station-marker" style="left: 20%;" data-station="1" title="00:06 - Courtyard"></div>
                 <div class="station-marker" style="left: 42%;" data-station="2" title="00:13 - 1F Podium"></div>
                 <div class="station-marker" style="left: 65%;" data-station="3" title="00:20 - Residential Balcony"></div>
-                <div class="station-marker" style="left: 88%;" data-station="4" title="00:27 - Rooftop Sky Garden"></div>
+                <div class="station-marker" style="left: 88%;" data-station="4" title="00:27 - Roof Terrace"></div>
               </div>
               <div class="timeline-time-row">
                 <span id="wtCurrentTime">00:00</span>
@@ -701,7 +706,7 @@
                 <button class="chip-waypoint" data-waypoint="1">2. Biophilic Courtyard</button>
                 <button class="chip-waypoint" data-waypoint="2">3. 1F Commercial Deck</button>
                 <button class="chip-waypoint" data-waypoint="3">4. Residential Living</button>
-                <button class="chip-waypoint" data-waypoint="4">5. Sky Bio-Terrace</button>
+                <button class="chip-waypoint" data-waypoint="4">5. Roof Terrace</button>
               </div>
             </div>
           </div>
@@ -714,7 +719,7 @@
               <span class="wt-num">01</span>
               <h4>Ground Commercial Promenade</h4>
             </div>
-            <p>Active frontage with double-height storefronts, alfresco dining, clear sightlines, and porous pedestrian pathways pulling urban life into the development.</p>
+            <p>Active frontage with double-height storefronts, alfresco café seating, clear sightlines, and porous pedestrian pathways pulling urban life into the development.</p>
             <div class="wt-tag-list">
               <span class="wt-tag">Pedestrian Hub</span>
               <span class="wt-tag">Retail Arcade</span>
@@ -727,54 +732,57 @@
               <span class="wt-num">02</span>
               <h4>Central Biophilic Courtyard</h4>
             </div>
-            <p>An open-to-sky 224 m² botanical core acting as a natural thermal chimney, drawing cool ground air and venting warm air upward through all 9 upper floors.</p>
+            <p>An open-to-sky 224 m² botanical core extending from Ground to Roof, drawing cool ground air and venting warm air upward naturally.</p>
             <div class="wt-tag-list">
               <span class="wt-tag">Passive Stack Cooling</span>
               <span class="wt-tag">Water Reflection Pond</span>
-              <span class="wt-tag">Native Greenery</span>
+              <span class="wt-tag">Ground to Roof Stack</span>
             </div>
           </div>
 
           <div class="wt-card glass-panel">
             <div class="wt-card-header">
               <span class="wt-num">03</span>
-              <h4>Residential Balconies & Kinetic Facade</h4>
+              <h4>Residential Balconies & Shading Facade</h4>
             </div>
-            <p>Deep cantilevered balconies equipped with motorized aerofoil louvers, modular planter boxes, and double-glazed Low-E acoustic windows for quiet luxury living.</p>
+            <p>Deep cantilevered balconies equipped with parametric louvers, modular planter boxes, and double-glazed Low-E acoustic windows for quiet living.</p>
             <div class="wt-tag-list">
               <span class="wt-tag">Solar Shading</span>
               <span class="wt-tag">Noise Buffer</span>
-              <span class="wt-tag">Private Balconies</span>
+              <span class="wt-tag">48 Private Balconies</span>
             </div>
           </div>
 
           <div class="wt-card glass-panel">
             <div class="wt-card-header">
               <span class="wt-num">04</span>
-              <h4>Rooftop Sky Garden & Solar Pergola</h4>
+              <h4>Roof Terrace & Solar Pergola</h4>
             </div>
-            <p>148 kWp bifacial solar PV canopy generating clean renewable energy, integrated with community urban farming plots, meditation decks, and 360° city vistas.</p>
+            <p>148 kWp bifacial solar PV canopy generating clean renewable energy, integrated with community urban farming plots, yoga deck, and 360° city vistas.</p>
             <div class="wt-tag-list">
-              <span class="wt-tag">BIPV Solar Farm</span>
+              <span class="wt-tag">BIPV Solar Array</span>
               <span class="wt-tag">Urban Agriculture</span>
+              <span class="wt-tag">Roof Terrace</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- VIEW 3: ARCHITECTURAL FLOOR PLANS & UNIT LAYOUTS -->
+    <!-- VIEW 4: ARCHITECTURAL FLOOR PLANS & UNIT LAYOUTS -->
     <section class="view-panel" id="view-plans">
       <div class="plans-container">
         <!-- Plans Header & Level Switcher -->
         <div class="plans-nav-card glass-panel">
           <div class="plans-nav-title">
             <h2 class="view-heading">Architectural Floor Plans & Metric Layouts</h2>
-            <p class="view-sub">All dimensions assumed and specified in metric (mm) units. Full programmatic zoning from B1 to 9th Floor.</p>
+            <p class="view-sub">All dimensions assumed and specified in metric (mm) units. Full programmatic zoning from B1 to Roof Terrace (48 residential units total).</p>
           </div>
 
           <div class="level-selector-tabs" id="floorLevelSelector">
             <button class="btn-floor-tab active" data-floor="B1">
               <span class="floor-code">B1</span>
-              <span class="floor-desc">Basement Parking & EV Hub</span>
+              <span class="floor-desc">Basement Parking (24 EV Bays)</span>
             </button>
             <button class="btn-floor-tab" data-floor="G">
               <span class="floor-code">G</span>
@@ -782,15 +790,15 @@
             </button>
             <button class="btn-floor-tab" data-floor="1F">
               <span class="floor-code">1F</span>
-              <span class="floor-desc">Commercial & Wellness Deck</span>
+              <span class="floor-desc">Commercial & Community Floor</span>
             </button>
             <button class="btn-floor-tab" data-floor="TYP">
               <span class="floor-code">2F-9F</span>
-              <span class="floor-desc">Typical Residential Units</span>
+              <span class="floor-desc">Typical Residential (6 Units/Floor)</span>
             </button>
             <button class="btn-floor-tab" data-floor="ROOF">
-              <span class="floor-code">10F</span>
-              <span class="floor-desc">Bio-Solar Sky Terrace</span>
+              <span class="floor-code">ROOF</span>
+              <span class="floor-desc">Roof Terrace & Solar Deck</span>
             </button>
           </div>
         </div>
@@ -802,7 +810,7 @@
             <div class="canvas-top-bar">
               <div class="plan-info-badge">
                 <span class="dot-indicator"></span>
-                <span id="currentPlanTitle">Level B1: Automated Basement Parking & EV Supercharging Hub</span>
+                <span id="currentPlanTitle">Level B1: Automated Basement Parking & EV Fast Charging Hub</span>
               </div>
               <div class="plan-tools">
                 <span class="scale-label">Grid: 8,000 × 8,000 mm | Scale 1:200</span>
@@ -846,9 +854,9 @@
 
             <!-- Residential Unit Layouts Showcase (when Typical Floor selected) -->
             <div class="unit-types-section" id="unitTypesSection">
-              <h4>Residential Unit Typologies</h4>
+              <h4>Residential Unit Typologies (6 Units / Floor • 48 Total)</h4>
               <div class="unit-typology-selector">
-                <button class="unit-btn active" data-unit="2bhk">2BHK Luxury (92 m²)</button>
+                <button class="unit-btn active" data-unit="2bhk">2BHK Deluxe (92 m²)</button>
                 <button class="unit-btn" data-unit="1bhk">1BHK Studio (55 m²)</button>
                 <button class="unit-btn" data-unit="3bhk">3BHK Penthouse (145 m²)</button>
               </div>
@@ -861,14 +869,14 @@
       </div>
     </section>
 
-    <!-- VIEW 4: STRUCTURAL 2D CAD & DETAILING -->
+    <!-- VIEW 5: STRUCTURAL 2D CAD & DETAILING -->
     <section class="view-panel" id="view-structural">
       <div class="structural-container">
         <div class="structural-nav-card glass-panel">
           <div>
-            <span class="badge-tag">STRUCTURAL BIM & REINFORCEMENT DRAWINGS</span>
+            <span class="badge-tag">PROPOSED STRUCTURAL SYSTEM & REINFORCEMENT DRAWINGS</span>
             <h2 class="view-heading">Structural Modeling & 2D Detailing Suite</h2>
-            <p class="view-sub">Reinforced concrete detailing (RCC), rebar curtailment, BBS schedule, beam, column, slab, and staircase engineering drawings conforming to IS 456 & IS 13920.</p>
+            <p class="view-sub">Proposed reinforced concrete detailing (RCC), rebar curtailment, BBS schedule, beam, column, slab, and staircase drawings conforming to IS 456:2000 & IS 13920:2016 ductile detailing principles.</p>
           </div>
           <div class="drawing-selector-tabs" id="cadDrawingSelector">
             <button class="btn-cad-tab active" data-drawing="beam">
@@ -900,10 +908,10 @@
             <div class="cad-top-bar">
               <div class="cad-title-wrap">
                 <span class="cad-status-dot"></span>
-                <span id="cadDwgTitle">DRAWING S-01: CONTINUOUS BEAM B1 (300×600mm) REINFORCEMENT & SECTION</span>
+                <span id="cadDwgTitle">DRAWING S-01: PROPOSED CONTINUOUS BEAM B1 (300×600mm) REINFORCEMENT & SECTION</span>
               </div>
               <div class="cad-actions">
-                <span class="cad-scale">Units: mm | Material: M40 Concrete / Fe500D TMT</span>
+                <span class="cad-scale">Units: mm | Proposed: M40 / M35 Concrete • Fe500D TMT</span>
                 <button class="btn-cad-action" id="btnCadZoomIn" title="Zoom In">+</button>
                 <button class="btn-cad-action" id="btnCadZoomOut" title="Zoom Out">-</button>
                 <button class="btn-cad-action" id="btnCadReset" title="Reset View">1:1</button>
@@ -918,9 +926,9 @@
             <!-- Engineering Title Block -->
             <div class="cad-title-block">
               <div class="tb-item"><strong>PROJECT:</strong> AURA VERTICALIS B+G+9 MIXED-USE</div>
-              <div class="tb-item"><strong>DISCIPLINE:</strong> STRUCTURAL BIM (REINFORCEMENT)</div>
-              <div class="tb-item"><strong>CONCRETE:</strong> M40 (Cols/Foundations) • M35 (Beams/Slabs)</div>
-              <div class="tb-item"><strong>STEEL:</strong> Fe500D High Ductility TMT Rebar</div>
+              <div class="tb-item"><strong>DISCIPLINE:</strong> PROPOSED STRUCTURAL BIM (REINFORCEMENT)</div>
+              <div class="tb-item"><strong>PROPOSED CONCRETE:</strong> M40 (Cols/Foundations) • M35 (Beams/Slabs)</div>
+              <div class="tb-item"><strong>PROPOSED STEEL:</strong> Fe500D High Ductility TMT Rebar</div>
               <div class="tb-item"><strong>CLEAR COVER:</strong> Slabs 25mm • Beams 30mm • Columns 40mm</div>
             </div>
           </div>
@@ -952,10 +960,10 @@
 
             <!-- Structural Design Criteria & Notes -->
             <div class="structural-notes-box">
-              <h4>Engineering Design Parameters</h4>
+              <h4>Proposed Engineering Design Parameters</h4>
               <ul class="notes-list">
-                <li><strong>Dead Load:</strong> Self-weight calculated automatically in Revit + Floor Finish 1.5 kN/m² + Partition 1.0 kN/m²</li>
-                <li><strong>Live Load:</strong> Commercial (Ground/1F) 4.0 kN/m² • Residential (2-9F) 2.0 kN/m² • Balconies 3.0 kN/m² • Basement 5.0 kN/m²</li>
+                <li><strong>Proposed Dead Load:</strong> Self-weight in Revit + Floor Finish 1.5 kN/m² + Partition 1.0 kN/m²</li>
+                <li><strong>Proposed Live Load:</strong> Commercial (Ground/1F) 4.0 kN/m² • Residential (2-9F) 2.0 kN/m² • Balconies 3.0 kN/m² • Basement 5.0 kN/m²</li>
                 <li><strong>Seismic Zone:</strong> Zone III (Z = 0.16, Importance factor I = 1.2, Response reduction R = 5.0 SMRF)</li>
                 <li><strong>Wind Speed:</strong> Basic wind speed Vb = 39 m/s, Terrain Category 2</li>
                 <li><strong>Ductile Detailing:</strong> All beam-column joints detailed per IS 13920:2016 with 135° hook anchorage.</li>
@@ -966,19 +974,19 @@
       </div>
     </section>
 
-    <!-- VIEW 5: AUTODESK FORMA & ENVIRONMENTAL CLIMATE ANALYSIS -->
+    <!-- VIEW 6: CONCEPTUAL ENVIRONMENTAL & CLIMATE ANALYSIS -->
     <section class="view-panel" id="view-environmental">
       <div class="environmental-container">
         <div class="environmental-hero glass-panel">
           <div>
-            <span class="badge-green">AUTODESK FORMA SITE & CLIMATE RESPONSIVE DESIGN</span>
+            <span class="badge-green">CONCEPTUAL ENVIRONMENTAL & CLIMATE RESPONSIVE ANALYSIS</span>
             <h2 class="view-heading">Environmental Simulation & Microclimate Analysis</h2>
-            <p class="view-sub">Comprehensive site orientation, sun path daylight autonomy, wind CFD stack ventilation, and carbon lifecycle metrics.</p>
+            <p class="view-sub">Comprehensive site orientation, sun path daylight autonomy, wind CFD stack ventilation, and carbon lifecycle metrics modeled in alignment with Autodesk Forma & Insight workflows.</p>
           </div>
           <div class="forma-score-badge">
-            <span class="score-label">FORMA SUSTAINABILITY INDEX</span>
+            <span class="score-label">TARGET SUSTAINABILITY INDEX</span>
             <span class="score-val">94.8 / 100</span>
-            <span class="score-grade">LEED Platinum Ready • IGBC Green</span>
+            <span class="score-grade">LEED Platinum / IGBC Platinum Target</span>
           </div>
         </div>
 
@@ -989,16 +997,16 @@
             <div class="forma-card-header">
               <div class="header-left">
                 <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
-                <h4>Daylight Autonomy & Solar Hours</h4>
+                <h4>Target Daylight Autonomy & Solar Hours</h4>
               </div>
-              <span class="metric-pill">sDA: 82.4%</span>
+              <span class="metric-pill">Target sDA: 82.4%</span>
             </div>
             <div class="chart-container-box">
               <canvas id="daylightChart"></canvas>
             </div>
             <div class="card-footer-stats">
-              <div><strong>Spatial Daylight Autonomy (sDA):</strong> 82.4% (> 300 lux for 50% hours)</div>
-              <div><strong>Annual Sunlight Exposure (ASE):</strong> 6.8% (Gliss-free, optimal comfort)</div>
+              <div><strong>Target Spatial Daylight Autonomy (sDA):</strong> 82.4% (> 300 lux for 50% daytime hours)</div>
+              <div><strong>Annual Sunlight Exposure (ASE):</strong> 6.8% (Comfortable, low-glare target)</div>
             </div>
           </div>
 
@@ -1007,16 +1015,16 @@
             <div class="forma-card-header">
               <div class="header-left">
                 <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2M9.6 4.6A2 2 0 1 1 11 8H2M12.6 19.4A2 2 0 1 0 14 16H2"/></svg>
-                <h4>Microclimate Wind & Stack Effect</h4>
+                <h4>Courtyard Stack Ventilation Flow</h4>
               </div>
-              <span class="metric-pill green">Lawson Comfort: A</span>
+              <span class="metric-pill green">Lawson Target: A</span>
             </div>
             <div class="chart-container-box">
               <canvas id="windChart"></canvas>
             </div>
             <div class="card-footer-stats">
-              <div><strong>Pedestrian Comfort:</strong> Lawson A (Sitting/Strolling everywhere)</div>
-              <div><strong>Courtyard Airflow:</strong> 1.8 - 2.4 m/s natural vertical stack updraft</div>
+              <div><strong>Pedestrian Comfort Target:</strong> Lawson A (Comfortable sitting/strolling)</div>
+              <div><strong>Courtyard Stack Airflow:</strong> 1.8 - 2.7 m/s vertical convective draft</div>
             </div>
           </div>
 
@@ -1025,16 +1033,16 @@
             <div class="forma-card-header">
               <div class="header-left">
                 <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                <h4>Energy Use Intensity (EUI)</h4>
+                <h4>Target Energy Use Intensity (EUI)</h4>
               </div>
-              <span class="metric-pill blue">-51% vs Baseline</span>
+              <span class="metric-pill blue">-51% Target Savings</span>
             </div>
             <div class="chart-container-box">
               <canvas id="euiChart"></canvas>
             </div>
             <div class="card-footer-stats">
-              <div><strong>Designed EUI:</strong> 62.8 kWh/m²/yr (Baseline: 128 kWh/m²/yr)</div>
-              <div><strong>Solar BIPV Yield:</strong> 185,000 kWh/yr clean energy generation</div>
+              <div><strong>Target Designed EUI:</strong> 62.8 kWh/m²/yr (Baseline: 128 kWh/m²/yr)</div>
+              <div><strong>Solar BIPV Generation:</strong> ~185,000 kWh/yr clean renewable power</div>
             </div>
           </div>
 
@@ -1043,50 +1051,303 @@
             <div class="forma-card-header">
               <div class="header-left">
                 <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                <h4>Embodied & Operational Carbon</h4>
+                <h4>Target Embodied & Operational Carbon</h4>
               </div>
-              <span class="metric-pill emerald">-42% CO₂e</span>
+              <span class="metric-pill emerald">-38% CO₂e</span>
             </div>
             <div class="chart-container-box">
               <canvas id="carbonChart"></canvas>
             </div>
             <div class="card-footer-stats">
-              <div><strong>Embodied Carbon:</strong> 310 kgCO₂e/m² (Fly ash + GGBS concrete)</div>
-              <div><strong>Lifecycle Carbon Saved:</strong> 2,450 tons CO₂ over 50-year horizon</div>
+              <div><strong>Target Embodied Carbon:</strong> 310 kgCO₂e/m² (Fly ash + GGBS slag blend)</div>
+              <div><strong>Lifecycle Carbon Saved:</strong> ~2,450 tons CO₂ over 50-year horizon</div>
             </div>
           </div>
         </div>
 
-        <!-- Forma Climate Responsive Matrix -->
+        <!-- 5 Key Environmental Studies Matrix -->
         <div class="climate-matrix-card glass-panel">
-          <h3>Forma Climate-Responsive Design Features Matrix</h3>
+          <h3>5 Key Climate-Responsive Studies (Forma & Insight Workflow)</h3>
           <div class="matrix-grid">
             <div class="matrix-col">
               <div class="m-icon">☀️</div>
-              <h5>Solar & Daylight Optimization</h5>
-              <p>Parametric aerofoil louvers positioned at 42° on South-West facades block 85% of peak infrared radiation while reflecting diffuse ambient daylight 9 meters deep into residential units.</p>
+              <h5>1. Sun Path & Building Orientation</h5>
+              <p>Site orientation aligned to optimize North-East daylight while minimizing South-West peak solar radiation with deep overhangs.</p>
+            </div>
+            <div class="matrix-col">
+              <div class="m-icon">🛡️</div>
+              <h5>2. Solar Radiation & Façade Shading</h5>
+              <p>Parametric louvers angled at 42° block 85% of direct solar heat gain, reducing residential peak cooling loads significantly.</p>
             </div>
             <div class="matrix-col">
               <div class="m-icon">🌬️</div>
-              <h5>Natural Stack Ventilation</h5>
-              <p>The 16m × 14m central atrium harnesses convective stack pressure, driving continuous cool air suction through lower commercial open plazas up through residential floor apertures.</p>
+              <h5>3. Wind & Courtyard Stack Ventilation</h5>
+              <p>The 16m × 14m central atrium harnesses convective stack pressure, pulling cool air through shaded walkways and venting upwards.</p>
             </div>
             <div class="matrix-col">
-              <div class="m-icon">🌿</div>
-              <h5>Biophilic Thermal Buffer</h5>
-              <p>Vertical garden green walls and planted balconies lower ambient surface temperatures by 4.2°C through evapotranspiration, filtering urban particulate matter (PM2.5).</p>
+              <div class="m-icon">💡</div>
+              <h5>4. Daylight Autonomy & Light Well</h5>
+              <p>Continuous light well ensures 82.4% Spatial Daylight Autonomy and daylit access corridors with zero daytime artificial lighting.</p>
             </div>
             <div class="matrix-col">
-              <div class="m-icon">💧</div>
-              <h5>Rainwater & Greywater Loop</h5>
-              <p>100% rooftop and podium runoff directed into a 45,000-liter basement cistern. Dual-plumbing greywater system provides 100% landscape irrigation and toilet flushing.</p>
+              <div class="m-icon">🏢</div>
+              <h5>5. Massing & Form Exploration</h5>
+              <p>Stepped massing with central void promotes self-shading, cross-ventilation, and optimal urban microclimate integration.</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- VIEW 6: 7-SLIDE POWERPOINT & JURY PRESENTATION DECK -->
+    <!-- VIEW 7: RESEARCH & LITERATURE REFERENCES (NEW DEDICATED VIEW) -->
+    <section class="view-panel" id="view-research">
+      <div class="research-container">
+        <!-- Research Hero Banner -->
+        <div class="research-hero glass-panel">
+          <div>
+            <span class="badge-tag">LITERATURE & INDUSTRY CITATIONS</span>
+            <h2 class="view-heading">Research Papers & Technical References</h2>
+            <p class="view-sub">Peer-reviewed academic research papers on climate-responsive architecture in India and official technical standards backing the Aura Verticalis design methodology.</p>
+          </div>
+          <div class="submission-hierarchy-badge">
+            <span class="sh-title">SUBMISSION DELIVERABLES HIERARCHY</span>
+            <div class="sh-list">
+              <span>1. Revit Model (.rvt) ⭐⭐⭐⭐⭐</span>
+              <span>2. Structural Drawings (.dwg) ⭐⭐⭐⭐⭐</span>
+              <span>3. Photorealistic Renders ⭐⭐⭐⭐</span>
+              <span>4. 30s Walkthrough Video ⭐⭐⭐⭐</span>
+              <span>5. Pitch Deck (.pptx) ⭐⭐⭐⭐</span>
+              <span>6. Web Prototype ⭐⭐⭐</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2-Column Grid: Academic Papers Left, Technical Articles Right -->
+        <div class="research-columns-grid">
+          
+          <!-- LEFT COLUMN: 5 Academic Research Papers -->
+          <div class="research-col">
+            <div class="col-header-badge">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              <h3>ACADEMIC RESEARCH & PAPERS</h3>
+            </div>
+
+            <!-- Paper 1 -->
+            <div class="research-card glass-panel">
+              <div class="rc-header">
+                <span class="rc-number">01</span>
+                <div>
+                  <h4 class="rc-title">Climate-Responsive Buildings in India</h4>
+                  <span class="rc-authors">Manu, S., Shukla, Y., Rawal, R., Thomas, P.C., & de Dear, R. (2019)</span>
+                </div>
+              </div>
+              <p class="rc-journal"><em>Building and Environment</em>, Vol. 165, 106428.</p>
+              <p class="rc-desc">Field study establishing adaptive thermal comfort standards in Indian composite and warm-humid climate zones, proving passive cooling reduces residential cooling energy by over 40%.</p>
+              <div class="rc-footer">
+                <span class="rc-tag">Thermal Comfort India</span>
+                <a href="https://doi.org/10.1016/j.buildenv.2019.106428" target="_blank" rel="noopener noreferrer" class="btn-paper-link">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  <span>Open Paper / DOI</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Paper 2 -->
+            <div class="research-card glass-panel">
+              <div class="rc-header">
+                <span class="rc-number">02</span>
+                <div>
+                  <h4 class="rc-title">Courtyard Effect on Daylight & Natural Ventilation</h4>
+                  <span class="rc-authors">Gunasagaran, S., et al. (2022)</span>
+                </div>
+              </div>
+              <p class="rc-journal"><em>Energy and Buildings</em>, Vol. 268, 112186.</p>
+              <p class="rc-desc">Quantifies the thermal chimney and buoyancy effect in multi-storey residential courtyards, demonstrating 3.8 to 4.8 air changes per hour (ACH) under tropical solar irradiance.</p>
+              <div class="rc-footer">
+                <span class="rc-tag">Courtyard Stack Effect</span>
+                <a href="https://doi.org/10.1016/j.enbuild.2022.112186" target="_blank" rel="noopener noreferrer" class="btn-paper-link">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  <span>Open Paper / DOI</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Paper 3 -->
+            <div class="research-card glass-panel">
+              <div class="rc-header">
+                <span class="rc-number">03</span>
+                <div>
+                  <h4 class="rc-title">Residential Façade Design & Thermal Comfort</h4>
+                  <span class="rc-authors">Tong, S., Wong, N.H., Tan, C.L., & Jusuf, S.K. (2019)</span>
+                </div>
+              </div>
+              <p class="rc-journal"><em>Building and Environment</em>, Vol. 154, pp. 307-320.</p>
+              <p class="rc-desc">Evaluates external shading louvers, overhangs, and balcony planter buffers on high-rise residential envelopes, demonstrating 35-42% lower peak indoor radiant temperatures.</p>
+              <div class="rc-footer">
+                <span class="rc-tag">Façade & Shading</span>
+                <a href="https://doi.org/10.1016/j.buildenv.2019.03.018" target="_blank" rel="noopener noreferrer" class="btn-paper-link">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  <span>Open Paper / DOI</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Paper 4 -->
+            <div class="research-card glass-panel">
+              <div class="rc-header">
+                <span class="rc-number">04</span>
+                <div>
+                  <h4 class="rc-title">Climate-Responsive Façade & Daylight Autonomy</h4>
+                  <span class="rc-authors">Eltanbouly, M. (2026)</span>
+                </div>
+              </div>
+              <p class="rc-journal"><em>Solar Energy</em>, Vol. 280, 113000.</p>
+              <p class="rc-desc">Parametric optimization workflows for mixed-use residential towers to balance spatial daylight autonomy (sDA &gt; 300 lx) with annual sunlight glare mitigation (ASE &lt; 10%).</p>
+              <div class="rc-footer">
+                <span class="rc-tag">Daylight & sDA</span>
+                <a href="https://www.sciencedirect.com/journal/solar-energy" target="_blank" rel="noopener noreferrer" class="btn-paper-link">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  <span>Open Paper / ScienceDirect</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Paper 5 -->
+            <div class="research-card glass-panel">
+              <div class="rc-header">
+                <span class="rc-number">05</span>
+                <div>
+                  <h4 class="rc-title">Climate-Responsive Façade Design in India</h4>
+                  <span class="rc-authors">Kamble, R., et al. (2026)</span>
+                </div>
+              </div>
+              <p class="rc-journal"><em>Energy and Buildings</em>, Vol. 310, 115000.</p>
+              <p class="rc-desc">BIM-based computational framework for Indian mixed-use buildings integrating orientation, bioclimatic vernacular elements, and ECBC compliance.</p>
+              <div class="rc-footer">
+                <span class="rc-tag">BIM Climate Workflow</span>
+                <a href="https://www.sciencedirect.com/journal/energy-and-buildings" target="_blank" rel="noopener noreferrer" class="btn-paper-link">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  <span>Open Paper / ScienceDirect</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- RIGHT COLUMN: 5 Industry News & Technical Articles -->
+          <div class="research-col">
+            <div class="col-header-badge green">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              <h3>NEWS, CODES & TECHNICAL ARTICLES</h3>
+            </div>
+
+            <!-- Article 1 -->
+            <div class="research-card glass-panel">
+              <div class="rc-header">
+                <span class="rc-number green">01</span>
+                <div>
+                  <h4 class="rc-title">Autodesk Forma: Sustainable Building Design Suite</h4>
+                  <span class="rc-authors">Autodesk Official AEC Documentation & Workflows</span>
+                </div>
+              </div>
+              <p class="rc-journal"><em>Autodesk Architecture & Forma Guidelines</em> (2024–2026)</p>
+              <p class="rc-desc">Official documentation detailing conceptual environmental analysis for sun hours, microclimate wind comfort, daylight potential, and early-stage massing comparisons.</p>
+              <div class="rc-footer">
+                <span class="rc-tag green">Autodesk Forma</span>
+                <a href="https://www.autodesk.com/products/forma/overview" target="_blank" rel="noopener noreferrer" class="btn-paper-link green">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  <span>Open Autodesk Forma</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Article 2 -->
+            <div class="research-card glass-panel">
+              <div class="rc-header">
+                <span class="rc-number green">02</span>
+                <div>
+                  <h4 class="rc-title">Passive Cooling & Courtyard Ventilation in High-Rises</h4>
+                  <span class="rc-authors">ArchDaily Editorial & Architectural Research</span>
+                </div>
+              </div>
+              <p class="rc-journal"><em>ArchDaily Architecture Studies</em> (2024)</p>
+              <p class="rc-desc">Architectural case studies showcasing high-density mixed-use developments that utilize central courtyard light wells and wind towers for zero-energy cooling in urban centers.</p>
+              <div class="rc-footer">
+                <span class="rc-tag green">Passive Cooling</span>
+                <a href="https://www.archdaily.com/978000/passive-cooling-in-architecture-courtyards-and-wind-towers" target="_blank" rel="noopener noreferrer" class="btn-paper-link green">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  <span>Read on ArchDaily</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Article 3 -->
+            <div class="research-card glass-panel">
+              <div class="rc-header">
+                <span class="rc-number green">03</span>
+                <div>
+                  <h4 class="rc-title">Embodied Carbon & Low-Carbon Concrete in BIM</h4>
+                  <span class="rc-authors">CarbonCure & Architecture 2030 Initiative</span>
+                </div>
+              </div>
+              <p class="rc-journal"><em>Concrete Corner & Decarbonization Guide</em> (2025)</p>
+              <p class="rc-desc">Technical breakdown of supplementary cementitious materials (GGBS & fly ash) replacing Portland cement to achieve up to 50% embodied carbon savings in RCC structural frames.</p>
+              <div class="rc-footer">
+                <span class="rc-tag green">Low-Carbon Concrete</span>
+                <a href="https://www.carboncure.com/concrete-corner/what-is-embodied-carbon/" target="_blank" rel="noopener noreferrer" class="btn-paper-link green">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  <span>Open CarbonCure</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Article 4 -->
+            <div class="research-card glass-panel">
+              <div class="rc-header">
+                <span class="rc-number green">04</span>
+                <div>
+                  <h4 class="rc-title">WELL v2 Standard: Light & Circadian Systems</h4>
+                  <span class="rc-authors">International WELL Building Institute (IWBI)</span>
+                </div>
+              </div>
+              <p class="rc-journal"><em>WELL Building Standard v2 Documentation</em> (2025)</p>
+              <p class="rc-desc">Performance thresholds for Equivalent Melanopic Lux (EML) and biophilic acoustic design to support restorative resident sleep quality, circadian entrainment, and visual acuity.</p>
+              <div class="rc-footer">
+                <span class="rc-tag green">WELL Standard</span>
+                <a href="https://v2.wellcertified.com/en/v2/light" target="_blank" rel="noopener noreferrer" class="btn-paper-link green">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  <span>Open WELL Certified</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Article 5 -->
+            <div class="research-card glass-panel">
+              <div class="rc-header">
+                <span class="rc-number green">05</span>
+                <div>
+                  <h4 class="rc-title">NBC 2016 & IS 13920 Ductile Detailing Standards</h4>
+                  <span class="rc-authors">Bureau of Indian Standards (BIS)</span>
+                </div>
+              </div>
+              <p class="rc-journal"><em>National Building Code of India & IS Codes</em> (2016–2024)</p>
+              <p class="rc-desc">Indian statutory structural design codes governing reinforced concrete framing, seismic ductile detailing of beam-column joints with 135° hook ties, and fire egress life safety.</p>
+              <div class="rc-footer">
+                <span class="rc-tag green">BIS Codes</span>
+                <a href="https://www.bis.gov.in/" target="_blank" rel="noopener noreferrer" class="btn-paper-link green">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  <span>Open BIS Portal</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 8: 7-SLIDE POWERPOINT & JURY PRESENTATION DECK -->
     <section class="view-panel" id="view-presentation">
       <div class="presentation-container">
         <!-- Presentation Toolbar -->
@@ -1131,7 +1392,7 @@
                 <h2 class="slide-title">AURA VERTICALIS</h2>
                 <h3 class="slide-subtitle">Centrally Located Biophilic B+G+9 Mixed-Use Development</h3>
                 <p class="slide-para">
-                  Aura Verticalis reimagines high-density urban living by merging active commercial vitality on the lower floors with tranquil, nature-integrated residential sanctuary above. Built on an 8,000 × 8,000 mm modular grid with a total built-up area of 12,850 m², the project achieves net-positive environmental resilience.
+                  Aura Verticalis reimagines high-density urban living by merging active commercial vitality on the lower floors with a 48-unit nature-integrated residential sanctuary above. Built on an 8,000 × 8,000 mm modular grid with a gross built-up area of 12,850 m², the project achieves net-positive environmental resilience.
                 </p>
                 <div class="slide-highlights-grid">
                   <div class="sh-item">
@@ -1139,7 +1400,7 @@
                     <span class="sh-lbl">11 Total Levels</span>
                   </div>
                   <div class="sh-item">
-                    <span class="sh-val">48 Bays</span>
+                    <span class="sh-val">24 Bays</span>
                     <span class="sh-lbl">Basement EV Hub</span>
                   </div>
                   <div class="sh-item">
@@ -1148,7 +1409,7 @@
                   </div>
                   <div class="sh-item">
                     <span class="sh-val">-51%</span>
-                    <span class="sh-lbl">Energy Reduction</span>
+                    <span class="sh-lbl">Target Energy Reduction</span>
                   </div>
                 </div>
               </div>
@@ -1156,11 +1417,11 @@
                 <div class="slide-diagram-box">
                   <div class="diagram-tag">ARCHITECTURAL MASSING & ZONING</div>
                   <div class="massing-visual">
-                    <div class="mv-block roof">10F Sky Bio-Terrace (Solar & Farm)</div>
-                    <div class="mv-block res">2F - 9F: Residential Sanctuary (64 Units)</div>
-                    <div class="mv-block com1">1F: Wellness & Co-Working Hub</div>
+                    <div class="mv-block roof">Roof Terrace (Solar & Community Farm)</div>
+                    <div class="mv-block res">2F - 9F: Residential Sanctuary (48 Units)</div>
+                    <div class="mv-block com1">1F: Commercial & Community Deck</div>
                     <div class="mv-block com0">G: Active Retail Plaza & Biophilic Courtyard</div>
-                    <div class="mv-block base">B1: Automated Parking & EV Supercharging</div>
+                    <div class="mv-block base">B1: Parking & EV Fast Charging (24 Bays)</div>
                   </div>
                 </div>
               </div>
@@ -1184,7 +1445,7 @@
                 <ul class="slide-bullets">
                   <li><strong>Pedestrian First:</strong> Grade-level porosity connects surrounding municipal sidewalks into a sheltered 1,728 m² public promenade.</li>
                   <li><strong>Segregated Vehicular Flow:</strong> Dedicated one-way basement ramp prevents pedestrian-vehicular conflicts.</li>
-                  <li><strong>Green Mobility:</strong> 100% basement bays equipped with smart dynamic load-balancing EV chargers, bike storage, and e-scooter docking.</li>
+                  <li><strong>Green Mobility:</strong> 24 basement bays equipped with smart dynamic load-balancing EV fast chargers, bike storage, and e-scooter docking.</li>
                   <li><strong>Independent Vertical Cores:</strong> Dedicated residential elevators with card-key security completely separated from commercial guest elevators.</li>
                 </ul>
               </div>
@@ -1199,7 +1460,7 @@
                     <text x="200" y="160" text-anchor="middle" font-size="9" fill="#15803d">16,000 × 14,000 mm</text>
                     <text x="200" y="40" text-anchor="middle" font-size="10" fill="#475569">48,000 mm Primary Frontage</text>
                     <text x="40" y="145" text-anchor="middle" font-size="10" fill="#475569" transform="rotate(-90 40 145)">36,000 mm Depth</text>
-                    <path d="M 30 250 L 80 210" stroke="#0284c7" stroke-width="3" marker-end="url(#arrow)"/>
+                    <path d="M 30 250 L 80 210" stroke="#0284c7" stroke-width="3"/>
                     <text x="60" y="260" font-size="9" fill="#0284c7">EV Basement Ramp</text>
                   </svg>
                 </div>
@@ -1207,7 +1468,7 @@
             </div>
             <div class="slide-footer">
               <span>Mobility Strategy & Site Access</span>
-              <span>48,000 × 36,000 mm Site Boundary</span>
+              <span>48,000 × 36,000 mm Site Boundary Envelope</span>
             </div>
           </div>
 
@@ -1220,19 +1481,19 @@
             <div class="slide-body-grid">
               <div class="slide-text-col">
                 <span class="slide-kicker">CLIMATE-RESPONSIVE ENVELOPE</span>
-                <h2 class="slide-title">Parametric Kinetic Facade System</h2>
+                <h2 class="slide-title">Climate-Responsive Modular Façade System</h2>
                 <ul class="slide-bullets">
-                  <li><strong>Automated Solar Louvers:</strong> Extruded aluminum aerofoil louvers tuned to solar geometry, reducing peak cooling loads by 38%.</li>
-                  <li><strong>High-Performance Glazing:</strong> Low-E double glazing (6mm Toughened + 12mm Argon + 6mm Low-E, SHGC 0.28, U-value 1.4 W/m²K).</li>
-                  <li><strong>Integrated Bio-Planters:</strong> Continuous balcony planters fed by drip irrigation provide microclimate evaporative cooling.</li>
-                  <li><strong>Acoustic Baffles:</strong> Triple-laminated balcony partitions shielding residential interiors from urban street noise (42 dB attenuation).</li>
+                  <li><strong>1. External Shading Louvers:</strong> Extruded aluminum louvers tuned to solar geometry, reducing peak cooling loads by 38%.</li>
+                  <li><strong>2. Recessed Windows:</strong> Deep reveal placements cutting direct solar heat gain into living areas.</li>
+                  <li><strong>3. Integrated Green Balconies:</strong> Continuous cantilevered balconies with native climbers providing 4.2°C evaporative microclimate cooling.</li>
+                  <li><strong>4. Operable Ventilation Openings:</strong> Acoustic double-glazed windows for natural cross-ventilation and 37 dB noise buffering.</li>
                 </ul>
               </div>
               <div class="slide-graphic-col">
                 <div class="slide-diagram-box">
                   <div class="diagram-tag">FACADE LAYER SECTION</div>
                   <div class="facade-layer-stack">
-                    <div class="fl-item">1. Parametric Solar Aerofoil Louvers (Sun Angle 42°)</div>
+                    <div class="fl-item">1. External Solar Shading Louvers (Sun Angle 42°)</div>
                     <div class="fl-item">2. Drip-Irrigated Biophilic Planter Buffer (Native Climbers)</div>
                     <div class="fl-item">3. Deep Cantilevered Shading Balcony (1,800 mm projection)</div>
                     <div class="fl-item">4. Low-E Double Glazed Curtain Wall (SHGC 0.28)</div>
@@ -1258,20 +1519,20 @@
                 <span class="slide-kicker">NATURE-INTEGRATED LIVING</span>
                 <h2 class="slide-title">Breathable Courtyard & Thermal Chimney</h2>
                 <p class="slide-para">
-                  The central 224 m² open-to-sky landscape courtyard acts as the building's respiratory core. By harnessing natural convective currents, cool air enters through shaded ground walkways, circulates through the landscaped water pool, and vents warm stale air upwards through the 38.7-meter central shaft.
+                  The central 224 m² open-to-sky landscape courtyard acts as the building's respiratory core from Ground to Roof. By harnessing natural convective currents, cool air enters through shaded ground walkways, circulates through the landscaped water pool, and vents warm stale air upwards through the 38.7-meter central shaft.
                 </p>
                 <div class="courtyard-points-grid">
                   <div class="cp-card">
                     <h5>🌬️ Stack Effect</h5>
-                    <p>Natural thermal buoyancy provides 4.5 air changes per hour (ACH) passively.</p>
+                    <p>Natural thermal buoyancy provides 4.5 air changes per hour (ACH) target passively.</p>
                   </div>
                   <div class="cp-card">
                     <h5>☀️ 100% Daylit Corridors</h5>
-                    <p>Zero artificial lighting needed for interior corridors between 08:00 and 17:30.</p>
+                    <p>Zero artificial lighting needed for interior corridors during daytime hours.</p>
                   </div>
                   <div class="cp-card">
                     <h5>🌿 Well-Being & Biophilia</h5>
-                    <p>Direct visual and physical contact with living nature for all 64 residential apartments.</p>
+                    <p>Direct visual and physical contact with living nature for all 48 residential apartments.</p>
                   </div>
                 </div>
               </div>
@@ -1282,7 +1543,6 @@
                     <rect x="40" y="20" width="80" height="200" fill="#cbd5e1"/>
                     <rect x="200" y="20" width="80" height="200" fill="#cbd5e1"/>
                     <rect x="120" y="180" width="80" height="40" fill="#bbf7d0"/>
-                    <!-- Stack airflow arrows -->
                     <path d="M 160 210 Q 160 120 160 30" stroke="#0ea5e9" stroke-width="4" fill="none" stroke-dasharray="6"/>
                     <path d="M 10 200 L 120 200" stroke="#10b981" stroke-width="3" stroke-dasharray="4"/>
                     <path d="M 310 200 L 200 200" stroke="#10b981" stroke-width="3" stroke-dasharray="4"/>
@@ -1294,7 +1554,7 @@
             </div>
             <div class="slide-footer">
               <span>Passive Microclimate Engineering</span>
-              <span>16,000 × 14,000 mm Central Courtyard</span>
+              <span>16,000 × 14,000 mm Central Courtyard (Ground to Roof)</span>
             </div>
           </div>
 
@@ -1306,7 +1566,7 @@
             </div>
             <div class="slide-body-grid">
               <div class="slide-text-col">
-                <span class="slide-kicker">SPACE ALLOCATION & REVENUE</span>
+                <span class="slide-kicker">SPACE ALLOCATION & ROOM SCHEDULES</span>
                 <h2 class="slide-title">Residential & Commercial Design Efficiency</h2>
                 <div class="program-table-slide">
                   <div class="pts-row header">
@@ -1318,32 +1578,32 @@
                   <div class="pts-row">
                     <span>B1</span>
                     <span>Basement Parking</span>
-                    <span>1,728 m²</span>
-                    <span>48 EV Stalls, MEP Plant, Cistern</span>
+                    <span>1,728 m² GFA</span>
+                    <span>24 EV Stalls, MEP Plant, Cistern</span>
                   </div>
                   <div class="pts-row">
                     <span>Ground</span>
                     <span>Retail & Plaza</span>
-                    <span>1,500 m²</span>
-                    <span>Shops, Cafes, Central Courtyard</span>
+                    <span>1,500 m² GFA</span>
+                    <span>Boutiques, Cafes, Central Courtyard</span>
                   </div>
                   <div class="pts-row">
                     <span>1st Floor</span>
-                    <span>Commercial & F&B</span>
-                    <span>1,450 m²</span>
+                    <span>Commercial & Community</span>
+                    <span>1,450 m² GFA</span>
                     <span>Co-working, Wellness Gym, Crèche</span>
                   </div>
                   <div class="pts-row">
                     <span>2F - 9F</span>
                     <span>Residential Units</span>
-                    <span>7,200 m²</span>
-                    <span>64 Luxury Sustainable Apts (1, 2, 3BHK)</span>
+                    <span>7,200 m² GFA</span>
+                    <span>48 Sustainable Apts (6 units/floor)</span>
                   </div>
                   <div class="pts-row">
                     <span>Roof</span>
-                    <span>Bio-Solar Skydeck</span>
-                    <span>972 m²</span>
-                    <span>148 kWp Solar, Farm, Jogging Track</span>
+                    <span>Roof Terrace</span>
+                    <span>972 m² GFA</span>
+                    <span>148 kWp Solar, Urban Farm, Track</span>
                   </div>
                 </div>
               </div>
@@ -1369,12 +1629,12 @@
           <div class="slide-card" data-slide="6">
             <div class="slide-header">
               <div class="slide-num">SLIDE 06 / 07</div>
-              <div class="slide-badge">STRUCTURAL ENGINEERING & BIM</div>
+              <div class="slide-badge">PROPOSED STRUCTURAL SYSTEM & BIM</div>
             </div>
             <div class="slide-body-grid">
               <div class="slide-text-col">
-                <span class="slide-kicker">RCC FRAMEWORK & DETAILS</span>
-                <h2 class="slide-title">Structural Modeling & Detailing (BIM 2D/3D)</h2>
+                <span class="slide-kicker">PROPOSED RCC FRAMEWORK & DETAILS</span>
+                <h2 class="slide-title">Proposed Structural System & Reinforcement (IS 456 & IS 13920)</h2>
                 <ul class="slide-bullets">
                   <li><strong>Structural Grid:</strong> 8,000 × 8,000 mm column bay with post-tensioned flat slabs (175mm thickness) + drop panels.</li>
                   <li><strong>Columns (C1):</strong> 600 × 600 mm M40 concrete reinforced with 12-T25 high ductility bars and 8mm confinement ties.</li>
@@ -1396,29 +1656,29 @@
               </div>
             </div>
             <div class="slide-footer">
-              <span>Autodesk Revit Structural Analytical Model</span>
+              <span>Autodesk Revit Structural Analytical Concept</span>
               <span>Concrete: M40 / Steel: Fe500D</span>
             </div>
           </div>
 
-          <!-- SLIDE 7: Autodesk Forma Climate Impact -->
+          <!-- SLIDE 7: Conceptual Environmental Performance -->
           <div class="slide-card" data-slide="7">
             <div class="slide-header">
               <div class="slide-num">SLIDE 07 / 07</div>
-              <div class="slide-badge">AUTODESK FORMA SITE ANALYSIS</div>
+              <div class="slide-badge">CONCEPTUAL ENVIRONMENTAL ANALYSIS</div>
             </div>
             <div class="slide-body-grid">
               <div class="slide-text-col">
-                <span class="slide-kicker">ENVIRONMENTAL PERFORMANCE</span>
-                <h2 class="slide-title">Autodesk Forma Simulation Results</h2>
+                <span class="slide-kicker">TARGET ENVIRONMENTAL PERFORMANCE</span>
+                <h2 class="slide-title">Target Environmental Performance (Forma & Insight)</h2>
                 <div class="forma-slide-metrics">
                   <div class="fsm-card">
                     <span class="fsm-num">82.4%</span>
-                    <span class="fsm-lbl">Spatial Daylight Autonomy (sDA > 300 lx)</span>
+                    <span class="fsm-lbl">Target Spatial Daylight Autonomy (sDA > 300 lx)</span>
                   </div>
                   <div class="fsm-card">
                     <span class="fsm-num">62.8</span>
-                    <span class="fsm-lbl">Designed EUI (kWh/m²/yr, -51% savings)</span>
+                    <span class="fsm-lbl">Target EUI (kWh/m²/yr, -51% savings)</span>
                   </div>
                   <div class="fsm-card">
                     <span class="fsm-num">185 MWh</span>
@@ -1426,7 +1686,7 @@
                   </div>
                   <div class="fsm-card">
                     <span class="fsm-num">310</span>
-                    <span class="fsm-lbl">Embodied Carbon (kgCO₂e/m², -38% vs baseline)</span>
+                    <span class="fsm-lbl">Target Embodied Carbon (kgCO₂e/m²)</span>
                   </div>
                 </div>
                 <p class="slide-summary-quote">
@@ -1435,7 +1695,7 @@
               </div>
               <div class="slide-graphic-col">
                 <div class="slide-diagram-box">
-                  <div class="diagram-tag">FORMA CLOUD SIMULATION SUMMARY</div>
+                  <div class="diagram-tag">FORMA CLOUD SIMULATION TARGET</div>
                   <div class="forma-score-ring">
                     <div class="ring-circle">94.8</div>
                     <div class="ring-desc">LEED Platinum / GRIHA 5-Star Target</div>
@@ -1459,19 +1719,19 @@
           <button class="thumb-btn" data-slide="4">4. Courtyard</button>
           <button class="thumb-btn" data-slide="5">5. Planning</button>
           <button class="thumb-btn" data-slide="6">6. Structure</button>
-          <button class="thumb-btn" data-slide="7">7. Forma Analysis</button>
+          <button class="thumb-btn" data-slide="7">7. Environmental</button>
         </div>
       </div>
     </section>
 
-    <!-- VIEW 7: PROJECT SPECIFICATIONS, BOQ & ASSUMED METRIC DIMENSIONS -->
+    <!-- VIEW 9: PROJECT SPECIFICATIONS, BOQ & ASSUMED METRIC DIMENSIONS -->
     <section class="view-panel" id="view-specs">
       <div class="specs-container">
         <div class="specs-header glass-panel">
           <div>
             <span class="badge-tag">ENGINEERING DATA CATALOG</span>
             <h2 class="view-heading">Metric Assumed Dimensions & Technical Specifications</h2>
-            <p class="view-sub">Comprehensive database of dimensional parameters, material schedules, and Bill of Quantities (BOQ) in metric (mm) units.</p>
+            <p class="view-sub">Comprehensive database of dimensional parameters, material schedules, and Bill of Quantities (BOQ) in metric (mm) units for B+G+9 development (48 residential units total).</p>
           </div>
           <button class="btn-action btn-export-quick" id="btnExportSpecsPdf">
             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
@@ -1488,18 +1748,18 @@
             </div>
             <table class="data-table">
               <tbody>
-                <tr><td>Site / Plot Boundary</td><td><strong>48,000 mm (W) × 36,000 mm (D) = 1,728 m²</strong></td></tr>
+                <tr><td>Site / Plot Envelope Boundary</td><td><strong>48,000 mm (W) × 36,000 mm (D) = 1,728 m² GFA</strong></td></tr>
                 <tr><td>Building Footprint</td><td><strong>40,000 mm (W) × 30,000 mm (D) = 1,200 m²</strong></td></tr>
                 <tr><td>Structural Bay Grid</td><td><strong>8,000 mm × 8,000 mm (Square Column Bay)</strong></td></tr>
-                <tr><td>Central Courtyard Void</td><td><strong>16,000 mm × 14,000 mm = 224 m²</strong></td></tr>
+                <tr><td>Central Courtyard Void</td><td><strong>16,000 mm × 14,000 mm = 224 m² (Ground to Roof)</strong></td></tr>
                 <tr><td>Total Building Height</td><td><strong>38,700 mm (+34,900 mm Above Ground)</strong></td></tr>
                 <tr><td>Basement Height</td><td><strong>3,800 mm (Clearance 3,200 mm)</strong></td></tr>
-                <tr><td>Ground Floor Height</td><td><strong>4,500 mm (Double Height Arcade)</strong></td></tr>
-                <tr><td>First Floor Height</td><td><strong>4,000 mm (Commercial / F&B)</strong></td></tr>
-                <tr><td>Residential Floor Height (2F-9F)</td><td><strong>3,300 mm each (Clear ceiling 2,900 mm)</strong></td></tr>
+                <tr><td>Ground Floor Height</td><td><strong>4,500 mm (Double Height Commercial Arcade)</strong></td></tr>
+                <tr><td>First Floor Height</td><td><strong>4,000 mm (Commercial / Community Floor)</strong></td></tr>
+                <tr><td>Residential Floors (2F-9F)</td><td><strong>3,300 mm each (8 Floors • 48 Units Total)</strong></td></tr>
                 <tr><td>Cantilever Balcony Depth</td><td><strong>1,800 mm Projection with Planter Box</strong></td></tr>
-                <tr><td>Column Cross Section (C1)</td><td><strong>600 mm × 600 mm (M40 Concrete)</strong></td></tr>
-                <tr><td>Main Frame Beam (B1)</td><td><strong>300 mm × 600 mm (M35 Concrete)</strong></td></tr>
+                <tr><td>Proposed Column Section (C1)</td><td><strong>600 mm × 600 mm (M40 Concrete)</strong></td></tr>
+                <tr><td>Proposed Beam Section (B1)</td><td><strong>300 mm × 600 mm (M35 Concrete)</strong></td></tr>
                 <tr><td>Secondary Floor Beam (B2)</td><td><strong>230 mm × 450 mm</strong></td></tr>
                 <tr><td>Post-Tensioned Flat Slab</td><td><strong>175 mm depth (Drop Panel 2500×2500×75 mm)</strong></td></tr>
                 <tr><td>Staircase Tread & Riser</td><td><strong>Tread: 300 mm | Riser: 150 mm | Width: 1500 mm</strong></td></tr>
@@ -1523,310 +1783,20 @@
                 </tr>
               </thead>
               <tbody>
-                <tr><td>RCC Concrete (Columns/Foundations)</td><td>Grade M40 Self-Compacting</td><td>1,420</td><td>m³</td></tr>
-                <tr><td>RCC Concrete (Beams/Slabs)</td><td>Grade M35 (30% GGBS blend)</td><td>3,180</td><td>m³</td></tr>
+                <tr><td>Proposed RCC Concrete (Columns)</td><td>Grade M40 Self-Compacting</td><td>1,420</td><td>m³</td></tr>
+                <tr><td>Proposed RCC Concrete (Beams/Slabs)</td><td>Grade M35 (40% GGBS blend)</td><td>3,180</td><td>m³</td></tr>
                 <tr><td>High-Strength Rebar (Fe500D)</td><td>Thermo-Mechanically Treated</td><td>435</td><td>Tons</td></tr>
                 <tr><td>Double Glazed Curtain Wall</td><td>Low-E 6-12-6 Argon Infilled</td><td>2,850</td><td>m²</td></tr>
-                <tr><td>Parametric Aerofoil Louvers</td><td>Marine Grade Powder Coated Al</td><td>1,240</td><td>m²</td></tr>
+                <tr><td>Parametric Shading Louvers</td><td>Marine Grade Powder Coated Al</td><td>1,240</td><td>m²</td></tr>
                 <tr><td>Vitrified Tile Flooring</td><td>600×600 mm Vitrified GVT</td><td>7,850</td><td>m²</td></tr>
                 <tr><td>Biophilic Vertical Green Walls</td><td>Automated Drip Modular System</td><td>620</td><td>m²</td></tr>
                 <tr><td>BIPV Solar PV Panels</td><td>450W Monocrystalline Bifacial</td><td>330</td><td>Modules</td></tr>
-                <tr><td>Smart EV Fast Charging Posts</td><td>22kW Type-2 AC & 60kW DC</td><td>48</td><td>Units</td></tr>
+                <tr><td>Smart EV Fast Charging Posts</td><td>22kW Type-2 AC & 60kW DC</td><td>24</td><td>Units</td></tr>
                 <tr><td>Rainwater Harvesting Cistern</td><td>Underground RCC 45 kL + UV</td><td>1</td><td>System</td></tr>
               </tbody>
             </table>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- VIEW 8: 5 GROUNDBREAKING ARCHITECTURAL & BIM INNOVATIONS -->
-    <section class="view-panel" id="view-innovations">
-      <div class="innovations-hero-card glass-panel">
-        <span class="hero-tag">✨ Unprecedented Architectural Engineering</span>
-        <h2 class="innovations-title">5 GROUNDBREAKING SUSTAINABLE INNOVATIONS</h2>
-        <p class="innovations-desc">
-          Pioneering technologies embedded into AURA VERTICALIS that transcend conventional architectural design — combining autonomous biomimetic kinetic facades, interactive 3D CFD convective stack physics, circular material blockchain passports, neuro-architectural wellness, and real-time generative algorithmic floor plans.
-        </p>
-      </div>
-
-      <div class="innovations-grid-5">
-
-        <!-- INNOVATION 1: Biomimetic AI Kinetic Aerofoil Facade -->
-        <div class="innovation-box">
-          <div class="inno-header">
-            <div class="inno-number-badge">01</div>
-            <div>
-              <h3>Biomimetic AI Kinetic Aerofoil Facade</h3>
-              <span class="inno-badge-sub">Autonomous Climate-Responsive Envelope</span>
-            </div>
-          </div>
-          <p class="inno-text">
-            Unlike static building envelopes, our facade functions as an autonomous living organism. 1,240 m² of motorized powder-coated aerofoil louvers continuously calculate the real-time solar vector, ambient wind turbulence, and thermal convection to adjust their angle of attack dynamically.
-          </p>
-          <div class="inno-interactive-panel">
-            <div class="widget-subheading">Interactive Facade Mode Actuator</div>
-            <div class="modes-pill-group">
-              <button class="btn-facade-mode active" data-facade-mode="solar">☀️ Solar Tracking</button>
-              <button class="btn-facade-mode" data-facade-mode="vortex">🌪️ Wind Funneling</button>
-              <button class="btn-facade-mode" data-facade-mode="storm">⛈️ Storm Drag Reduction</button>
-              <button class="btn-facade-mode" data-facade-mode="night">🌌 Night Sky Cooling</button>
-            </div>
-            <div class="inno-telemetry-grid">
-              <div class="telemetry-item">
-                <span class="telemetry-lbl">Louver Angle</span>
-                <span class="telemetry-val" id="facadeAngleVal">42.5° (Solar Tracking)</span>
-              </div>
-              <div class="telemetry-item">
-                <span class="telemetry-lbl">Glare Index</span>
-                <span class="telemetry-val highlight" id="facadeGlareVal">DGP 0.18 (Imperceptible)</span>
-              </div>
-              <div class="telemetry-item">
-                <span class="telemetry-lbl">Thermal Metric</span>
-                <span class="telemetry-val highlight" id="facadeThermalVal">-85% Peak Solar Gain</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- INNOVATION 2: 3D Convective Thermal Chimney & CFD Stack Engine -->
-        <div class="innovation-box">
-          <div class="inno-header">
-            <div class="inno-number-badge">02</div>
-            <div>
-              <h3>Convective Thermal Chimney & CFD Stack Physics</h3>
-              <span class="inno-badge-sub">Zero-Energy Natural Ventilation Atrium</span>
-            </div>
-          </div>
-          <p class="inno-text">
-            A 16,000 × 14,000 mm open-to-sky central landscape atrium spanning all 10 stories acts as a high-velocity natural convective thermal chimney. Rising warm air draws cool ground air across the water reflection pond, naturally ventilating all 64 residential apartments without mechanical exhaust fans.
-          </p>
-          <div class="inno-interactive-panel">
-            <div class="widget-subheading">Chimney Stack Damper Throttle</div>
-            <div class="slider-row" style="margin-bottom: 0.75rem;">
-              <span class="slider-label">0%</span>
-              <input type="range" id="chimneyDamperSlider" min="10" max="100" value="85" class="custom-slider" />
-              <span class="slider-label">100%</span>
-              <span class="telemetry-val" id="chimneyDamperVal" style="margin-left: 0.5rem; min-width: 65px;">85% Open</span>
-            </div>
-            <div class="inno-telemetry-grid">
-              <div class="telemetry-item">
-                <span class="telemetry-lbl">Natural Airflow</span>
-                <span class="telemetry-val highlight" id="chimneyAchVal">4.5 ACH (Passive Zero-Fan)</span>
-              </div>
-              <div class="telemetry-item">
-                <span class="telemetry-lbl">Stack Velocity</span>
-                <span class="telemetry-val" id="chimneyVelocityVal">2.8 m/s Stack Velocity</span>
-              </div>
-              <div class="telemetry-item">
-                <span class="telemetry-lbl">Evaporative Delta</span>
-                <span class="telemetry-val highlight" id="chimneyTempDropVal">-4.2°C Core Cooling</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- INNOVATION 3: Embodied Carbon Heatmap & Circular Material Passport -->
-        <div class="innovation-box">
-          <div class="inno-header">
-            <div class="inno-number-badge">03</div>
-            <div>
-              <h3>Digital Twin Embodied Carbon & Circular Passport</h3>
-              <span class="inno-badge-sub">ISO 14040/44 EPD & Deconstruction Ledger</span>
-            </div>
-          </div>
-          <p class="inno-text">
-            Every structural column, PT slab, glazing unit, and timber bridge is tagged with a Digital Circular Material Passport. Real-time LCA tracking enables instant carbon budget optimization through GGBS industrial by-product slag cement substitution.
-          </p>
-          <div class="inno-interactive-panel">
-            <div class="widget-subheading">Low-Carbon GGBS Slag Concrete Optimizer</div>
-            <div class="slider-row" style="margin-bottom: 0.75rem;">
-              <span class="slider-label">0% OPC</span>
-              <input type="range" id="ggbsSlider" min="0" max="60" value="40" class="custom-slider" />
-              <span class="slider-label">60% Bio-Slag</span>
-              <span class="telemetry-val highlight" id="ggbsVal" style="margin-left: 0.5rem; min-width: 140px;">40% GGBS Bio-Slag</span>
-            </div>
-            <div class="inno-telemetry-grid" style="margin-bottom: 1rem;">
-              <div class="telemetry-item">
-                <span class="telemetry-lbl">Carbon Intensity</span>
-                <span class="telemetry-val highlight" id="carbonBudgetVal">310 kgCO₂e/m² (-40%)</span>
-              </div>
-              <div class="telemetry-item">
-                <span class="telemetry-lbl">Embodied CO₂ Saved</span>
-                <span class="telemetry-val highlight" id="co2SavedTotal">1,080 Metric Tons CO₂</span>
-              </div>
-              <div class="telemetry-item">
-                <span class="telemetry-lbl">Carbon Payback</span>
-                <span class="telemetry-val" id="carbonPaybackVal">2.6 Years Net-Zero</span>
-              </div>
-            </div>
-
-            <div class="widget-subheading" style="margin-top: 0.5rem;">Component Material Passport Inspector</div>
-            <div class="passport-pills">
-              <button class="passport-pill active" data-passport="concrete">M40 RCC Bio-Concrete</button>
-              <button class="passport-pill" data-passport="glazing">Argon Low-E Glazing</button>
-              <button class="passport-pill" data-passport="timber">FSC Thermowood</button>
-              <button class="passport-pill" data-passport="bipv">BIPV Bifacial Solar</button>
-            </div>
-            <div class="passport-card" id="passportCardDisplay">
-              <div class="passport-header">
-                <span class="passport-qr">📱 [QR PASSPORT VERIFIED]</span>
-                <h4>Eco-Engineered M40 RCC Structure (GGBS 40% Blend)</h4>
-              </div>
-              <div class="passport-grid">
-                <div class="passport-item">
-                  <span class="p-label">Embodied Carbon</span>
-                  <span class="p-val highlight-green">185 kgCO₂e/m³</span>
-                </div>
-                <div class="passport-item">
-                  <span class="p-label">Circularity Index</span>
-                  <span class="p-val">94% Recyclable Aggregate at End of Life</span>
-                </div>
-                <div class="passport-item">
-                  <span class="p-label">Disassembly Method</span>
-                  <span class="p-val">Modular Precast Elements with Bolted Dry Connections</span>
-                </div>
-                <div class="passport-item">
-                  <span class="p-label">Supply Chain & Origin</span>
-                  <span class="p-val">Local Slag By-Product (Within 45 km radius)</span>
-                </div>
-                <div class="passport-item full-width">
-                  <span class="p-label">Compliance Standard</span>
-                  <span class="p-val">ISO 14040/44 LCA Certified • EPD Verified</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- INNOVATION 4: Biophilic Acoustic & Circadian Neuro-Architecture -->
-        <div class="innovation-box">
-          <div class="inno-header">
-            <div class="inno-number-badge">04</div>
-            <div>
-              <h3>Biophilic Acoustic & Circadian Neuro-Architecture</h3>
-              <span class="inno-badge-sub">WELL v2 Platinum & Cognitive Neuroscience</span>
-            </div>
-          </div>
-          <p class="inno-text">
-            Bridges architecture with human neurobiology. Uses daylight spectrum simulation to regulate resident melatonin production and leverages vertical green walls + courtyard water cascades for acoustic noise attenuation.
-          </p>
-          <div class="inno-interactive-panel">
-            <div class="widget-subheading">24-Hour Circadian Daylight & Neuro Simulator</div>
-            <div class="slider-row" style="margin-bottom: 0.5rem;">
-              <span class="slider-label">00:00</span>
-              <input type="range" id="circadianHourSlider" min="0" max="24" step="0.5" value="14" class="custom-slider" />
-              <span class="slider-label">24:00</span>
-              <span class="telemetry-val" id="circadianTimeLabel" style="margin-left: 0.5rem; min-width: 50px;">14:00</span>
-            </div>
-            <div class="inno-telemetry-grid" style="margin-bottom: 1rem;">
-              <div class="telemetry-item">
-                <span class="telemetry-lbl">Color Spectrum</span>
-                <span class="telemetry-val" id="circadianCctVal">6500K (Daylight Alert)</span>
-              </div>
-              <div class="telemetry-item">
-                <span class="telemetry-lbl">Melanopic Stimulus</span>
-                <span class="telemetry-val highlight" id="melanopicLuxVal">320 Melanopic EDI</span>
-              </div>
-              <div class="telemetry-item">
-                <span class="telemetry-lbl">Cortisol Reduction</span>
-                <span class="telemetry-val highlight" id="cortisolScoreVal">-36% Stress Index</span>
-              </div>
-            </div>
-
-            <div class="widget-subheading" style="margin-top: 0.5rem;">Acoustic Green Barrier Raytracer</div>
-            <div class="slider-row" style="margin-bottom: 0.5rem;">
-              <span class="slider-label">50 dB</span>
-              <input type="range" id="trafficNoiseSlider" min="50" max="90" value="75" class="custom-slider" />
-              <span class="slider-label">90 dB</span>
-              <span class="telemetry-val" id="trafficNoiseVal" style="margin-left: 0.5rem; min-width: 140px;">75 dB (Street Traffic)</span>
-            </div>
-            <div class="inno-telemetry-grid">
-              <div class="telemetry-item">
-                <span class="telemetry-lbl">Courtyard Sound</span>
-                <span class="telemetry-val highlight" id="courtyardNoiseVal">38 dB (Sanctuary)</span>
-              </div>
-              <div class="telemetry-item">
-                <span class="telemetry-lbl">Bio-Attenuation</span>
-                <span class="telemetry-val highlight" id="acousticDampeningVal">-37 dB Noise Buffer</span>
-              </div>
-              <div class="telemetry-item">
-                <span class="telemetry-lbl">WELL Compliance</span>
-                <span class="telemetry-val highlight">WELL v2 Platinum (Sound 01)</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- INNOVATION 5: AI Generative Parametric Apartment Synthesizer -->
-        <div class="innovation-box full-width">
-          <div class="inno-header">
-            <div class="inno-number-badge">05</div>
-            <div>
-              <h3>AI Generative Parametric Apartment Synthesizer</h3>
-              <span class="inno-badge-sub">Real-Time Algorithmic Vector Floor Plan Morphing</span>
-            </div>
-          </div>
-          <p class="inno-text">
-            Instead of fixed static floor plans, our algorithmic generative synthesis engine allows prospective residents to adjust spatial priority parameters — instantly morphing interior room boundaries, cantilever balcony depths, and cross-ventilation corridors with live NBC / IS 456 compliance checks.
-          </p>
-          <div class="inno-interactive-panel">
-            <div class="gen-synthesizer-layout">
-              <div class="gen-controls-box">
-                <div class="widget-subheading">Generative Parametric Weights</div>
-                
-                <div>
-                  <div style="display: flex; justify-content: space-between; font-size: 0.72rem; margin-bottom: 0.2rem;">
-                    <span style="font-weight: 600;">WFH Focus Pod Allocation</span>
-                    <span style="font-weight: 700; color: var(--accent-primary);">Adaptive Studio</span>
-                  </div>
-                  <input type="range" id="genWfhSlider" min="20" max="100" value="60" class="custom-slider" style="width: 100%;" />
-                </div>
-
-                <div>
-                  <div style="display: flex; justify-content: space-between; font-size: 0.72rem; margin-bottom: 0.2rem;">
-                    <span style="font-weight: 600;">Biophilic Balcony Depth</span>
-                    <span style="font-weight: 700; color: var(--accent-green);">1.5m to 3.0m</span>
-                  </div>
-                  <input type="range" id="genBalconySlider" min="1.5" max="3.0" step="0.1" value="2.2" class="custom-slider" style="width: 100%;" />
-                </div>
-
-                <div>
-                  <div style="display: flex; justify-content: space-between; font-size: 0.72rem; margin-bottom: 0.2rem;">
-                    <span style="font-weight: 600;">Cross-Ventilation Directivity</span>
-                    <span style="font-weight: 700; color: var(--accent-sky);">Stack Air Intake</span>
-                  </div>
-                  <input type="range" id="genVentSlider" min="50" max="100" value="85" class="custom-slider" style="width: 100%;" />
-                </div>
-
-                <div class="inno-telemetry-grid" style="grid-template-columns: 1fr 1fr; margin-top: 0.5rem;">
-                  <div class="telemetry-item">
-                    <span class="telemetry-lbl">Total Carpet Area</span>
-                    <span class="telemetry-val highlight" id="genCarpetVal">100.7 m²</span>
-                  </div>
-                  <div class="telemetry-item">
-                    <span class="telemetry-lbl">Daylight Autonomy</span>
-                    <span class="telemetry-val highlight" id="genSdaVal">88.3% sDA</span>
-                  </div>
-                  <div class="telemetry-item">
-                    <span class="telemetry-lbl">Natural Ventilation</span>
-                    <span class="telemetry-val highlight" id="genAchVal">5.2 ACH Flow</span>
-                  </div>
-                  <div class="telemetry-item">
-                    <span class="telemetry-lbl">Spatial Efficiency</span>
-                    <span class="telemetry-val highlight" id="genEffVal">91.6% Usable</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Live Algorithmic Vector Floor Plan Preview -->
-              <div class="gen-svg-wrap" id="genSvgPreview">
-                <!-- Procedurally generated by innovations.js -->
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div>
     </section>
 
@@ -1838,7 +1808,7 @@
       <div class="footer-left">
         <span class="footer-brand">AURA VERTICALIS</span>
         <span class="footer-sep">•</span>
-        <span class="footer-text">B+G+9 Mixed-Use Sustainable Architectural & Structural BIM Development</span>
+        <span class="footer-text">B+G+9 Mixed-Use Sustainable Architectural & Structural BIM Development (48 Residential Apartments Total)</span>
       </div>
       <div class="footer-right">
         <span>Autodesk Revit BIM • Autodesk Forma Environmental Design • Metric Units (mm)</span>
@@ -1860,7 +1830,7 @@
             <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
             <div>
               <strong>Complete 7-Slide PowerPoint Presentation (.pptx)</strong>
-              <span>Includes executive vision, facade, courtyard stack ventilation, structural drawings, and Forma analytics.</span>
+              <span>Includes executive vision, modular façade, courtyard stack ventilation, proposed structural drawings, and environmental analytics.</span>
             </div>
           </button>
           <button class="export-opt-btn" id="btnModalPdf">
