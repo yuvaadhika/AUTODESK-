@@ -179,7 +179,7 @@ class SimpleOrbitControls {
 /**
  * Procedural B+G+9 Mixed-Use BIM Model Builder
  */
-function buildFullBimBuilding(containerGroup, interactiveList = null) {
+function buildFullBimBuilding(containerGroup, interactiveList = null, kineticLouversList = null) {
   const levelGroups = {
     B1: new THREE.Group(),
     G: new THREE.Group(),
@@ -310,7 +310,6 @@ function buildFullBimBuilding(containerGroup, interactiveList = null) {
   function createGlassArcade(grp, outerW, outerD, innerW, innerD, h) {
     const southGlass = new THREE.Mesh(new THREE.BoxGeometry(outerW, h, 0.12), glassMat);
     southGlass.position.set(0, h / 2, outerD / 2);
-    southGlass.castShadow = false;
     registerInteractive(southGlass, {
       name: 'Double Glazed Curtain Wall Facade',
       category: 'Architectural Glazing Envelope',
@@ -616,14 +615,14 @@ function buildFullBimBuilding(containerGroup, interactiveList = null) {
         });
         lvlGrp.add(planter);
 
-        // Parametric Kinetic Aerofoil Louvers
+        // Parametric Kinetic Aerofoil Louvers (Innovation 1: Biomimetic AI Louvers)
         for (let l = 0; l < 4; l++) {
           const louver = new THREE.Mesh(new THREE.BoxGeometry(6.0, 0.08, 0.38), louverMat);
           louver.rotation.x = Math.PI / 4.5;
           louver.position.set(bx, 1.15 + l * 0.48, buildingD / 2 + 1.9);
           louver.castShadow = true;
           registerInteractive(louver, {
-            name: 'Parametric Kinetic Solar Aerofoil Louver',
+            name: 'Biomimetic AI Aerofoil Solar Louver',
             category: 'Passive Climate-Responsive Envelope',
             dim: '6,000 × 380 × 80 mm',
             area: '2.28 m²',
@@ -632,6 +631,7 @@ function buildFullBimBuilding(containerGroup, interactiveList = null) {
             mat: 'Anodized Architectural Bronze Aluminium'
           });
           lvlGrp.add(louver);
+          if (kineticLouversList) kineticLouversList.push(louver);
         }
       }
     });
@@ -793,13 +793,20 @@ export class BimViewer3D {
     this.buildingGroup = new THREE.Group();
     this.scene.add(this.buildingGroup);
     this.interactiveObjects = [];
+    this.kineticLouvers = [];
 
     this.initLights();
     this.createGroundSite();
-    this.levelGroups = buildFullBimBuilding(this.buildingGroup, this.interactiveObjects);
+    this.levelGroups = buildFullBimBuilding(this.buildingGroup, this.interactiveObjects, this.kineticLouvers);
 
+    this.initCfdParticleSystem();
     this.initInteractivity();
     this.initResizeObserver();
+
+    this.currentViewMode = 'realistic';
+    this.isKineticAnimated = true;
+    this.cfdFlowSpeed = 1.0;
+    this.cfdActive = true;
 
     this.animate = this.animate.bind(this);
     requestAnimationFrame(this.animate);
@@ -871,6 +878,106 @@ export class BimViewer3D {
       foliage.position.set(pos[0], 3.2, pos[2]);
       foliage.castShadow = true;
       this.scene.add(foliage);
+    });
+  }
+
+  /**
+   * INNOVATION 2: 3D Convective Thermal Chimney CFD Particle System
+   */
+  initCfdParticleSystem() {
+    const count = 750;
+    const geometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(count * 3);
+    const colors = new Float32Array(count * 3);
+    const velocities = new Float32Array(count);
+
+    for (let i = 0; i < count; i++) {
+      positions[i * 3 + 0] = (Math.random() - 0.5) * 13; // X within courtyard
+      positions[i * 3 + 1] = Math.random() * 36;          // Y from 0 to 36m height
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 11; // Z within courtyard
+      velocities[i] = 0.08 + Math.random() * 0.12;
+
+      // Color gradient: Cool Cyan at base -> Warm Amber at top
+      const normalizedHeight = positions[i * 3 + 1] / 36;
+      colors[i * 3 + 0] = 0.1 + normalizedHeight * 0.9;
+      colors[i * 3 + 1] = 0.8 - normalizedHeight * 0.2;
+      colors[i * 3 + 2] = 1.0 - normalizedHeight * 0.8;
+    }
+
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+    const material = new THREE.PointsMaterial({
+      size: 0.55,
+      vertexColors: true,
+      transparent: true,
+      opacity: 0.85,
+      blending: THREE.AdditiveBlending
+    });
+
+    this.cfdParticles = new THREE.Points(geometry, material);
+    this.cfdVelocities = velocities;
+    this.scene.add(this.cfdParticles);
+  }
+
+  toggleCfdParticles(enable) {
+    this.cfdActive = enable;
+    if (this.cfdParticles) this.cfdParticles.visible = enable;
+  }
+
+  setCfdFlowSpeed(factor) {
+    this.cfdFlowSpeed = factor;
+  }
+
+  /**
+   * INNOVATION 1: Kinetic Facade Actuation Engine
+   */
+  setFacadeKineticMode(mode) {
+    let targetAngle = Math.PI / 4.5;
+    if (mode === 'solar') targetAngle = Math.PI / 4.2;
+    else if (mode === 'vortex') targetAngle = Math.PI / 6.4;
+    else if (mode === 'storm') targetAngle = 0.05;
+    else if (mode === 'night') targetAngle = Math.PI / 2.1;
+
+    this.kineticLouvers.forEach(louver => {
+      louver.rotation.x = targetAngle;
+    });
+  }
+
+  /**
+   * INNOVATION 3 & 4: 3D Viewport Shader Mode Switching
+   */
+  setViewMode(mode) {
+    this.currentViewMode = mode;
+    this.buildingGroup.traverse(child => {
+      if (child.isMesh && child.userData && child.userData.category) {
+        if (mode === 'carbon') {
+          // Embodied Carbon Heatmap Shader
+          if (child.userData.category.includes('RCC') || child.userData.category.includes('Foundation')) {
+            child.material = new THREE.MeshStandardMaterial({ color: 0x10b981, roughness: 0.7 }); // Bio-concrete (Low Carbon)
+          } else if (child.userData.category.includes('Glazing') || child.userData.category.includes('Envelope')) {
+            child.material = new THREE.MeshStandardMaterial({ color: 0x0284c7, transparent: true, opacity: 0.7 });
+          } else if (child.userData.category.includes('Louver') || child.userData.category.includes('Steel')) {
+            child.material = new THREE.MeshStandardMaterial({ color: 0xf59e0b });
+          } else if (child.userData.category.includes('Biophilic') || child.userData.category.includes('Vegetation')) {
+            child.material = new THREE.MeshStandardMaterial({ color: 0x059669 });
+          }
+        } else if (mode === 'cfd') {
+          // Thermal Gradient Shader
+          const y = child.position.y + (child.parent ? child.parent.position.y : 0);
+          const tColor = new THREE.Color().setHSL(0.6 - (y / 40) * 0.6, 0.9, 0.5);
+          child.material = new THREE.MeshStandardMaterial({ color: tColor, roughness: 0.6 });
+        } else if (mode === 'xray') {
+          // X-Ray Structural Skeleton
+          if (child.userData.category.includes('RCC') || child.userData.category.includes('Column')) {
+            child.material = new THREE.MeshStandardMaterial({ color: 0x38bdf8, emissive: 0x0369a1, roughness: 0.3 });
+          } else {
+            child.material = new THREE.MeshPhysicalMaterial({ color: 0x94a3b8, transparent: true, opacity: 0.15 });
+          }
+        } else {
+          // Realistic Default - reload standard materials on next tick or preserve
+        }
+      }
     });
   }
 
@@ -1036,8 +1143,32 @@ export class BimViewer3D {
 
   animate() {
     requestAnimationFrame(this.animate);
+
     this.resizeRendererToDisplaySize();
     this.controls.update();
+
+    // 1. Animate Convective Thermal CFD Particles
+    if (this.cfdActive && this.cfdParticles) {
+      const positions = this.cfdParticles.geometry.attributes.position.array;
+      const count = positions.length / 3;
+      const speed = 0.12 * this.cfdFlowSpeed;
+
+      for (let i = 0; i < count; i++) {
+        positions[i * 3 + 1] += this.cfdVelocities[i] * speed;
+        // Natural gentle vortex wobble
+        positions[i * 3 + 0] += Math.sin(positions[i * 3 + 1] * 0.3 + i) * 0.015;
+        positions[i * 3 + 2] += Math.cos(positions[i * 3 + 1] * 0.3 + i) * 0.015;
+
+        // Reset particle to base of courtyard water feature when reaching top vent
+        if (positions[i * 3 + 1] > 37) {
+          positions[i * 3 + 1] = 0.2 + Math.random() * 0.8;
+          positions[i * 3 + 0] = (Math.random() - 0.5) * 12;
+          positions[i * 3 + 2] = (Math.random() - 0.5) * 10;
+        }
+      }
+      this.cfdParticles.geometry.attributes.position.needsUpdate = true;
+    }
+
     this.renderer.render(this.scene, this.camera);
   }
 }
@@ -1288,8 +1419,8 @@ export class WalkthroughEngine {
     this.resizeRendererToDisplaySize();
     const playIcon = document.getElementById('iconWtPlay');
     const pauseIcon = document.getElementById('iconWtPause');
-    if (playIcon) playIcon.classList.add('hidden');
-    if (pauseIcon) pauseIcon.classList.remove('hidden');
+    if (playIcon) playIcon.classList.remove('hidden');
+    if (pauseIcon) pauseIcon.classList.add('hidden');
   }
 
   pause() {

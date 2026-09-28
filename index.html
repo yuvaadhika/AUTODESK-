@@ -38,6 +38,11 @@
           <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
           <span>3D BIM Model</span>
         </button>
+        <button class="nav-tab nav-tab-innovations" data-view="innovations" id="tab-innovations">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          <span>5 Core Innovations</span>
+          <span class="badge-innovate-pill">NEW & UNIQUE</span>
+        </button>
         <button class="nav-tab" data-view="walkthrough" id="tab-walkthrough">
           <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
           <span>30s Walkthrough</span>
@@ -147,6 +152,16 @@
             <button class="btn-preset" data-camera="basement" title="Basement EV Parking">Basement</button>
             <button class="btn-preset" data-camera="roof" title="Rooftop Bio-Terrace">Rooftop</button>
             <button class="btn-preset" id="btnResetView" title="Reset Camera">Reset</button>
+          </div>
+
+          <!-- 3D Shader Viewport Modes & CFD Flow Toggle (Innovation Feature) -->
+          <div class="shader-modes-bar">
+            <span class="shader-lbl">Shader Mode:</span>
+            <button class="btn-shader-mode active" data-shader="realistic" title="Standard Architectural PBR">Architectural Real</button>
+            <button class="btn-shader-mode" data-shader="carbon" title="LCA Embodied Carbon Heatmap">Carbon (LCA)</button>
+            <button class="btn-shader-mode" data-shader="cfd" title="Thermal Stack Gradient">CFD Heatmap</button>
+            <button class="btn-shader-mode" data-shader="xray" title="X-Ray Structural Frame">X-Ray Frame</button>
+            <button class="btn-shader-mode active-glow" id="btnToggleCfdParticles" title="Toggle 3D Courtyard Airflow Particles">CFD Particles: ACTIVE</button>
           </div>
 
           <!-- Exploded View Slider Floating Controls -->
@@ -1231,6 +1246,296 @@
             </table>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- VIEW 8: 5 GROUNDBREAKING ARCHITECTURAL & BIM INNOVATIONS -->
+    <section class="view-panel" id="view-innovations">
+      <div class="innovations-hero-card glass-panel">
+        <span class="hero-tag">✨ Unprecedented Architectural Engineering</span>
+        <h2 class="innovations-title">5 GROUNDBREAKING SUSTAINABLE INNOVATIONS</h2>
+        <p class="innovations-desc">
+          Pioneering technologies embedded into AURA VERTICALIS that transcend conventional architectural design — combining autonomous biomimetic kinetic facades, interactive 3D CFD convective stack physics, circular material blockchain passports, neuro-architectural wellness, and real-time generative algorithmic floor plans.
+        </p>
+      </div>
+
+      <div class="innovations-grid-5">
+
+        <!-- INNOVATION 1: Biomimetic AI Kinetic Aerofoil Facade -->
+        <div class="innovation-box">
+          <div class="inno-header">
+            <div class="inno-number-badge">01</div>
+            <div>
+              <h3>Biomimetic AI Kinetic Aerofoil Facade</h3>
+              <span class="inno-badge-sub">Autonomous Climate-Responsive Envelope</span>
+            </div>
+          </div>
+          <p class="inno-text">
+            Unlike static building envelopes, our facade functions as an autonomous living organism. 1,240 m² of motorized powder-coated aerofoil louvers continuously calculate the real-time solar vector, ambient wind turbulence, and thermal convection to adjust their angle of attack dynamically.
+          </p>
+          <div class="inno-interactive-panel">
+            <div class="widget-subheading">Interactive Facade Mode Actuator</div>
+            <div class="modes-pill-group">
+              <button class="btn-facade-mode active" data-facade-mode="solar">☀️ Solar Tracking</button>
+              <button class="btn-facade-mode" data-facade-mode="vortex">🌪️ Wind Funneling</button>
+              <button class="btn-facade-mode" data-facade-mode="storm">⛈️ Storm Drag Reduction</button>
+              <button class="btn-facade-mode" data-facade-mode="night">🌌 Night Sky Cooling</button>
+            </div>
+            <div class="inno-telemetry-grid">
+              <div class="telemetry-item">
+                <span class="telemetry-lbl">Louver Angle</span>
+                <span class="telemetry-val" id="facadeAngleVal">42.5° (Solar Tracking)</span>
+              </div>
+              <div class="telemetry-item">
+                <span class="telemetry-lbl">Glare Index</span>
+                <span class="telemetry-val highlight" id="facadeGlareVal">DGP 0.18 (Imperceptible)</span>
+              </div>
+              <div class="telemetry-item">
+                <span class="telemetry-lbl">Thermal Metric</span>
+                <span class="telemetry-val highlight" id="facadeThermalVal">-85% Peak Solar Gain</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- INNOVATION 2: 3D Convective Thermal Chimney & CFD Stack Engine -->
+        <div class="innovation-box">
+          <div class="inno-header">
+            <div class="inno-number-badge">02</div>
+            <div>
+              <h3>Convective Thermal Chimney & CFD Stack Physics</h3>
+              <span class="inno-badge-sub">Zero-Energy Natural Ventilation Atrium</span>
+            </div>
+          </div>
+          <p class="inno-text">
+            A 16,000 × 14,000 mm open-to-sky central landscape atrium spanning all 10 stories acts as a high-velocity natural convective thermal chimney. Rising warm air draws cool ground air across the water reflection pond, naturally ventilating all 64 residential apartments without mechanical exhaust fans.
+          </p>
+          <div class="inno-interactive-panel">
+            <div class="widget-subheading">Chimney Stack Damper Throttle</div>
+            <div class="slider-row" style="margin-bottom: 0.75rem;">
+              <span class="slider-label">0%</span>
+              <input type="range" id="chimneyDamperSlider" min="10" max="100" value="85" class="custom-slider" />
+              <span class="slider-label">100%</span>
+              <span class="telemetry-val" id="chimneyDamperVal" style="margin-left: 0.5rem; min-width: 65px;">85% Open</span>
+            </div>
+            <div class="inno-telemetry-grid">
+              <div class="telemetry-item">
+                <span class="telemetry-lbl">Natural Airflow</span>
+                <span class="telemetry-val highlight" id="chimneyAchVal">4.5 ACH (Passive Zero-Fan)</span>
+              </div>
+              <div class="telemetry-item">
+                <span class="telemetry-lbl">Stack Velocity</span>
+                <span class="telemetry-val" id="chimneyVelocityVal">2.8 m/s Stack Velocity</span>
+              </div>
+              <div class="telemetry-item">
+                <span class="telemetry-lbl">Evaporative Delta</span>
+                <span class="telemetry-val highlight" id="chimneyTempDropVal">-4.2°C Core Cooling</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- INNOVATION 3: Embodied Carbon Heatmap & Circular Material Passport -->
+        <div class="innovation-box">
+          <div class="inno-header">
+            <div class="inno-number-badge">03</div>
+            <div>
+              <h3>Digital Twin Embodied Carbon & Circular Passport</h3>
+              <span class="inno-badge-sub">ISO 14040/44 EPD & Deconstruction Ledger</span>
+            </div>
+          </div>
+          <p class="inno-text">
+            Every structural column, PT slab, glazing unit, and timber bridge is tagged with a Digital Circular Material Passport. Real-time LCA tracking enables instant carbon budget optimization through GGBS industrial by-product slag cement substitution.
+          </p>
+          <div class="inno-interactive-panel">
+            <div class="widget-subheading">Low-Carbon GGBS Slag Concrete Optimizer</div>
+            <div class="slider-row" style="margin-bottom: 0.75rem;">
+              <span class="slider-label">0% OPC</span>
+              <input type="range" id="ggbsSlider" min="0" max="60" value="40" class="custom-slider" />
+              <span class="slider-label">60% Bio-Slag</span>
+              <span class="telemetry-val highlight" id="ggbsVal" style="margin-left: 0.5rem; min-width: 140px;">40% GGBS Bio-Slag</span>
+            </div>
+            <div class="inno-telemetry-grid" style="margin-bottom: 1rem;">
+              <div class="telemetry-item">
+                <span class="telemetry-lbl">Carbon Intensity</span>
+                <span class="telemetry-val highlight" id="carbonBudgetVal">310 kgCO₂e/m² (-40%)</span>
+              </div>
+              <div class="telemetry-item">
+                <span class="telemetry-lbl">Embodied CO₂ Saved</span>
+                <span class="telemetry-val highlight" id="co2SavedTotal">1,080 Metric Tons CO₂</span>
+              </div>
+              <div class="telemetry-item">
+                <span class="telemetry-lbl">Carbon Payback</span>
+                <span class="telemetry-val" id="carbonPaybackVal">2.6 Years Net-Zero</span>
+              </div>
+            </div>
+
+            <div class="widget-subheading" style="margin-top: 0.5rem;">Component Material Passport Inspector</div>
+            <div class="passport-pills">
+              <button class="passport-pill active" data-passport="concrete">M40 RCC Bio-Concrete</button>
+              <button class="passport-pill" data-passport="glazing">Argon Low-E Glazing</button>
+              <button class="passport-pill" data-passport="timber">FSC Thermowood</button>
+              <button class="passport-pill" data-passport="bipv">BIPV Bifacial Solar</button>
+            </div>
+            <div class="passport-card" id="passportCardDisplay">
+              <div class="passport-header">
+                <span class="passport-qr">📱 [QR PASSPORT VERIFIED]</span>
+                <h4>Eco-Engineered M40 RCC Structure (GGBS 40% Blend)</h4>
+              </div>
+              <div class="passport-grid">
+                <div class="passport-item">
+                  <span class="p-label">Embodied Carbon</span>
+                  <span class="p-val highlight-green">185 kgCO₂e/m³</span>
+                </div>
+                <div class="passport-item">
+                  <span class="p-label">Circularity Index</span>
+                  <span class="p-val">94% Recyclable Aggregate at End of Life</span>
+                </div>
+                <div class="passport-item">
+                  <span class="p-label">Disassembly Method</span>
+                  <span class="p-val">Modular Precast Elements with Bolted Dry Connections</span>
+                </div>
+                <div class="passport-item">
+                  <span class="p-label">Supply Chain & Origin</span>
+                  <span class="p-val">Local Slag By-Product (Within 45 km radius)</span>
+                </div>
+                <div class="passport-item full-width">
+                  <span class="p-label">Compliance Standard</span>
+                  <span class="p-val">ISO 14040/44 LCA Certified • EPD Verified</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- INNOVATION 4: Biophilic Acoustic & Circadian Neuro-Architecture -->
+        <div class="innovation-box">
+          <div class="inno-header">
+            <div class="inno-number-badge">04</div>
+            <div>
+              <h3>Biophilic Acoustic & Circadian Neuro-Architecture</h3>
+              <span class="inno-badge-sub">WELL v2 Platinum & Cognitive Neuroscience</span>
+            </div>
+          </div>
+          <p class="inno-text">
+            Bridges architecture with human neurobiology. Uses daylight spectrum simulation to regulate resident melatonin production and leverages vertical green walls + courtyard water cascades for acoustic noise attenuation.
+          </p>
+          <div class="inno-interactive-panel">
+            <div class="widget-subheading">24-Hour Circadian Daylight & Neuro Simulator</div>
+            <div class="slider-row" style="margin-bottom: 0.5rem;">
+              <span class="slider-label">00:00</span>
+              <input type="range" id="circadianHourSlider" min="0" max="24" step="0.5" value="14" class="custom-slider" />
+              <span class="slider-label">24:00</span>
+              <span class="telemetry-val" id="circadianTimeLabel" style="margin-left: 0.5rem; min-width: 50px;">14:00</span>
+            </div>
+            <div class="inno-telemetry-grid" style="margin-bottom: 1rem;">
+              <div class="telemetry-item">
+                <span class="telemetry-lbl">Color Spectrum</span>
+                <span class="telemetry-val" id="circadianCctVal">6500K (Daylight Alert)</span>
+              </div>
+              <div class="telemetry-item">
+                <span class="telemetry-lbl">Melanopic Stimulus</span>
+                <span class="telemetry-val highlight" id="melanopicLuxVal">320 Melanopic EDI</span>
+              </div>
+              <div class="telemetry-item">
+                <span class="telemetry-lbl">Cortisol Reduction</span>
+                <span class="telemetry-val highlight" id="cortisolScoreVal">-36% Stress Index</span>
+              </div>
+            </div>
+
+            <div class="widget-subheading" style="margin-top: 0.5rem;">Acoustic Green Barrier Raytracer</div>
+            <div class="slider-row" style="margin-bottom: 0.5rem;">
+              <span class="slider-label">50 dB</span>
+              <input type="range" id="trafficNoiseSlider" min="50" max="90" value="75" class="custom-slider" />
+              <span class="slider-label">90 dB</span>
+              <span class="telemetry-val" id="trafficNoiseVal" style="margin-left: 0.5rem; min-width: 140px;">75 dB (Street Traffic)</span>
+            </div>
+            <div class="inno-telemetry-grid">
+              <div class="telemetry-item">
+                <span class="telemetry-lbl">Courtyard Sound</span>
+                <span class="telemetry-val highlight" id="courtyardNoiseVal">38 dB (Sanctuary)</span>
+              </div>
+              <div class="telemetry-item">
+                <span class="telemetry-lbl">Bio-Attenuation</span>
+                <span class="telemetry-val highlight" id="acousticDampeningVal">-37 dB Noise Buffer</span>
+              </div>
+              <div class="telemetry-item">
+                <span class="telemetry-lbl">WELL Compliance</span>
+                <span class="telemetry-val highlight">WELL v2 Platinum (Sound 01)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- INNOVATION 5: AI Generative Parametric Apartment Synthesizer -->
+        <div class="innovation-box full-width">
+          <div class="inno-header">
+            <div class="inno-number-badge">05</div>
+            <div>
+              <h3>AI Generative Parametric Apartment Synthesizer</h3>
+              <span class="inno-badge-sub">Real-Time Algorithmic Vector Floor Plan Morphing</span>
+            </div>
+          </div>
+          <p class="inno-text">
+            Instead of fixed static floor plans, our algorithmic generative synthesis engine allows prospective residents to adjust spatial priority parameters — instantly morphing interior room boundaries, cantilever balcony depths, and cross-ventilation corridors with live NBC / IS 456 compliance checks.
+          </p>
+          <div class="inno-interactive-panel">
+            <div class="gen-synthesizer-layout">
+              <div class="gen-controls-box">
+                <div class="widget-subheading">Generative Parametric Weights</div>
+                
+                <div>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.72rem; margin-bottom: 0.2rem;">
+                    <span style="font-weight: 600;">WFH Focus Pod Allocation</span>
+                    <span style="font-weight: 700; color: var(--accent-primary);">Adaptive Studio</span>
+                  </div>
+                  <input type="range" id="genWfhSlider" min="20" max="100" value="60" class="custom-slider" style="width: 100%;" />
+                </div>
+
+                <div>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.72rem; margin-bottom: 0.2rem;">
+                    <span style="font-weight: 600;">Biophilic Balcony Depth</span>
+                    <span style="font-weight: 700; color: var(--accent-green);">1.5m to 3.0m</span>
+                  </div>
+                  <input type="range" id="genBalconySlider" min="1.5" max="3.0" step="0.1" value="2.2" class="custom-slider" style="width: 100%;" />
+                </div>
+
+                <div>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.72rem; margin-bottom: 0.2rem;">
+                    <span style="font-weight: 600;">Cross-Ventilation Directivity</span>
+                    <span style="font-weight: 700; color: var(--accent-sky);">Stack Air Intake</span>
+                  </div>
+                  <input type="range" id="genVentSlider" min="50" max="100" value="85" class="custom-slider" style="width: 100%;" />
+                </div>
+
+                <div class="inno-telemetry-grid" style="grid-template-columns: 1fr 1fr; margin-top: 0.5rem;">
+                  <div class="telemetry-item">
+                    <span class="telemetry-lbl">Total Carpet Area</span>
+                    <span class="telemetry-val highlight" id="genCarpetVal">100.7 m²</span>
+                  </div>
+                  <div class="telemetry-item">
+                    <span class="telemetry-lbl">Daylight Autonomy</span>
+                    <span class="telemetry-val highlight" id="genSdaVal">88.3% sDA</span>
+                  </div>
+                  <div class="telemetry-item">
+                    <span class="telemetry-lbl">Natural Ventilation</span>
+                    <span class="telemetry-val highlight" id="genAchVal">5.2 ACH Flow</span>
+                  </div>
+                  <div class="telemetry-item">
+                    <span class="telemetry-lbl">Spatial Efficiency</span>
+                    <span class="telemetry-val highlight" id="genEffVal">91.6% Usable</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Live Algorithmic Vector Floor Plan Preview -->
+              <div class="gen-svg-wrap" id="genSvgPreview">
+                <!-- Procedurally generated by innovations.js -->
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 

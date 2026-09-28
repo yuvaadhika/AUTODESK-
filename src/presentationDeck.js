@@ -173,6 +173,19 @@ export class PresentationDeck {
       { x: 0.8, y: 1.8, w: 8.4, h: 4.5, fontSize: 13, color: '334155', lineSpacing: 24 }
     );
 
+    // Slide 8: 5 Groundbreaking Innovations
+    const s8 = pptx.addSlide();
+    s8.background = { color: 'F8FAFC' };
+    s8.addText('08 | 5 GROUNDBREAKING ARCHITECTURAL INNOVATIONS', { x: 0.8, y: 0.8, fontSize: 24, bold: true, color: '1E3A8A' });
+    s8.addText(
+      '1. Biomimetic AI Aerofoil Kinetic Facade: Autonomous real-time solar tracking & vortex wind catchers (-85% solar heat gain)\n' +
+      '2. 3D Convective Thermal Chimney CFD: Zero-energy stack ventilation through 10-story open-to-sky atrium (4.5 ACH passive airflow)\n' +
+      '3. Digital Twin Embodied Carbon & Circular Material Passports: ISO 14040/44 EPDs with 40% GGBS bio-slag concrete (-1,080 tons CO2)\n' +
+      '4. Biophilic Acoustic & Circadian Neuro-Architecture: 24-hr Melanopic Lux regulation & -37 dB green barrier noise attenuation\n' +
+      '5. AI Generative Parametric Apartment Synthesizer: Live algorithmic vector floor plan morphing tailored to resident WFH & daylight priorities',
+      { x: 0.8, y: 1.8, w: 8.4, h: 4.5, fontSize: 12, color: '334155', lineSpacing: 22 }
+    );
+
     await pptx.writeFile({ fileName: 'Aura_Verticalis_BIM_Mixed_Use_Presentation.pptx' });
   }
 
@@ -189,19 +202,19 @@ export class PresentationDeck {
     pdf.text('Centrally Located Sustainable B+G+9 Mixed-Use Development | Metric Units (mm)', 15, 27);
     pdf.line(15, 30, 195, 30);
 
-    let y = 40;
+    let y = 38;
     const sections = [
       {
         title: '1. EXECUTIVE SUMMARY & ZONING PROGRAM',
         text: 'Aura Verticalis is a centrally located B+G+9 mixed-use sustainable development. It seamlessly synthesizes active commercial vitality on the lower levels (Ground + 1F) with luxury residential sanctuaries above (2F-9F), founded on an automated basement parking & EV supercharging hub (B1). Built on an 8,000 × 8,000 mm modular grid with a gross built-up area of 12,850 m² on a 48,000 × 36,000 mm site.'
       },
       {
-        title: '2. PASSIVE BIOPHILIC COURTYARD & THERMAL CHIMNEY',
-        text: 'Centered around a 16,000 × 14,000 mm (224 m²) open-to-sky landscape atrium, the building utilizes natural convective stack pressure to pull cool ground-level air upwards through shaded retail walkways, cooling all 64 residential apartments passively (4.5 ACH passive air changes).'
+        title: '2. 5 GROUNDBREAKING ARCHITECTURAL INNOVATIONS',
+        text: '(1) Autonomous Biomimetic AI Aerofoil Facade (-85% solar gain); (2) 10-Story Convective Thermal Chimney & CFD Stack Simulation (4.5 ACH zero-energy ventilation); (3) Digital Twin Embodied Carbon & Circular Material Passports (ISO 14040/44 EPDs, saving 1,080 tons CO2); (4) Biophilic Acoustic & Circadian Neuro-Architecture (-37 dB noise buffer, WELL v2 Platinum); (5) AI Generative Parametric Apartment Synthesizer with real-time algorithmic vector morphing.'
       },
       {
-        title: '3. CLIMATE-RESPONSIVE FACADE ARCHITECTURE',
-        text: 'Equipped with parametric aerofoil solar louvers tuned to 42° solar cutoff angles, high-performance Low-E double glazing (SHGC 0.28, U-value 1.4 W/m²K), and continuous cantilevered balconies with integrated drip-fed bio-planters for microclimate evapotranspiration cooling.'
+        title: '3. PASSIVE BIOPHILIC COURTYARD & THERMAL CHIMNEY',
+        text: 'Centered around a 16,000 × 14,000 mm (224 m²) open-to-sky landscape atrium, the building utilizes natural convective stack pressure to pull cool ground-level air upwards through shaded retail walkways, cooling all 64 residential apartments passively (4.5 ACH passive air changes).'
       },
       {
         title: '4. STRUCTURAL MODELING & REINFORCEMENT SPECIFICATIONS',
@@ -215,17 +228,17 @@ export class PresentationDeck {
 
     sections.forEach(sec => {
       pdf.setFont('helvetica', 'bold');
-      pdf.setFontSize(11);
+      pdf.setFontSize(10);
       pdf.setTextColor(30, 58, 138);
       pdf.text(sec.title, 15, y);
-      y += 6;
+      y += 5;
 
       pdf.setFont('helvetica', 'normal');
-      pdf.setFontSize(9);
+      pdf.setFontSize(8.5);
       pdf.setTextColor(51, 65, 85);
       const splitText = pdf.splitTextToSize(sec.text, 180);
       pdf.text(splitText, 15, y);
-      y += splitText.length * 5 + 6;
+      y += splitText.length * 4.2 + 5;
     });
 
     pdf.line(15, 275, 195, 275);

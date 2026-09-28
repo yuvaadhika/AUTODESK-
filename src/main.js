@@ -3,6 +3,7 @@ import { initFloorPlans } from './floorPlans.js';
 import { initStructuralCAD } from './structuralCAD.js';
 import { initEnvironmentalForma, resizeFormaCharts } from './environmentalForma.js';
 import { PresentationDeck } from './presentationDeck.js';
+import { InnovationsEngine } from './innovations.js';
 
 /**
  * Web Audio API Biophilic Soundscape Generator
@@ -97,35 +98,42 @@ function initApp() {
     console.error('Walkthrough init error:', err);
   }
 
-  // 3. Initialize Floor Plans
+  // 3. Initialize 5 Groundbreaking Innovations Engine
+  try {
+    new InnovationsEngine(bimViewer);
+  } catch (err) {
+    console.error('Innovations engine init error:', err);
+  }
+
+  // 4. Initialize Floor Plans
   try {
     initFloorPlans();
   } catch (err) {
     console.error('Floor plans init error:', err);
   }
 
-  // 4. Initialize Structural CAD
+  // 5. Initialize Structural CAD
   try {
     initStructuralCAD();
   } catch (err) {
     console.error('Structural CAD init error:', err);
   }
 
-  // 5. Initialize Forma Climate Analytics
+  // 6. Initialize Forma Climate Analytics
   try {
     initEnvironmentalForma();
   } catch (err) {
     console.error('Forma init error:', err);
   }
 
-  // 6. Initialize Presentation Deck
+  // 7. Initialize Presentation Deck
   try {
     new PresentationDeck();
   } catch (err) {
     console.error('Presentation deck init error:', err);
   }
 
-  // 7. Biophilic Audio Toggle
+  // 8. Biophilic Audio Toggle
   const soundscape = new BiophilicSoundscape();
   const audioBtn = document.getElementById('btnAudioToggle');
   if (audioBtn) {
@@ -135,7 +143,7 @@ function initApp() {
     });
   }
 
-  // 8. Navigation View Tabs Switching
+  // 9. Navigation View Tabs Switching
   const navTabs = document.querySelectorAll('.nav-tab');
   const viewPanels = document.querySelectorAll('.view-panel');
   const mobileNav = document.getElementById('mainNav');
@@ -203,6 +211,16 @@ function initApp() {
       levelPills.forEach(p => p.classList.remove('active'));
       pill.classList.add('active');
       if (bimViewer) bimViewer.isolateLevel(pill.dataset.lvl);
+    });
+  });
+
+  // 3D Shader Viewport Mode Buttons
+  const shaderModeBtns = document.querySelectorAll('.btn-shader-mode');
+  shaderModeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      shaderModeBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      if (bimViewer) bimViewer.setViewMode(btn.dataset.shader);
     });
   });
 
