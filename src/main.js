@@ -99,8 +99,9 @@ function initApp() {
   }
 
   // 3. Initialize 5 Groundbreaking Innovations Engine
+  let innovationsEngine = null;
   try {
-    new InnovationsEngine(bimViewer);
+    innovationsEngine = new InnovationsEngine(bimViewer);
   } catch (err) {
     console.error('Innovations engine init error:', err);
   }
@@ -165,6 +166,8 @@ function initApp() {
         walkthrough.updateCameraToTime(walkthrough.currentTime);
       } else if (viewKey === 'bim3d' && bimViewer) {
         bimViewer.resizeRendererToDisplaySize();
+      } else if (viewKey === 'innovations' && innovationsEngine) {
+        innovationsEngine.resizeActive3D();
       } else if (viewKey === 'environmental') {
         resizeFormaCharts();
       }

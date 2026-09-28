@@ -333,15 +333,19 @@
       </div>
     </section>
 
-    <!-- VIEW 2: 5 CORE ARCHITECTURAL & BIM INNOVATIONS -->
+    <!-- VIEW 2: 5 CORE ARCHITECTURAL & BIM INNOVATIONS (3D INTERACTIVE SIMULATORS) -->
     <section class="view-panel" id="view-innovations">
       <div class="innovations-container">
+        
         <!-- Innovations Hero Header -->
         <div class="innovations-hero-card glass-panel">
           <div class="hero-left">
-            <span class="badge-innovate-pill">5 CORE ARCHITECTURAL & BIM INNOVATIONS</span>
-            <h2 class="view-heading">Climate-Responsive Design & Innovation Hub</h2>
-            <p class="view-sub">Engineering and architectural strategies centered on climate-responsive modular façades, natural courtyard stack cooling, digital BIM material passports, neuro-architecture, and modular space planning.</p>
+            <div class="badge-innovate-pill">
+              <span class="pulse-dot"></span>
+              <span>3D INTERACTIVE INNOVATION LAB & SIMULATION WORKBENCH</span>
+            </div>
+            <h2 class="view-heading">5 Core Architectural & BIM Innovations in 3D</h2>
+            <p class="view-sub">Physical 3D visual execution outputs demonstrating each architectural mechanism. Rotate 360°, inspect real-time physics, modify dynamic parametric sliders, and verify climate performance telemetries.</p>
           </div>
           <div class="innovations-quick-stats">
             <div class="stat-pill">
@@ -350,7 +354,7 @@
             </div>
             <div class="stat-pill">
               <span class="stat-val">4.5 ACH</span>
-              <span class="stat-lbl">Passive Airflow</span>
+              <span class="stat-lbl">Buoyancy Airflow</span>
             </div>
             <div class="stat-pill">
               <span class="stat-val">-51%</span>
@@ -360,197 +364,539 @@
               <span class="stat-val">-37 dB</span>
               <span class="stat-lbl">Noise Barrier</span>
             </div>
+            <div class="stat-pill">
+              <span class="stat-val">91.2%</span>
+              <span class="stat-lbl">Space Efficiency</span>
+            </div>
           </div>
         </div>
 
-        <!-- 5 Innovations Grid Cards -->
-        <div class="innovations-grid">
-
-          <!-- INNOVATION 1: Climate-Responsive Modular Façade System -->
-          <div class="innov-card glass-panel">
-            <div class="innov-card-header">
-              <div class="innov-badge-wrap">
-                <span class="innov-num">01</span>
-                <span class="innov-tag">CLIMATE ENVELOPE</span>
-              </div>
-              <h3 class="innov-title">Climate-Responsive Modular Façade System</h3>
+        <!-- 5-Innovation Navigation Selector Bar -->
+        <nav class="inno-nav-bar" aria-label="Innovation View Selector">
+          <button class="inno-nav-pill active" data-inno="1" id="tab-inno-1">
+            <span class="pill-num">01</span>
+            <div class="pill-meta">
+              <span class="pill-title">Modular Climate Façade</span>
+              <span class="pill-desc">3D Louver & Solar Deflection</span>
             </div>
-            <p class="innov-short-desc">A 4-element integrated envelope engineered for solar mitigation, thermal comfort, natural lighting, and acoustic tranquility.</p>
-            
-            <ul class="innov-points-list">
-              <li><strong>1. External Shading Louvers:</strong> Solar-angle tuned powder-coated aluminum louvers blocking 85% peak infrared heat while preserving diffuse daylight.</li>
-              <li><strong>2. Recessed Windows:</strong> Deep reveal window placements to cut direct glare and eliminate solar thermal gain.</li>
-              <li><strong>3. Green Balconies:</strong> Continuous cantilevered balconies with native flora planter boxes providing 4.2°C evaporative microclimate buffering.</li>
-              <li><strong>4. Operable Ventilation Openings:</strong> Dual-aspect high-performance Low-E acoustic windows enabling natural cross-ventilation.</li>
-            </ul>
-
-            <!-- Interactive Actuator Widget -->
-            <div class="innov-widget-box">
-              <span class="widget-label">🎮 Interactive Façade Mode Controls:</span>
-              <div class="facade-mode-btns-row">
-                <button class="btn-facade-mode active" data-facade-mode="solar">☀️ Solar Shading</button>
-                <button class="btn-facade-mode" data-facade-mode="vortex">🌪️ Wind Catching</button>
-                <button class="btn-facade-mode" data-facade-mode="storm">⛈️ Storm Aerodynamic</button>
-                <button class="btn-facade-mode" data-facade-mode="night">🌙 Night Cooling</button>
-              </div>
-              <div class="telemetry-row">
-                <div class="tel-item">
-                  <span class="tel-label">LOUVER ANGLE:</span>
-                  <span class="tel-val" id="facadeAngleVal">42.5° (Solar Shading Mode)</span>
-                </div>
-                <div class="tel-item">
-                  <span class="tel-label">GLARE INDEX:</span>
-                  <span class="tel-val" id="facadeGlareVal">DGP 0.18 (Imperceptible)</span>
-                </div>
-              </div>
+          </button>
+          <button class="inno-nav-pill" data-inno="2" id="tab-inno-2">
+            <span class="pill-num">02</span>
+            <div class="pill-meta">
+              <span class="pill-title">Courtyard Thermal Chimney</span>
+              <span class="pill-desc">3D Buoyancy CFD Stack</span>
             </div>
-          </div>
-
-          <!-- INNOVATION 2: Convective Thermal Chimney CFD Stack -->
-          <div class="innov-card glass-panel">
-            <div class="innov-card-header">
-              <div class="innov-badge-wrap">
-                <span class="innov-num">02</span>
-                <span class="innov-tag">PASSIVE STACK COOLING</span>
-              </div>
-              <h3 class="innov-title">Central Courtyard Thermal Chimney & CFD Stack</h3>
+          </button>
+          <button class="inno-nav-pill" data-inno="3" id="tab-inno-3">
+            <span class="pill-num">03</span>
+            <div class="pill-meta">
+              <span class="pill-title">Digital Material Passports</span>
+              <span class="pill-desc">3D GGBS Carbon Heatmap</span>
             </div>
-            <p class="innov-short-desc">16m × 14m (224 m²) open-to-sky central courtyard extending from Ground to Roof, acting as the building's respiratory core.</p>
-            
-            <ul class="innov-points-list">
-              <li><strong>🌿 Natural Stack Effect:</strong> Draws cool ground-level air across reflection pond and exhausts warm stale air upwards through the roof.</li>
-              <li><strong>💨 Target 4.5 Air Changes / Hour:</strong> Passive buoyancy airflow cooling all 48 residential apartments naturally.</li>
-              <li><strong>☀️ 100% Daylit Corridors:</strong> Eliminates daytime artificial lighting along residential access walkways.</li>
-              <li><strong>🌀 Real-Time Buoyancy Simulation:</strong> 3D interactive convective thermal airflow visualization in the BIM viewport.</li>
-            </ul>
-
-            <!-- Interactive Chimney Damper Widget -->
-            <div class="innov-widget-box">
-              <div class="slider-header-row">
-                <span class="widget-label">🎮 Rooftop Stack Damper:</span>
-                <span class="tel-val" id="chimneyDamperVal">80% Open</span>
-              </div>
-              <input type="range" id="chimneyDamperSlider" min="0" max="100" value="80" class="custom-slider" />
-              <div class="telemetry-row">
-                <div class="tel-item">
-                  <span class="tel-label">TARGET AIRFLOW:</span>
-                  <span class="tel-val" id="chimneyAchVal">4.5 ACH (Target Passive Airflow)</span>
-                </div>
-                <div class="tel-item">
-                  <span class="tel-label">MICROCLIMATE:</span>
-                  <span class="tel-val" id="chimneyTempDropVal">-4.2°C Courtyard Microclimate</span>
-                </div>
-              </div>
+          </button>
+          <button class="inno-nav-pill" data-inno="4" id="tab-inno-4">
+            <span class="pill-num">04</span>
+            <div class="pill-meta">
+              <span class="pill-title">Circadian & Acoustic WELL</span>
+              <span class="pill-desc">3D CCT & Noise Damping</span>
             </div>
-          </div>
-
-          <!-- INNOVATION 3: Embodied Carbon & Circular Material Passports -->
-          <div class="innov-card glass-panel">
-            <div class="innov-card-header">
-              <div class="innov-badge-wrap">
-                <span class="innov-num">03</span>
-                <span class="innov-tag">LCA & CIRCULAR BIM</span>
-              </div>
-              <h3 class="innov-title">Digital BIM Material Passports & Low-Carbon Slag</h3>
+          </button>
+          <button class="inno-nav-pill" data-inno="5" id="tab-inno-5">
+            <span class="pill-num">05</span>
+            <div class="pill-meta">
+              <span class="pill-title">Parametric Modular Planning</span>
+              <span class="pill-desc">3D Dynamic Space Synthesizer</span>
             </div>
-            <p class="innov-short-desc">ISO 14040/44 compliant Life Cycle Assessment with GGBS industrial by-product concrete optimizer and circular component logging.</p>
-            
-            <ul class="innov-points-list">
-              <li><strong>📉 -51% Embodied Carbon Target:</strong> Reduces baseline carbon intensity from 520 kgCO₂e/m² down to 310 kgCO₂e/m².</li>
-              <li><strong>♻️ Up to 60% GGBS Concrete Substitution:</strong> Replaces ordinary Portland cement with blast furnace slag by-product.</li>
-              <li><strong>📲 Verifiable Material Logging:</strong> Every structural bay, slab, and panel assigned deconstruction and circularity parameters in BIM.</li>
-            </ul>
+          </button>
+        </nav>
 
-            <!-- Interactive GGBS Slider -->
-            <div class="innov-widget-box">
-              <div class="slider-header-row">
-                <span class="widget-label">🎮 GGBS Slag Replacement Blend:</span>
-                <span class="tel-val" id="ggbsVal">40% GGBS Slag Blend</span>
-              </div>
-              <input type="range" id="ggbsSlider" min="0" max="60" value="40" class="custom-slider" />
-              <div class="telemetry-row">
-                <div class="tel-item">
-                  <span class="tel-label">EMBODIED INTENSITY:</span>
-                  <span class="tel-val" id="carbonBudgetVal">312 kgCO₂e/m² (-40%)</span>
-                </div>
-                <div class="tel-item">
-                  <span class="tel-label">TOTAL CO₂ OFFSET:</span>
-                  <span class="tel-val" id="co2SavedTotal">1,080 Metric Tons CO₂</span>
-                </div>
-              </div>
-            </div>
-          </div>
+        <!-- 5 INDEPENDENT 3D WORKBENCHES -->
+        <div class="inno-workbenches-wrapper">
 
-          <!-- INNOVATION 4: Biophilic Acoustic & Circadian Architecture -->
-          <div class="innov-card glass-panel">
-            <div class="innov-card-header">
-              <div class="innov-badge-wrap">
-                <span class="innov-num">04</span>
-                <span class="innov-tag">WELL V2 PLATINUM TARGET</span>
+          <!-- WORKBENCH 1: Climate-Responsive Modular Façade 3D Simulator -->
+          <div class="inno-workbench-section active" data-inno="1">
+            <div class="inno-split-grid">
+              
+              <!-- Left: 3D Interactive Canvas Box -->
+              <div class="inno-canvas-box glass-panel">
+                <div class="inno-canvas-hud-top">
+                  <div class="hud-tag">
+                    <span class="live-dot"></span>
+                    <span>3D FAÇADE BAY & SOLAR DEFLECTION SIMULATOR</span>
+                  </div>
+                  <span class="hud-hint">🖱️ Left Drag: Rotate 360° • Scroll: Zoom • Right Drag: Pan</span>
+                </div>
+                
+                <canvas id="canvas-inno-1" class="inno-webgl-canvas"></canvas>
+                
+                <div class="inno-canvas-hud-bottom">
+                  <div class="hud-mode-row">
+                    <span class="hud-mode-lbl">Presets:</span>
+                    <button class="btn-facade-mode active" data-facade-mode="solar">☀️ Solar Shading (42.5°)</button>
+                    <button class="btn-facade-mode" data-facade-mode="vortex">🌪️ Wind Catching (28°)</button>
+                    <button class="btn-facade-mode" data-facade-mode="storm">⛈️ Storm Flush (0°)</button>
+                    <button class="btn-facade-mode" data-facade-mode="night">🌙 Night Cooling (85°)</button>
+                  </div>
+                </div>
               </div>
-              <h3 class="innov-title">Circadian Lighting & -37 dB Green Noise Barrier</h3>
-            </div>
-            <p class="innov-short-desc">Integrates WELL v2 circadian spectrum daylight design and layered biophilic green balconies for restorative quiet luxury.</p>
-            
-            <ul class="innov-points-list">
-              <li><strong>🌅 24-Hour Circadian Lighting Design (2700K - 6500K):</strong> Promotes natural human melatonin and cortisol rhythm balance.</li>
-              <li><strong>🍃 -37 dB Botanical Noise Attenuation:</strong> Dense balcony planter buffers drop street traffic noise from 75 dB to 38 dB.</li>
-              <li><strong>🎧 Organic Biophilic Ambience:</strong> Native wind-whisper and water cascade acoustics for enhanced cognitive wellness.</li>
-            </ul>
 
-            <!-- Interactive Circadian Clock Widget -->
-            <div class="innov-widget-box">
-              <div class="slider-header-row">
-                <span class="widget-label">🎮 Circadian Hour of Day:</span>
-                <span class="tel-val" id="circadianTimeDisplay">14:00 (6500K Sky White)</span>
-              </div>
-              <input type="range" id="circadianHourSlider" min="0" max="24" value="14" class="custom-slider" />
-              <div class="telemetry-row">
-                <div class="tel-item">
-                  <span class="tel-label">MELANOPIC LUX:</span>
-                  <span class="tel-val" id="melanopicLuxVal">480 EML (WELL Target)</span>
+              <!-- Right: Executive Breakdown & Interactive Controls -->
+              <div class="inno-details-panel glass-panel">
+                <div class="inno-header-wrap">
+                  <div class="inno-tag-pill">INNOVATION 01 • CLIMATE ENVELOPE</div>
+                  <h3 class="inno-detail-title">Climate-Responsive Modular Façade System</h3>
+                  <p class="inno-lead-desc">A 4-element integrated architectural envelope engineered for peak solar heat deflection, natural diffused daylighting, and microclimate evaporative cooling.</p>
                 </div>
-                <div class="tel-item">
-                  <span class="tel-label">RESIDENTIAL NOISE:</span>
-                  <span class="tel-val" id="interiorNoiseVal">38 dB (Tranquil Interior)</span>
+
+                <div class="inno-mechanism-list">
+                  <div class="mech-item">
+                    <div class="mech-icon">🛡️</div>
+                    <div class="mech-body">
+                      <h4>1. Motorized Aerofoil Bronze Louvers</h4>
+                      <p>Solar-angle tuned louvers that physically tilt to reflect direct peak infrared rays while permitting glare-free diffused daylight into residential suites.</p>
+                    </div>
+                  </div>
+                  <div class="mech-item">
+                    <div class="mech-icon">🪟</div>
+                    <div class="mech-body">
+                      <h4>2. Deep Recessed Window Reveal</h4>
+                      <p>Window frames recessed by 400mm into the thermal envelope, creating self-shading geometries that eliminate thermal bridging.</p>
+                    </div>
+                  </div>
+                  <div class="mech-item">
+                    <div class="mech-icon">🌿</div>
+                    <div class="mech-body">
+                      <h4>3. Cantilevered Green Balcony Planters</h4>
+                      <p>1,800mm cantilevered balconies with indigenous foliage creating a 4.2°C evaporative cooling microclimate buffer.</p>
+                    </div>
+                  </div>
+                  <div class="mech-item">
+                    <div class="mech-icon">🌬️</div>
+                    <div class="mech-body">
+                      <h4>4. Acoustic Low-E Operable Glazing</h4>
+                      <p>High-performance double-glazed Low-E acoustic windows (U-value 1.4 W/m²K, SHGC 0.28) enabling natural cross-ventilation.</p>
+                    </div>
+                  </div>
                 </div>
+
+                <!-- Real-Time Interactive Sliders & Live Telemetry -->
+                <div class="inno-controls-card">
+                  <div class="control-header-row">
+                    <label for="inno1LouverSlider" class="control-label">🎮 Dynamic 3D Louver Angle Actuator:</label>
+                    <span class="control-live-val" id="facadeAngleVal">42.5° (Solar Shading Mode)</span>
+                  </div>
+                  <input type="range" id="inno1LouverSlider" min="0" max="90" step="0.5" value="42.5" class="custom-slider" />
+
+                  <div class="telemetry-grid">
+                    <div class="tel-card">
+                      <span class="tel-label">DAYLIGHT GLARE PROBABILITY</span>
+                      <span class="tel-num green" id="facadeGlareVal">DGP 0.18 (Imperceptible)</span>
+                    </div>
+                    <div class="tel-card">
+                      <span class="tel-label">SOLAR IRRADIANCE BLOCK</span>
+                      <span class="tel-num">-85% Peak IR Deflected</span>
+                    </div>
+                    <div class="tel-card">
+                      <span class="tel-label">MICROCLIMATE COOLING</span>
+                      <span class="tel-num green">-4.2°C Balcony Drop</span>
+                    </div>
+                    <div class="tel-card">
+                      <span class="tel-label">TARGET sDA DAYLIGHT</span>
+                      <span class="tel-num">82.4% Floor Coverage</span>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
 
-          <!-- INNOVATION 5: Parametric Modular Space Planning -->
-          <div class="innov-card glass-panel">
-            <div class="innov-card-header">
-              <div class="innov-badge-wrap">
-                <span class="innov-num">05</span>
-                <span class="innov-tag">PARAMETRIC PLANNING</span>
+          <!-- WORKBENCH 2: Courtyard Thermal Chimney 3D Simulator -->
+          <div class="inno-workbench-section" data-inno="2">
+            <div class="inno-split-grid">
+              
+              <!-- Left: 3D Interactive Canvas Box -->
+              <div class="inno-canvas-box glass-panel">
+                <div class="inno-canvas-hud-top">
+                  <div class="hud-tag">
+                    <span class="live-dot"></span>
+                    <span>3D ATRIUM CONVECTIVE STACK & BUOYANCY CFD SIMULATOR</span>
+                  </div>
+                  <span class="hud-hint">🖱️ Left Drag: Rotate 360° • Scroll: Zoom • Right Drag: Pan</span>
+                </div>
+                
+                <canvas id="canvas-inno-2" class="inno-webgl-canvas"></canvas>
+                
+                <div class="inno-canvas-hud-bottom">
+                  <div class="hud-mode-row">
+                    <button class="btn-shader-mode active-glow" id="btnToggleCfdParticles">CFD Stack Particles: ACTIVE</button>
+                    <span class="hud-status-pill">600 Particle Buoyancy Vector Flow</span>
+                  </div>
+                </div>
               </div>
-              <h3 class="innov-title">Parametric Unit Configuration & Modular Space Planning</h3>
-            </div>
-            <p class="innov-short-desc">Parametric modular configuration tool demonstrating dynamic space planning for 2BHK (92m²), 1BHK (55m²), and 3BHK (145m²) typologies.</p>
-            
-            <ul class="innov-points-list">
-              <li><strong>🔄 Modular Typology Coordination:</strong> Standardized 8m grid allowing 6 harmonious units per floor (3x 2BHK, 2x 1BHK, 1x 3BHK).</li>
-              <li><strong>💻 Work-from-Home Flexibility:</strong> Integrated study alcoves with dedicated acoustic separation and natural daylight access.</li>
-              <li><strong>🌿 Shaded Private Balconies (1.8m depth):</strong> Dedicated outdoor green terraces for all 48 residential units.</li>
-            </ul>
 
-            <!-- Interactive Generative Synthesizer Controls -->
-            <div class="innov-widget-box">
-              <div class="slider-header-row">
-                <span class="widget-label">🎮 WFH / Living Space Priority:</span>
-                <span class="tel-val" id="wfhWeightVal">60% WFH Flexibility</span>
+              <!-- Right: Executive Breakdown & Interactive Controls -->
+              <div class="inno-details-panel glass-panel">
+                <div class="inno-header-wrap">
+                  <div class="inno-tag-pill">INNOVATION 02 • PASSIVE STACK COOLING</div>
+                  <h3 class="inno-detail-title">Central Courtyard Thermal Chimney & CFD Stack</h3>
+                  <p class="inno-lead-desc">A 16m × 14m (224 m²) continuous open-to-sky central courtyard extending from Ground to Roof, functioning as the building's central convective respiratory lung.</p>
+                </div>
+
+                <div class="inno-mechanism-list">
+                  <div class="mech-item">
+                    <div class="mech-icon">🌀</div>
+                    <div class="mech-body">
+                      <h4>1. Convective Buoyancy Airflow Physics</h4>
+                      <p>Warm indoor air rises naturally through the central void while cool ambient air is drawn in across ground-level landscaped reflection pools.</p>
+                    </div>
+                  </div>
+                  <div class="mech-item">
+                    <div class="mech-icon">💨</div>
+                    <div class="mech-body">
+                      <h4>2. Target 4.5 Air Changes per Hour (ACH)</h4>
+                      <p>Natural buoyancy airflow flushes all 48 residential units and common corridors without mechanical fan energy.</p>
+                    </div>
+                  </div>
+                  <div class="mech-item">
+                    <div class="mech-icon">☀️</div>
+                    <div class="mech-body">
+                      <h4>3. 100% Daylit Internal Corridors</h4>
+                      <p>Brings natural ambient sunlight deep into internal apartment corridors from Ground to Roof, cutting daytime lighting loads to 0.</p>
+                    </div>
+                  </div>
+                  <div class="mech-item">
+                    <div class="mech-icon">🎛️</div>
+                    <div class="mech-body">
+                      <h4>4. Motorized Rooftop Exhaust Damper Slats</h4>
+                      <p>Weather-responsive dampers at roof level that adjust opening percentage to maximize draw velocity or seal during storms.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Real-Time Interactive Sliders & Live Telemetry -->
+                <div class="inno-controls-card">
+                  <div class="control-header-row">
+                    <label for="chimneyDamperSlider" class="control-label">🎮 Rooftop Exhaust Damper Slats:</label>
+                    <span class="control-live-val" id="chimneyDamperVal">80% Open</span>
+                  </div>
+                  <input type="range" id="chimneyDamperSlider" min="0" max="100" value="80" class="custom-slider" />
+
+                  <div class="telemetry-grid">
+                    <div class="tel-card">
+                      <span class="tel-label">PASSIVE AIRFLOW RATE</span>
+                      <span class="tel-num green" id="chimneyAchVal">4.5 ACH (Target Airflow)</span>
+                    </div>
+                    <div class="tel-card">
+                      <span class="tel-label">COURTYARD COOLING</span>
+                      <span class="tel-num green" id="chimneyTempDropVal">-4.2°C Microclimate</span>
+                    </div>
+                    <div class="tel-card">
+                      <span class="tel-label">STACK UPWARD VELOCITY</span>
+                      <span class="tel-num">1.42 m/s Plume Draft</span>
+                    </div>
+                    <div class="tel-card">
+                      <span class="tel-label">RESIDENTIAL APARTMENTS</span>
+                      <span class="tel-num">48 Units Naturally Ventilated</span>
+                    </div>
+                  </div>
+                </div>
+
               </div>
-              <input type="range" id="wfhWeightSlider" min="0" max="100" value="60" class="custom-slider" />
-              <div class="telemetry-row">
-                <div class="tel-item">
-                  <span class="tel-label">SELECTED UNIT:</span>
-                  <span class="tel-val" id="genUnitTypeVal">2BHK Deluxe Suite (92 m²)</span>
+            </div>
+          </div>
+
+          <!-- WORKBENCH 3: Digital BIM Material Passports 3D Simulator -->
+          <div class="inno-workbench-section" data-inno="3">
+            <div class="inno-split-grid">
+              
+              <!-- Left: 3D Interactive Canvas Box -->
+              <div class="inno-canvas-box glass-panel">
+                <div class="inno-canvas-hud-top">
+                  <div class="hud-tag">
+                    <span class="live-dot"></span>
+                    <span>3D DIGITAL MATERIAL PASSPORT & LCA CARBON HEATMAP</span>
+                  </div>
+                  <span class="hud-hint">🖱️ Left Drag: Rotate 360° • Scroll: Zoom • Right Drag: Pan</span>
                 </div>
-                <div class="tel-item">
-                  <span class="tel-label">FLOOR AREA:</span>
-                  <span class="tel-val" id="genAreaVal">92.0 m² (Efficiency 91.2%)</span>
+                
+                <canvas id="canvas-inno-3" class="inno-webgl-canvas"></canvas>
+                
+                <div class="inno-canvas-hud-bottom">
+                  <div class="hud-mode-row">
+                    <span class="hud-mode-lbl">Inspect BIM Component:</span>
+                    <button class="passport-pill active" data-passport="column">Column C1 (M40)</button>
+                    <button class="passport-pill" data-passport="slab">Flat Slab (M35)</button>
+                    <button class="passport-pill" data-passport="timber">Timber Skydeck</button>
+                    <button class="passport-pill" data-passport="glazing">Low-E Façade</button>
+                  </div>
                 </div>
+              </div>
+
+              <!-- Right: Executive Breakdown & Interactive Controls -->
+              <div class="inno-details-panel glass-panel">
+                <div class="inno-header-wrap">
+                  <div class="inno-tag-pill">INNOVATION 03 • LCA & CIRCULAR BIM</div>
+                  <h3 class="inno-detail-title">Digital BIM Material Passports & Low-Carbon Slag</h3>
+                  <p class="inno-lead-desc">Life Cycle Assessment (LCA) compliance with ISO 14040/44 standards, integrating Ground Granulated Blast-Furnace Slag (GGBS) concrete optimization and circular material tracking.</p>
+                </div>
+
+                <div class="inno-mechanism-list">
+                  <div class="mech-item">
+                    <div class="mech-icon">📉</div>
+                    <div class="mech-body">
+                      <h4>1. -51% Embodied Carbon Reduction Target</h4>
+                      <p>Cuts baseline high-rise carbon intensity from 520 kgCO₂e/m² down to 310 kgCO₂e/m² across the 12,850 m² development.</p>
+                    </div>
+                  </div>
+                  <div class="mech-item">
+                    <div class="mech-icon">♻️</div>
+                    <div class="mech-body">
+                      <h4>2. Up to 60% GGBS Industrial Slag Concrete</h4>
+                      <p>Substitutes high-emission Ordinary Portland Cement with steel industry slag by-product in RCC columns, drop panels, and slabs.</p>
+                    </div>
+                  </div>
+                  <div class="mech-item">
+                    <div class="mech-icon">🏷️</div>
+                    <div class="mech-body">
+                      <h4>3. Verifiable Digital Passport Parameters</h4>
+                      <p>Every structural column, flat slab, and facade cassette is assigned circularity, origin, and deconstruction parameters in Revit.</p>
+                    </div>
+                  </div>
+                  <div class="mech-item">
+                    <div class="mech-icon">🪵</div>
+                    <div class="mech-body">
+                      <h4>4. Mass Timber & Recycled Steel Integration</h4>
+                      <p>FSC-certified engineered timber communal skydecks and 85% recycled high-yield rebar reinforcement.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Real-Time Interactive Sliders & Live Telemetry -->
+                <div class="inno-controls-card">
+                  <div class="control-header-row">
+                    <label for="ggbsSlider" class="control-label">🎮 GGBS Slag Concrete Replacement:</label>
+                    <span class="control-live-val" id="ggbsVal">40% GGBS Slag Blend</span>
+                  </div>
+                  <input type="range" id="ggbsSlider" min="0" max="60" value="40" class="custom-slider" />
+
+                  <div class="telemetry-grid">
+                    <div class="tel-card">
+                      <span class="tel-label">EMBODIED CARBON INTENSITY</span>
+                      <span class="tel-num green" id="carbonBudgetVal">312 kgCO₂e/m² (-40%)</span>
+                    </div>
+                    <div class="tel-card">
+                      <span class="tel-label">LIFETIME CO₂ AVERTED</span>
+                      <span class="tel-num green" id="co2SavedTotal">1,080 Metric Tons CO₂</span>
+                    </div>
+                    <div class="tel-card">
+                      <span class="tel-label">MATERIAL CIRCULARITY</span>
+                      <span class="tel-num">88.4% Disassembly Index</span>
+                    </div>
+                    <div class="tel-card">
+                      <span class="tel-label">ISO LCA COMPLIANCE</span>
+                      <span class="tel-num">ISO 14040/44 Certified</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- WORKBENCH 4: Circadian & Biophilic Acoustics 3D Simulator -->
+          <div class="inno-workbench-section" data-inno="4">
+            <div class="inno-split-grid">
+              
+              <!-- Left: 3D Interactive Canvas Box -->
+              <div class="inno-canvas-box glass-panel">
+                <div class="inno-canvas-hud-top">
+                  <div class="hud-tag">
+                    <span class="live-dot"></span>
+                    <span>3D CIRCADIAN WELL LIGHTING & ACOUSTIC DAMPING SIMULATOR</span>
+                  </div>
+                  <span class="hud-hint">🖱️ Left Drag: Rotate 360° • Scroll: Zoom • Right Drag: Pan</span>
+                </div>
+                
+                <canvas id="canvas-inno-4" class="inno-webgl-canvas"></canvas>
+                
+                <div class="inno-canvas-hud-bottom">
+                  <div class="hud-mode-row">
+                    <span class="hud-status-pill">Sound Waves: Red (75 dB Street) → Green (38 dB Interior)</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right: Executive Breakdown & Interactive Controls -->
+              <div class="inno-details-panel glass-panel">
+                <div class="inno-header-wrap">
+                  <div class="inno-tag-pill">INNOVATION 04 • WELL V2 PLATINUM TARGET</div>
+                  <h3 class="inno-detail-title">Circadian Lighting & -37 dB Green Noise Barrier</h3>
+                  <p class="inno-lead-desc">Integrates neuro-architectural wellness, 24-hour biological circadian light spectrum balancing (2700K–6500K), and botanical multi-layer acoustic dampening.</p>
+                </div>
+
+                <div class="inno-mechanism-list">
+                  <div class="mech-item">
+                    <div class="mech-icon">🌅</div>
+                    <div class="mech-body">
+                      <h4>1. 24-Hour Biological Circadian Spectrum</h4>
+                      <p>Dynamic daylight simulation matching human melatonin/cortisol cycles: 2700K warm amber at dawn/dusk to 6500K bright sky-white at peak midday.</p>
+                    </div>
+                  </div>
+                  <div class="mech-item">
+                    <div class="mech-icon">🍃</div>
+                    <div class="mech-body">
+                      <h4>2. -37 dB Dense Botanical Sound Absorption</h4>
+                      <p>Vertical biophilic green wall and planter box dense foliage that dampens exterior urban street noise from 75 dB down to a calm 38 dB interior.</p>
+                    </div>
+                  </div>
+                  <div class="mech-item">
+                    <div class="mech-icon">🎧</div>
+                    <div class="mech-body">
+                      <h4>3. Restorative Biophilic Audio Ambience</h4>
+                      <p>Central water cascades and native canopy foliage that mask low-frequency traffic noise with natural pink-noise soundscapes.</p>
+                    </div>
+                  </div>
+                  <div class="mech-item">
+                    <div class="mech-icon">✨</div>
+                    <div class="mech-body">
+                      <h4>4. WELL v2 Platinum Indoor Environmental Quality</h4>
+                      <p>Meets stringent Equivalent Melanopic Lux (EML > 250 lux) thresholds for all 48 residential living and bedroom zones.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Real-Time Interactive Sliders & Live Telemetry -->
+                <div class="inno-controls-card">
+                  <div class="control-header-row">
+                    <label for="circadianHourSlider" class="control-label">🎮 Circadian 24-Hour Day Clock:</label>
+                    <span class="control-live-val" id="circadianTimeDisplay">14:00 (6500K Sky White)</span>
+                  </div>
+                  <input type="range" id="circadianHourSlider" min="0" max="24" step="0.5" value="14" class="custom-slider" />
+
+                  <div class="telemetry-grid">
+                    <div class="tel-card">
+                      <span class="tel-label">EQUIVALENT MELANOPIC LUX</span>
+                      <span class="tel-num green" id="melanopicLuxVal">480 EML (WELL Target)</span>
+                    </div>
+                    <div class="tel-card">
+                      <span class="tel-label">RESIDENTIAL INTERIOR NOISE</span>
+                      <span class="tel-num green" id="interiorNoiseVal">38 dB (Tranquil Interior)</span>
+                    </div>
+                    <div class="tel-card">
+                      <span class="tel-label">BOTANICAL NOISE CUT</span>
+                      <span class="tel-num">-37 dB Green Wall Damping</span>
+                    </div>
+                    <div class="tel-card">
+                      <span class="tel-label">WELL V2 CERTIFICATION</span>
+                      <span class="tel-num">Platinum Standard Target</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- WORKBENCH 5: Parametric Modular Space Planning 3D Simulator -->
+          <div class="inno-workbench-section" data-inno="5">
+            <div class="inno-split-grid">
+              
+              <!-- Left: 3D Interactive Canvas Box -->
+              <div class="inno-canvas-box glass-panel">
+                <div class="inno-canvas-hud-top">
+                  <div class="hud-tag">
+                    <span class="live-dot"></span>
+                    <span>3D PARAMETRIC MODULAR APARTMENT SYNTHESIZER</span>
+                  </div>
+                  <span class="hud-hint">🖱️ Left Drag: Rotate 360° • Scroll: Zoom • Right Drag: Pan</span>
+                </div>
+                
+                <canvas id="canvas-inno-5" class="inno-webgl-canvas"></canvas>
+                
+                <div class="inno-canvas-hud-bottom">
+                  <div class="hud-mode-row">
+                    <span class="hud-mode-lbl">Typology Select:</span>
+                    <button class="btn-inno-typology active" data-type="2bhk">2BHK Suite (92 m²)</button>
+                    <button class="btn-inno-typology" data-type="1bhk">1BHK Studio (55 m²)</button>
+                    <button class="btn-inno-typology" data-type="3bhk">3BHK Penthouse (145 m²)</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right: Executive Breakdown & Interactive Controls -->
+              <div class="inno-details-panel glass-panel">
+                <div class="inno-header-wrap">
+                  <div class="inno-tag-pill">INNOVATION 05 • PARAMETRIC PLANNING</div>
+                  <h3 class="inno-detail-title">Parametric Modular Configuration & Unit Planning</h3>
+                  <p class="inno-lead-desc">Parametric modular configuration tool demonstrating dynamic space planning for 2BHK (92m²), 1BHK (55m²), and 3BHK (145m²) residential typologies within a standardized 8m grid.</p>
+                </div>
+
+                <div class="inno-mechanism-list">
+                  <div class="mech-item">
+                    <div class="mech-icon">📐</div>
+                    <div class="mech-body">
+                      <h4>1. Standardized 8,000mm × 8,000mm RCC Grid</h4>
+                      <p>Enables 6 modular apartments per floor (3x 2BHK, 2x 1BHK, 1x 3BHK) yielding exactly 48 residential units across levels 2F–9F.</p>
+                    </div>
+                  </div>
+                  <div class="mech-item">
+                    <div class="mech-icon">💻</div>
+                    <div class="mech-body">
+                      <h4>2. Dynamic Work-from-Home (WFH) Pods</h4>
+                      <p>Sliding acoustic partition walls that morph bedroom space into an isolated ergonomic study pod with dedicated daylight access.</p>
+                    </div>
+                  </div>
+                  <div class="mech-item">
+                    <div class="mech-icon">🌿</div>
+                    <div class="mech-body">
+                      <h4>3. Parametric Balcony Depth Extrusion</h4>
+                      <p>Customizable 1.5m to 3.0m deep cantilevered balconies providing shaded outdoor living space for every apartment.</p>
+                    </div>
+                  </div>
+                  <div class="mech-item">
+                    <div class="mech-icon">⚡</div>
+                    <div class="mech-body">
+                      <h4>4. 91.2% Net Usable Spatial Efficiency</h4>
+                      <p>Eliminates dead circulation hallways through dual-aspect layout oriented around the breathable central courtyard.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Real-Time Interactive Sliders & Live Telemetry -->
+                <div class="inno-controls-card">
+                  <div class="control-header-row">
+                    <label for="wfhWeightSlider" class="control-label">🎮 WFH / Living Space Morph Ratio:</label>
+                    <span class="control-live-val" id="wfhWeightVal">60% WFH Flex</span>
+                  </div>
+                  <input type="range" id="wfhWeightSlider" min="0" max="100" value="60" class="custom-slider" />
+
+                  <div class="control-header-row" style="margin-top: 10px;">
+                    <label for="inno5BalconySlider" class="control-label">🎮 Balcony Projection Depth:</label>
+                    <span class="control-live-val" id="inno5BalconyVal">1.8m Depth</span>
+                  </div>
+                  <input type="range" id="inno5BalconySlider" min="1.2" max="3.0" step="0.1" value="1.8" class="custom-slider" />
+
+                  <div class="telemetry-grid">
+                    <div class="tel-card">
+                      <span class="tel-label">SELECTED TYPOLOGY</span>
+                      <span class="tel-num" id="genUnitTypeVal">2BHK Deluxe Suite</span>
+                    </div>
+                    <div class="tel-card">
+                      <span class="tel-label">FLOOR AREA & EFFICIENCY</span>
+                      <span class="tel-num green" id="genAreaVal">92.0 m² (91.2% Eff.)</span>
+                    </div>
+                    <div class="tel-card">
+                      <span class="tel-label">TOTAL RESIDENTIAL UNITS</span>
+                      <span class="tel-num">48 Units (6 Units / Floor)</span>
+                    </div>
+                    <div class="tel-card">
+                      <span class="tel-label">COMMERCIAL PODIUM</span>
+                      <span class="tel-num">Level G + Level 1F</span>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
