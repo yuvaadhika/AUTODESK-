@@ -210,46 +210,12 @@
             <span class="shader-lbl">Shader Mode:</span>
             <button class="btn-shader-mode active" data-shader="realistic"
               title="Standard Architectural PBR">Architectural Real</button>
-            <button class="btn-shader-mode" data-shader="thermal" title="Solar Radiation & Thermal Gradient Heatmap">Thermal Heatmap</button>
             <button class="btn-shader-mode" data-shader="carbon" title="LCA Embodied Carbon Heatmap">Carbon
               (LCA)</button>
             <button class="btn-shader-mode" data-shader="cfd" title="Thermal Stack Gradient">CFD Heatmap</button>
             <button class="btn-shader-mode" data-shader="xray" title="X-Ray Structural Frame">X-Ray Frame</button>
             <button class="btn-shader-mode active-glow" id="btnToggleCfdParticles"
               title="Toggle 3D Courtyard Airflow Particles">CFD Particles: ACTIVE</button>
-          </div>
-
-          <!-- 4D Construction Phasing Timeline Controller -->
-          <div class="bim4d-controller glass-panel">
-            <div class="controller-header">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
-                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-              </svg>
-              <span>4D BIM CONSTRUCTION PHASING</span>
-              <span class="badge-month" id="bim4dMonthDisplay">Month 24 of 24</span>
-            </div>
-            <div class="slider-row">
-              <span class="slider-label">M1 (Piles)</span>
-              <input type="range" id="bim4dTimelineSlider" min="1" max="24" value="24" class="custom-slider" />
-              <span class="slider-label">M24 (Built)</span>
-            </div>
-            <div class="bim4d-controls-row">
-              <button class="btn-bim4d" id="btnBim4dPlay">Play 4D Phasing</button>
-              <div class="pill-4d-milestones">
-                <button class="pill-4d-milestone" data-month="3">M3 Substructure</button>
-                <button class="pill-4d-milestone" data-month="7">M7 Podium</button>
-                <button class="pill-4d-milestone" data-month="14">M14 Res Tower</button>
-                <button class="pill-4d-milestone" data-month="18">M18 Facade/MEP</button>
-                <button class="pill-4d-milestone" data-month="22">M22 Solar BIPV</button>
-                <button class="pill-4d-milestone active" data-month="24">M24 Complete</button>
-              </div>
-            </div>
-            <div class="bim4d-stats-mini">
-              <div class="stat-item"><span class="stat-k">Concrete Poured:</span> <strong id="bim4dConcreteVal">4,850 m³</strong></div>
-              <div class="stat-item"><span class="stat-k">Carbon Offset:</span> <strong id="bim4dCarbonVal" class="text-green">412.5 tCO₂e Saved</strong></div>
-              <div class="stat-item milestone-desc"><span id="bim4dMilestoneDesc">M23-M24: Handover, GRIHA 5-Star Inspection & Digital Twin Commissioning</span></div>
-            </div>
           </div>
 
           <!-- Exploded View Slider Floating Controls -->
@@ -304,46 +270,13 @@
             </div>
           </div>
 
-          <!-- Floating Action Buttons: FPS Mode & 30s Walkthrough -->
-          <div class="floating-action-buttons">
-            <button class="btn-action-fps" id="btnToggleFpsMode" title="Enter First-Person WASD Walkthrough">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="2" y="6" width="20" height="12" rx="3" />
-                <path d="M6 12h4M8 10v4M16 11h.01M18 13h.01" />
-              </svg>
-              <span>🎮 Explore in First-Person (WASD)</span>
-            </button>
-            <button class="btn-floating-walkthrough" id="btnStartWalkthroughFrom3d">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                <polygon points="5 3 19 12 5 21 5 3" />
-              </svg>
-              <span>Play 30s Walkthrough</span>
-            </button>
-          </div>
-
-          <!-- FPS Mode In-Game HUD -->
-          <div class="fps-hud-overlay" id="fpsHudOverlay">
-            <div class="fps-hud-top">
-              <div class="fps-badge"><span class="pulse-dot"></span> FIRST-PERSON EXPLORER MODE</div>
-              <div class="fps-compass">Heading: <strong id="fpsCompassHeading">N (0°)</strong></div>
-              <button class="btn-exit-fps" id="btnExitFps">✖ Exit Walkthrough [ESC]</button>
-            </div>
-            <div class="fps-crosshair">+</div>
-            <div class="fps-hud-bottom">
-              <div class="fps-instructions">
-                <span><strong>[W][A][S][D]</strong> to Walk</span>
-                <span><strong>[Mouse Drag]</strong> to Look 360°</span>
-                <span><strong>[Space]</strong> Up • <strong>[Shift]</strong> Down</span>
-              </div>
-              <div class="fps-spawn-pills">
-                <span class="spawn-lbl">Teleport:</span>
-                <button class="btn-fps-spawn active" data-spawn="courtyard">🌿 Courtyard Atrium</button>
-                <button class="btn-fps-spawn" data-spawn="apartment_3bhk">🏙️ 3BHK Apartment</button>
-                <button class="btn-fps-spawn" data-spawn="sky_forest">🌳 Sky Forest Roof</button>
-                <button class="btn-fps-spawn" data-spawn="promenade">🛍️ Ground Promenade</button>
-              </div>
-            </div>
-          </div>
+          <!-- Walkthrough Quick Trigger Button -->
+          <button class="btn-floating-walkthrough" id="btnStartWalkthroughFrom3d">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+              <polygon points="5 3 19 12 5 21 5 3" />
+            </svg>
+            <span>Play 30s Walkthrough Animation</span>
+          </button>
         </div>
 
         <!-- 3D BIM Controls Sidebar -->
@@ -434,18 +367,6 @@
                 <div class="prop-row">
                   <span class="prop-key">Environmental Role</span>
                   <span class="prop-val" id="elemEnv">Passive Thermal Chimney / Natural Daylight</span>
-                </div>
-                <div class="prop-row">
-                  <span class="prop-key">Embodied Carbon</span>
-                  <span class="prop-val text-green" id="elemCarbon">40% GGBS Concrete (-44% CO₂e)</span>
-                </div>
-                <div class="prop-row">
-                  <span class="prop-key">Seismic Detailing</span>
-                  <span class="prop-val" id="elemSeismic">IS 13920 Ductile Cross-Ties (135° Hooks)</span>
-                </div>
-                <div class="prop-row">
-                  <span class="prop-key">Fire Safety</span>
-                  <span class="prop-val" id="elemFire">2-Hour Integrity (IS 1642 / NBC 2016)</span>
                 </div>
                 <div class="prop-row">
                   <span class="prop-key">Materials</span>
@@ -1243,43 +1164,14 @@
         <div class="walkthrough-viewport-card glass-panel">
           <div class="walkthrough-header">
             <div>
-              <span class="badge-walkthrough">LIVE 30s INNOVATION TRAJECTORY TOURS</span>
-              <h3 class="view-heading" style="font-size: 1.35rem;">30-Second Innovation & Architecture Flight</h3>
-              <p class="view-sub">Cinematic camera flight with dedicated 30s walkthroughs for each core architectural & engineering innovation.</p>
+              <span class="badge-walkthrough">LIVE 3D TRAJECTORY WALKTHROUGH</span>
+              <h3 class="view-heading" style="font-size: 1.35rem;">30-Second Architectural Trajectory Flight</h3>
+              <p class="view-sub">Cinematic camera flight through all 5 key architectural stations from the ground
+                commercial plaza to the roof terrace skydeck.</p>
             </div>
             <div class="walkthrough-status-badge" id="wtLiveStatus">
               <span class="pulse-dot"></span>
               <span id="wtWaypointName">Station 1: Urban Approach & Active Promenade</span>
-            </div>
-          </div>
-
-          <!-- 30-Second Innovation Walkthrough Tour Selector Bar -->
-          <div class="walkthrough-tour-selector-bar">
-            <div class="tour-select-group">
-              <label for="wtTourSelector" class="tour-lbl">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                  <polygon points="5 3 19 12 5 21 5 3" />
-                </svg>
-                <span>Select 30s Walkthrough:</span>
-              </label>
-              <select id="wtTourSelector" class="custom-select tour-dropdown">
-                <option value="master">🏛️ Master Architectural Showcase (30s)</option>
-                <option value="inno_atrium">🌬️ Innovation 1: Biophilic Courtyard & Stack Ventilation (30s)</option>
-                <option value="inno_facade">🛡️ Innovation 2: Kinetic Parametric Louver Façade (30s)</option>
-                <option value="inno_structure">🏗️ Innovation 3: Low-Carbon GGBS RCC & Seismic Detailing (30s)</option>
-                <option value="inno_water">💧 Innovation 4: Smart Rainwater Catchment & 120 kLD STP (30s)</option>
-                <option value="inno_solar">🌿 Innovation 5: Biophilic Rooftop Sky Forest & 148 kWp Solar (30s)</option>
-                <option value="inno_4dbim">🚜 4D BIM Construction Phasing Flythrough (30s)</option>
-              </select>
-            </div>
-            <div class="tour-chips-quick">
-              <button class="btn-tour-chip active" data-tour="master">Master Tour</button>
-              <button class="btn-tour-chip" data-tour="inno_atrium">1. Atrium Stack</button>
-              <button class="btn-tour-chip" data-tour="inno_facade">2. Kinetic Louvers</button>
-              <button class="btn-tour-chip" data-tour="inno_structure">3. GGBS Frame</button>
-              <button class="btn-tour-chip" data-tour="inno_water">4. Water Loop</button>
-              <button class="btn-tour-chip" data-tour="inno_solar">5. Solar Skydeck</button>
-              <button class="btn-tour-chip" data-tour="inno_4dbim">6. 4D Phasing</button>
             </div>
           </div>
 
@@ -1791,115 +1683,6 @@
             </div>
           </div>
         </div>
-
-        <!-- INTERACTIVE ESG CARBON & FINANCIAL ROI FEASIBILITY CALCULATOR -->
-        <div class="esg-calculator-card glass-panel">
-          <div class="calc-header">
-            <div>
-              <div class="badge-esg"><span class="pulse-dot"></span> REAL-TIME ESG & SUSTAINABILITY CALCULATOR</div>
-              <h3 class="view-heading" style="font-size: 1.35rem;">ESG Carbon, Energy & Financial ROI Feasibility Engine</h3>
-              <p class="view-sub">Dynamically simulate green building material substitutions, solar PV sizing, and water loops to predict GRIHA/LEED rating & annual financial payback.</p>
-            </div>
-            <div class="rating-badge-card" id="resGreenRating">
-              <span class="badge-gold">GRIHA 5-Star & LEED Platinum</span>
-            </div>
-          </div>
-
-          <div class="calc-grid">
-            <!-- Left: Interactive Parameter Sliders -->
-            <div class="calc-sliders-col">
-              <h4 class="calc-col-title">1. Sustainability Parameters & Mix</h4>
-
-              <div class="calc-slider-group">
-                <div class="slider-header-row">
-                  <label for="calcGgbsSlider" class="calc-lbl">GGBS / Slag Cement Replacement (%):</label>
-                  <span class="calc-val-pill" id="calcGgbsVal">40% GGBS Blend</span>
-                </div>
-                <input type="range" id="calcGgbsSlider" min="0" max="60" step="5" value="40" class="custom-slider" />
-                <span class="slider-hint">Replaces ordinary Portland cement with blast furnace slag (IS 456 / IS 12089).</span>
-              </div>
-
-              <div class="calc-slider-group">
-                <div class="slider-header-row">
-                  <label for="calcSolarSlider" class="calc-lbl">Rooftop & Facade Solar BIPV (kWp):</label>
-                  <span class="calc-val-pill" id="calcSolarVal">148 kWp Solar Array</span>
-                </div>
-                <input type="range" id="calcSolarSlider" min="50" max="250" step="5" value="148" class="custom-slider" />
-                <span class="slider-hint">Bifacial monocrystalline solar pergola + balustrade BIPV panels.</span>
-              </div>
-
-              <div class="calc-slider-group">
-                <div class="slider-header-row">
-                  <label for="calcWaterSlider" class="calc-lbl">Rainwater & STP Greywater Recycling (%):</label>
-                  <span class="calc-val-pill" id="calcWaterVal">85% Recycling Rate</span>
-                </div>
-                <input type="range" id="calcWaterSlider" min="50" max="100" step="5" value="85" class="custom-slider" />
-                <span class="slider-hint">120 kLD MBBR STP + dual plumbing network for toilet flushing & landscape.</span>
-              </div>
-
-              <div class="calc-slider-group">
-                <div class="slider-header-row">
-                  <label for="calcHvacSlider" class="calc-lbl">Courtyard Stack Natural Cooling Offset (%):</label>
-                  <span class="calc-val-pill" id="calcHvacVal">38% Cooling Offset</span>
-                </div>
-                <input type="range" id="calcHvacSlider" min="10" max="55" step="1" value="38" class="custom-slider" />
-                <span class="slider-hint">Continuous 10-storey atrium thermal chimney reducing residential AC compressor hours.</span>
-              </div>
-            </div>
-
-            <!-- Right: Dynamic Live Output Result Cards -->
-            <div class="calc-results-col">
-              <h4 class="calc-col-title">2. Projected ESG & Financial Returns</h4>
-              <div class="calc-results-grid">
-                <div class="res-card">
-                  <div class="res-icon">🌿</div>
-                  <div class="res-body">
-                    <span class="res-label">Embodied Carbon Offset</span>
-                    <strong class="res-num green" id="resCarbonSaved">412.5 tCO₂e Saved</strong>
-                    <span class="res-sub">-51% vs OPC Standard Concrete</span>
-                  </div>
-                </div>
-
-                <div class="res-card">
-                  <div class="res-icon">⚡</div>
-                  <div class="res-body">
-                    <span class="res-label">Annual Clean Solar Yield</span>
-                    <strong class="res-num green" id="resSolarGen">185 MWh/year</strong>
-                    <span class="res-sub">Powering 100% Common Amenities & EV</span>
-                  </div>
-                </div>
-
-                <div class="res-card">
-                  <div class="res-icon">💧</div>
-                  <div class="res-body">
-                    <span class="res-label">Annual Potable Water Saved</span>
-                    <strong class="res-num blue" id="resWaterSaved">43.8 Million Liters/yr</strong>
-                    <span class="res-sub">85% Net Municipal Water Independence</span>
-                  </div>
-                </div>
-
-                <div class="res-card">
-                  <div class="res-icon">💰</div>
-                  <div class="res-body">
-                    <span class="res-label">Annual Utility Cost Savings</span>
-                    <strong class="res-num gold" id="resAnnualSavings">₹ 24.8 Lakhs/yr</strong>
-                    <span class="res-sub">Reduced Electricity & Water Tariffs</span>
-                  </div>
-                </div>
-
-                <div class="res-card span-2">
-                  <div class="res-icon">⏳</div>
-                  <div class="res-body">
-                    <span class="res-label">Green Technology CapEx Payback Period</span>
-                    <strong class="res-num" id="resRoiPayback">4.2 Years</strong>
-                    <span class="res-sub">Capital payback horizon for BIPV, MBBR-STP, and kinetic shading louvers.</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div>
     </section>
 
