@@ -227,6 +227,93 @@ function initApp() {
     });
   });
 
+  // 4D BIM Construction Phasing Slider & Automation
+  const bim4dSlider = document.getElementById('bim4dTimelineSlider');
+  const btnBim4dPlay = document.getElementById('btnBim4dPlay');
+  let is4dPlaying = false;
+  let anim4dTimer = null;
+
+  if (bim4dSlider && bimViewer) {
+    bim4dSlider.addEventListener('input', (e) => {
+      bimViewer.setConstructionMonth(parseInt(e.target.value, 10));
+    });
+  }
+
+  if (btnBim4dPlay && bimViewer && bim4dSlider) {
+    btnBim4dPlay.addEventListener('click', () => {
+      is4dPlaying = !is4dPlaying;
+      btnBim4dPlay.textContent = is4dPlaying ? 'Pause 4D Phasing' : 'Play 4D Phasing';
+      btnBim4dPlay.classList.toggle('active', is4dPlaying);
+
+      if (is4dPlaying) {
+        if (parseInt(bim4dSlider.value, 10) >= 24) bim4dSlider.value = 1;
+        anim4dTimer = setInterval(() => {
+          let cur = parseInt(bim4dSlider.value, 10) + 1;
+          if (cur > 24) {
+            cur = 24;
+            is4dPlaying = false;
+            clearInterval(anim4dTimer);
+            btnBim4dPlay.textContent = 'Play 4D Phasing';
+            btnBim4dPlay.classList.remove('active');
+          }
+          bim4dSlider.value = cur;
+          bimViewer.setConstructionMonth(cur);
+        }, 550);
+      } else {
+        clearInterval(anim4dTimer);
+      }
+    });
+  }
+
+  // 4D Milestone Quick Step Pills
+  document.querySelectorAll('.pill-4d-milestone').forEach(pill => {
+    pill.addEventListener('click', () => {
+      document.querySelectorAll('.pill-4d-milestone').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      const m = parseInt(pill.dataset.month, 10);
+      if (bim4dSlider) bim4dSlider.value = m;
+      if (bimViewer) bimViewer.setConstructionMonth(m);
+    });
+  });
+
+  // FPS First-Person Walkthrough Explorer Handlers
+  const btnToggleFpsMode = document.getElementById('btnToggleFpsMode');
+  const btnExitFps = document.getElementById('btnExitFps');
+  if (btnToggleFpsMode && bimViewer) {
+    btnToggleFpsMode.addEventListener('click', () => {
+      const active = !bimViewer.isFpsMode;
+      bimViewer.toggleFpsMode(active);
+      btnToggleFpsMode.classList.toggle('active', active);
+    });
+  }
+  if (btnExitFps && bimViewer) {
+    btnExitFps.addEventListener('click', () => {
+      bimViewer.toggleFpsMode(false);
+      if (btnToggleFpsMode) btnToggleFpsMode.classList.remove('active');
+    });
+  }
+
+  // FPS Teleport Location Buttons
+  document.querySelectorAll('.btn-fps-spawn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.btn-fps-spawn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      if (bimViewer) bimViewer.teleportFpsTo(btn.dataset.spawn);
+    });
+  });
+
+  // Walkthrough Innovation Tour Selector Chips
+  document.querySelectorAll('.btn-tour-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('.btn-tour-chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      const tourKey = chip.dataset.tour;
+      const selector = document.getElementById('wtTourSelector');
+      if (selector) selector.value = tourKey;
+      if (walkthrough) walkthrough.switchTour(tourKey);
+    });
+  });
+
   // 3D Layer Toggles
   const layerCheckboxes = [
     { id: 'layerArch', key: 'arch' },
