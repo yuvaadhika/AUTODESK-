@@ -68,15 +68,6 @@
 > [!NOTE]
 > In full compliance with Autodesk competition guidelines (PS 26116), no AI-generated architectural drawings, designs, or content are claimed. The web application serves as an interactive conceptual BIM planning prototype. Final models and documentation are authored in Autodesk Revit, AutoCAD, and Autodesk Forma.
 
----
-
-## 📚 Academic Research & Literature Citations
-
-1. **Manu, S., Shukla, Y., Rawal, R., Thomas, P.C., & de Dear, R. (2019).** *Field study of thermal comfort and climate-responsive building design in India.* Building and Environment, 165, 106428.
-2. **Gunasagaran, S., et al. (2022).** *Investigation of Courtyard Effect on Indoor Thermal Comfort, Natural Ventilation, and Daylighting in Tropical Multi-Storey Buildings.* Energy and Buildings, 268, 112186.
-3. **Tong, S., Wong, N.H., Tan, C.L., & Jusuf, S.K. (2019).** *Impact of facade design on indoor thermal comfort and energy consumption of residential high-rises.* Building and Environment, 154, 307-320.
-4. **Eltanbouly, M. (2026).** *Parametric climate-responsive façade optimization for daylight autonomy and thermal glare reduction in mixed-use residential towers.* Solar Energy, 280, 113000.
-5. **Kamble, R., et al. (2026).** *Climate-responsive residential façade design in composite and warm-humid climates of India: A BIM-based parametric workflow.* Energy and Buildings, 310, 115000.
 
 ---
 
